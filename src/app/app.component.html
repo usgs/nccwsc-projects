@@ -1,3 +1,7 @@
-<h1>
-  {{title}}
-</h1>
+<div class="container-fluid">
+  <app-header></app-header>
+  <!--  The following is only needed if BS4 Modals are used in the project. -->
+  <template ngbModalContainer></template>
+  <router-outlet></router-outlet>
+  <app-footer id="footer"></app-footer>
+</div> 

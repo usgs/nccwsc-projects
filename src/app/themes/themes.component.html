@@ -1,0 +1,33 @@
+<span>
+  <div>
+    <table>
+      <tr>
+        <th>Year(s)</th>
+        <th>Title</th>
+        <th>Principle Investigator(s)</th>
+        <th>Contains</th>
+      </tr>
+      <tr *ngFor= "let key of topicKeys">
+        <td>
+          {{ projectsJson[key].dates}}
+        </td>
+        <td>
+          <a [routerLink]="['/project/', projectsJson[key].parent_csc, projectsJson[key].id]">{{ projectsJson[key].title}}</a>
+          <ul *ngIf="projectsJson[key].children?.length > 0">
+            <li *ngFor= "let childProject of projectsJson[key].children">{{ childProject.title }}</li>
+          </ul>
+        </td>
+        <td *ngIf="projectsJson[key].principal_investigator">
+          <ul *ngFor="let pi of projectsJson[key].principal_investigator">
+            <li>{{ pi.name }} (<em>{{ pi.organization}})</em></li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li *ngIf="projectsJson[key].hasFolders">Folder(s)</li><li *ngIf="projectsJson[key].hasMaps">Maps</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+</span>

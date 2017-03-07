@@ -1,0 +1,100 @@
+<div class="row" *ngIf="projectJson">
+  <div class="col-md-12">
+  <h1>{{ projectJson.title }}</h1>
+  <h2>Project Summary</h2>
+    <div class="body" [innerHTML]="projectJson.body"></div>
+  </div>
+  <div class="col-md-12">
+  <h2>Project Information</h2>
+  </div>
+<div class="col-md-6">
+<strong>Affliation(s):</strong>
+
+<span *ngIf="projectJson.contacts.principal_investigators && projectJson.contacts.principal_investigators.length > 0">
+  <strong>Principal Investigator(s):</strong>
+  <ul class="contacts">
+    <li *ngFor = "let principal_investigator of projectJson.contacts.principal_investigators">
+      {{ principal_investigator.name }}
+      <em *ngIf="principal_investigator.organization">({{ principal_investigator.organization }})</em> 
+    </li>
+  </ul>
+</span>
+
+<span *ngIf="projectJson.contacts.co_investigators && projectJson.contacts.co_investigators.length > 0">
+  <strong>Co-Investigator(s):</strong>
+  <ul class="contacts">
+    <li *ngFor = "let co_investigator of projectJson.contacts.co_investigators">
+      {{ co_investigator.name }}
+      <em *ngIf="co_investigator.organization">({{ co_investigator.organization }})</em> 
+    </li>
+  </ul>
+</span>
+
+<span *ngIf="projectJson.contacts.authors && projectJson.contacts.authors.length > 0">
+  <strong>Author(s):</strong>
+  <ul class="contacts">
+    <li *ngFor = "let author of projectJson.contacts.authors">
+      {{ author.name }}
+      <em *ngIf="author.organization">({{ author.organization }})</em> 
+    </li>
+  </ul>
+</span>
+
+<span *ngIf="projectJson.contacts.partners && projectJson.contacts.partners.length > 0">
+  <strong>Partner(s):</strong>
+  <ul class="contacts">
+    <li *ngFor = "let partner of projectJson.contacts.partners">
+      {{ partner.name }}
+      <em *ngIf="partner.organization">({{ partner.organization }})</em> 
+    </li>
+  </ul>
+</span>
+
+<span *ngIf="projectJson.dates.start">
+  <strong>Start Date:</strong>
+  <p>{{ projectJson.dates.start}}</p>
+</span>
+
+<span *ngIf="projectJson.dates.end">
+  <strong>End Date:</strong>
+  <p>{{ projectJson.dates.end}}</p>
+</span>
+
+<span *ngIf="projectJson.status">
+  <strong>Status:</strong>
+  <p>{{ projectJson.status}}</p>
+</span>
+
+<span *ngIf="projectJson.tags && projectJson.tags.length > 0">
+  <strong>Tags(s):</strong>
+  <ul class="tags">
+    <li *ngFor = "let tag of projectJson.tags">
+      {{ tag.name }}
+    </li>
+  </ul>
+</span>
+
+<span *ngIf="projectJson.fiscal_year">
+  <strong>Fiscal Year:</strong>
+  <p>{{ projectJson.fiscal_year}}</p>
+</span>
+</div>
+<div class="col-md-6">
+<sb-map *ngIf="projectJson.map_url" [mapurl]="projectJson.map_url"></sb-map>
+</div>
+<div class="col-md-12" *ngIf="projectJson.sub_projects && projectJson.sub_projects.length > 0">
+<h2>Sub-Project(s)</h2>
+<ul *ngIf="projectJson.sub_projects">
+<li *ngFor="let sub_project of projectJson.sub_projects">
+  <a href="/#/{{ sub_project.url }}">{{sub_project.title}}</a>
+</li>
+</ul>
+</div>
+<div class="col-md-12" *ngIf="projectJson.approved_products">
+<h2>Project Products</h2>
+<ul></ul>
+
+</div>
+
+
+</div>
