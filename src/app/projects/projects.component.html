@@ -2,20 +2,36 @@
   <div class="project_year" *ngIf="projectYear.title">
     {{ projectYear.title }}
     <table>
-    <tr><th>Year(s)</th><th>Title</th><th>Principle Investigator(s)</th><th>Contains</th></tr>
-    
-    <tr *ngFor= "let project of projectYear.projects">
-    <td>
-      {{ project.dates}}
-    </td>
-    <td>
-    {{ project.title}}
-    <ul *ngIf="project.children?.length > 0">
-    <li *ngFor= "let childProject of project.children">{{ childProject.title }}</li></ul>
-    </td>
-    <td *ngIf="project.principal_investigators"><ul *ngFor="let pi of project.principal_investigators"><li>{{ pi.name }} (<em>{{ pi.organization}})</em></li></ul></td>
-    <td><ul><li *ngIf="project.hasFolders">Folder(s)</li><li *ngIf="project.hasMaps">Maps</li></ul></td>
-    </tr>
+      <tr>
+        <th>Year(s)</th>
+        <th>Title</th>
+        <th>Principle Investigator(s)</th>
+        <th>Contains</th>
+      </tr>
+      <tr *ngFor= "let project of projectYear.projects">
+        <td> 
+          {{ project.dates}}
+        </td>
+        <td>
+          <a [routerLink]="['/project/', sbId, project.id]">
+            {{ project.title}}
+          </a>
+          <ul *ngIf="project.children?.length > 0">
+            <li *ngFor= "let childProject of project.children">{{ childProject.title }}</li>
+          </ul>
+        </td>
+        <td *ngIf="project.principal_investigator">
+          <ul *ngFor="let pi of project.principal_investigator">
+            <li>{{ pi.name }} (<em>{{ pi.organization}})</em></li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li *ngIf="project.hasFolders">Folder(s)</li>
+            <li *ngIf="project.hasMaps">Maps</li>
+          </ul>
+        </td>
+      </tr>
     </table>
   </div>
 </span>

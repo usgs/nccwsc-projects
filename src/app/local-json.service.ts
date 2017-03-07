@@ -9,22 +9,22 @@ export class LocalJsonService {
   constructor(private http: Http) { }
 
   loadCscProjects(csc_id) {
-    var cscUrl = 'http://localhost:8000/projects/' + csc_id;
+    var cscUrl = 'https://my-beta.usgs.gov/nccwsc-service/projects/' + csc_id;
     return this.http.get(cscUrl).map((res:Response) => res.json());  
   }
 
   loadTopics() {
-    var cscUrl = 'http://localhost:8000/topics/';
+    var cscUrl = 'https://my-beta.usgs.gov/nccwsc-service/topics/';
     return this.http.get(cscUrl).map((res:Response) => res.json());  
   }
 
   loadTopic(topic_id) {
-    var cscUrl = 'http://localhost:8000/themes/' + topic_id;
+    var cscUrl = 'https://my-beta.usgs.gov/nccwsc-service/themes/' + topic_id;
     return this.http.get(cscUrl).map((res:Response) => res.json());  
   }
 
   loadProject(csc_id, project_id) {
-    var cscUrl = 'http://localhost:8000/projects/' + csc_id + '/' + project_id;
+    var cscUrl = 'https://my-beta.usgs.gov/nccwsc-service/projects/' + csc_id + '/' + project_id;
     return this.http.get(cscUrl).map((res:Response) => res.json());  
   }
 
