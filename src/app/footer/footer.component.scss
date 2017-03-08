@@ -1,0 +1,63 @@
+a:active,
+a:focus {
+  outline: none !important;
+}
+div.footer-menu {
+  text-align: center;
+  padding: 0.25em;
+  margin: 0;
+}
+div.footer-menu a {
+  color: white;
+}
+div.navbar.footer-menu {
+  display: block;
+  border-radius: 0 !important;
+  border: none !important;
+  min-height: 2em !important;
+  padding: 0 !important;
+  background-color: #555;
+  position: absolute;
+  width: 100%;
+  margin-left: -15px;
+}
+p.footer-info.first {
+  position: inherit;
+  display: block;
+  margin-top: 1em;
+  width: inherit;
+  clear: both;
+  padding: 0;
+}
+p.footer-info {
+  margin: 0 0 0 1em;
+}
+img.usa-gov {
+  margin-top: 1em;
+  display: block;
+  float: right;
+  margin-right: 1em;
+}
+ul.legal_info {
+  margin: 0.25em;
+  padding: 0;
+  font-size: .9em;
+  li {
+    list-style: none;
+    a {
+      color: #025aa5 !important;
+    }
+  }
+}
+div.modal-header {
+  padding: 0.5em;
+  margin: 0;
+}
+div.modal-body {
+  background: #F5f5f5;
+}
+.popover-title,
+h3.popover-title {
+  text-align: center !important;
+  color: red;
+}

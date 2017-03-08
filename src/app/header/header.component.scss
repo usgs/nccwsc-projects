@@ -1,0 +1,323 @@
+body {
+    padding-top: 50px !important;
+    background: black !important;
+}
+
+.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+
+  > .col,
+  > [class*="col-"] {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+a:active, a:focus {
+    outline: none !important;
+}
+
+div.row.header {
+    background-color: #000 !important;
+    height: 60px;
+    margin-bottom: 0;
+}
+
+div.col-xs-12.mobile_menu {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+a.login {
+    display: none;
+}
+
+nav.navbar-dark {
+    background-color: #000 !important;
+    padding: 0;
+}
+
+div#logo_col {
+    padding-left: 5px !important;
+}
+
+img.usgs_logo {
+    max-height: 50px;
+    width: auto;
+    display: inherit !important;
+    float: left;
+    left: 15px;
+    position: absolute;
+}
+
+a.navbar-brand {
+    width: 100%;
+    font-size: 4vw;
+}
+
+a.nav-link {
+    font-size: 1em;
+}
+
+a.active {
+    color: white !important;
+}
+
+ul.nav.navbar-nav li.nav-item {
+    margin: 0 0 0 30px !important;
+}
+
+.btn-circle {
+    border: #555 solid 2px;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+}
+
+.btn-search {
+    position: absolute;
+    top: 0px;
+    right: 120px;
+    z-index: 1000;
+}
+
+.btn-help {
+    position: absolute;
+    top: 0px;
+    right: 65px;
+    z-index: 1000;
+}
+
+.btn-menu {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    z-index: 1000;
+}
+
+.btn-help span {
+    font-weight: bold;
+    font-size: 1.4em;
+}
+
+#help_content div.row.card.card-block.card-header {
+    border: 1px #555 solid;
+    border-radius: 5px;
+}
+
+div.main-menu {
+    height: 30px;
+    li.nav-item {
+        margin: 0 !important;
+        padding: 0 !important;
+        a {
+            font-size: 1em;
+            line-height: 1em;
+        }
+    }
+}
+
+h4.help-title {
+    margin: 1em 0 0 20px;
+    padding: 0;
+}
+
+div.search_form {
+    background-color: #333;
+    margin-left: -30px;
+    margin-right: -30px;
+    padding: 0.5em;
+    .card {
+        width: 98%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 0;
+        border-radius: 0;
+    }
+}
+
+#mobile_menu {
+    margin: 0 !important;
+    padding: 0 !important;
+    .well {
+        background: #222;
+        border: none;
+    }
+    .well-lg {
+        border-radius: 0 !important;
+        padding: 2em 0 0.5em;
+    }
+    button {
+        margin-bottom: 0.5em;
+    }
+}
+
+/* Small, but not Tiny, Devices */
+@media (min-width: 400px) {
+    a.navbar-brand {
+        font-size: 1.5em;
+        font-size: 4vw;
+        line-height: 1.3em;
+        margin-top: 0;
+        width: 100%;
+        text-align: center;
+    }
+    img.doi_logo {
+        width: 100px;
+    }
+    img.usgs_logo {
+        width: 100px;
+        float: right;
+        margin-left: -15px;
+        padding-left: 0;
+
+    }
+}
+
+
+/* Small Devices, Tablets */
+
+@media (min-width: 576px) {
+    div#logo_col {
+        padding-left: 15px !important;
+    }
+    img.usgs_logo {
+        padding: 3px 3px 3px 0px;
+        margin-top: 0;
+        max-height: 50px;
+        width: auto;
+    }
+    div.row.header {
+
+    }
+    a.navbar-brand {
+        color: white;
+        font-size: 1.2em;
+        font-size: 3.5vw;
+        text-align: center;
+        width: 100%;
+        padding: 0;
+        margin: 3px 0 0 1em;
+    }
+    .btn-search {
+      top: 0;
+    }
+    .btn-help {
+      top: 0;
+    }
+    .btn-menu {
+        top: 0;
+    }
+}
+
+
+/* Medium Devices, Desktops */
+
+@media (min-width: 768px) {
+    div.row.header {
+        height: 70px;
+    }
+
+  img.doi_logo {
+    margin-top: 5px;
+    max-height: 110px;
+  }
+
+    a.navbar-brand {
+        font-size: 48px;
+        font-size: 4vw;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        width: 100%
+    }
+    img.usgs_logo {
+        padding: 3px;
+        max-height: 50px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: auto;
+        z-index: 9999;
+    }
+    .btn-search {
+        top: -25px;
+        right: 65px;
+    }
+    .btn-help {
+        top: -25px;
+        right: 10px;
+    }
+    a.nav-link {
+        font-size: 2.4vw;
+        font-size: .65em;
+        line-height: .55em;
+    }
+}
+
+
+/* Large Devices */
+
+@media (min-width: 992px) {
+    div.row.header {
+        height: 70px;
+    }
+    a.navbar-brand {
+        margin: 0;
+        width: 100%;
+        font-size: 32px;
+        font-size: 2.4vw;
+        line-height: 1.65em;
+        padding-left: 0;
+        text-align: center;
+    }
+    .btn-search {
+        top: -25px;
+        right: 65px;
+    }
+    .btn-help {
+        top: -25px;
+        right: 10px;
+    }
+    a.nav-link {
+        font-size: .9em;
+        line-height: .6em;
+    }
+}
+
+
+/* VERY Large Devices, Wide Screens */
+
+@media (min-width: 1200px) {
+    div.row.header {
+        height: 80px;
+    }
+
+    .btn-search {
+        top: -25px;
+    }
+    .btn-help {
+        top: -25px;
+    }
+
+    a.navbar-brand {
+        margin: 0;
+        width: 100%;
+        font-size: 46px;
+        line-height: 46px;
+        font-size: 2vw;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+    }
+    a.nav-link {
+        font-size: 1.1em;
+        line-height: 1.1em;
+        padding-left: 1em;
+    }
+}
+

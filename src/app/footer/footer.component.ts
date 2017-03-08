@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { environment } from '../../environments/environment';
+import { DOCUMENT } from '@angular/platform-browser'
 
 @Component({
   selector: 'app-footer',
@@ -7,8 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
-
+  private currentPage: string;
+  constructor(@Inject(DOCUMENT) private document: any) { 
+    this.currentPage = this.document.location.href;
+  }
   ngOnInit() {
   }
 
