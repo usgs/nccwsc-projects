@@ -17,7 +17,7 @@ import { ProjectComponent } from './project/project.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { SearchComponent } from './search/search.component';
 import { CscsComponent } from './cscs/cscs.component';
-import { ThemesComponent } from './themes/themes.component';
+import { TopicsComponent } from './topics/topics.component';
 import { MapComponent } from './map/map.component';
 import { SearchNavComponent } from './search-nav/search-nav.component';
 import { LocalJsonService } from './local-json.service';
@@ -32,7 +32,7 @@ import { SearchService } from './search.service';
     ProjectsComponent,
     SearchComponent,
     CscsComponent,
-    ThemesComponent,    
+    TopicsComponent,    
     MapComponent, 
     SearchNavComponent
   ],

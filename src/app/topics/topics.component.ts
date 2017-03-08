@@ -3,11 +3,11 @@ import { LocalJsonService } from '../local-json.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-themes',
-  templateUrl: './themes.component.html',
-  styleUrls: ['./themes.component.scss']
+  selector: 'app-topics',
+  templateUrl: './topics.component.html',
+  styleUrls: ['./topics.component.scss']
 })
-export class ThemesComponent implements OnInit {
+export class TopicsComponent implements OnInit {
   sub = null;
   topic = null;
   topics = {

@@ -1,13 +1,13 @@
 import { Routes, RouterModule } from '@angular/router';
 import { CscsRoutes } from './cscs/cscs.routes';
-import { ThemesRoutes } from './themes/themes.routes';
+import { TopicsRoutes } from './topics/topics.routes';
 import { ProjectRoutes } from './project/project.routes';
 import { ProjectsRoutes } from './projects/projects.routes';
 import { SearchRoutes } from './search/search.routes';
 
 const appRoutes: Routes = [
   ...CscsRoutes,
-  ...ThemesRoutes,
+  ...TopicsRoutes,
   ...ProjectRoutes,
   ...ProjectsRoutes,
   ...SearchRoutes
