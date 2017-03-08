@@ -18,6 +18,15 @@ export class TopicsComponent implements OnInit {
     'water-ice': '5882464ce4b0b3d9add2439a',
     'wildlife-plants': '58824220e4b0b3d9add2438b'
   }
+  topic_names = {
+    'dought-fire-extremes': 'Drought, Fire and Extreme Weather',
+    'education-modeling-tools': 'Education, Modeling and Tools',
+    'landscapes': 'Landscapes',
+    'native-communities': 'Native Communities',
+    'water-ice': 'Water and Ice',
+    'wildlife-plants': 'Wildlife and Plants'
+  }
+
   private topicKeys;
   private projectsJson = {};
 
@@ -35,7 +44,6 @@ export class TopicsComponent implements OnInit {
     this.localJson.loadTopic(this.topics[this.topic]).subscribe(data => {
        this.projectsJson = data;
        this.topicKeys = Object.keys(this.projectsJson);
-       console.log(this.projectsJson);
     });
   }
 
