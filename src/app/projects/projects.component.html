@@ -1,15 +1,22 @@
+
+<h1>{{ this.csc_title }}</h1>
+
+
+<table class="table table-bordered table-striped">
+  <tr>
+    <th>Year(s)</th>
+    <th>Title</th>
+    <th>Principle Investigator(s)</th>
+    <th>Contains</th>
+  </tr>
+<!--</table>-->
 <span *ngFor= "let projectYear of cscJson">
-  <div class="project_year" *ngIf="projectYear.title">
-    {{ projectYear.title }}
-    <table>
-      <tr>
-        <th>Year(s)</th>
-        <th>Title</th>
-        <th>Principle Investigator(s)</th>
-        <th>Contains</th>
-      </tr>
+
+<div class="project_year" *ngIf="projectYear.title">
+    <!--{{ projectYear.title }}-->
+<!--<table class="table table-bordered table-striped">-->
       <tr *ngFor= "let project of projectYear.projects">
-        <td> 
+        <td>
           {{ project.dates}}
         </td>
         <td>
@@ -22,7 +29,7 @@
         </td>
         <td *ngIf="project.principal_investigator">
           <ul *ngFor="let pi of project.principal_investigator">
-            <li>{{ pi.name }} (<em>{{ pi.organization}})</em></li>
+            <p>{{ pi.name }} (<em>{{ pi.organization}})</em></p>
           </ul>
         </td>
         <td>
@@ -32,6 +39,10 @@
           </ul>
         </td>
       </tr>
-    </table>
+<!--</table>-->
   </div>
+
 </span>
+</table>
+<br>
+<br>
