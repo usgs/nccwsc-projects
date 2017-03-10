@@ -31,8 +31,7 @@ export class ProjectsComponent implements OnInit {
        this.cscJson = data;
        this.csc_title= this.cscJson[0].csc;
        console.log(this.cscJson);
-       var csc_title = this.cscJson[0].csc;
-           console.log(csc_title);
+
 
 
     });

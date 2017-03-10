@@ -46,11 +46,12 @@ div#logo_col {
 
 img.usgs_logo {
     max-height: 50px;
-    width: auto;
+    width:125px;
     display: inherit !important;
     float: left;
     left: 15px;
     position: absolute;
+    margin-top: 10px;
 }
 
 a.navbar-brand {
@@ -294,7 +295,7 @@ div.search_form {
 
 @media (min-width: 1200px) {
     div.row.header {
-        height: 80px;
+        height: 65px;
     }
 
     .btn-search {
@@ -320,4 +321,7 @@ div.search_form {
         padding-left: 1em;
     }
 }
-
+a.navbar-brand{
+  text-align: left;
+  margin-top: 5px;
+}

@@ -1,12 +1,12 @@
-<h1>{{ topic_names[topic] }}</h1>
+<h1>{{ topic_names[topic] }} CSC</h1>
 <span>
   <div>
-    <table>
+    <table class = "table table-striped table-bordered">
       <tr>
-        <th>Year(s)</th>
-        <th>Title</th>
-        <th>Principle Investigator(s)</th>
-        <th>Contains</th>
+        <th style = "width:10%;">Year(s)</th>
+        <th style = "width:60%;">Title</th>
+        <th style = "width:20%;">Principle Investigator(s)</th>
+        <th style = "width:10%;">Contains</th>
       </tr>
       <tr *ngFor= "let key of topicKeys">
         <td>
@@ -25,7 +25,8 @@
         </td>
         <td>
           <ul>
-            <li *ngIf="projectsJson[key].hasFolders">Folder(s)</li><li *ngIf="projectsJson[key].hasMaps">Maps</li>
+            <li *ngIf="projectsJson[key].hasFolders"><img src = "src\assets\images\Folder_Icon.png" alt = "Folder"></li>
+            <li *ngIf="projectsJson[key].hasMaps"><img src = "src\assets\images\GIS_Icon.png" alt = "Map"></li>
           </ul>
         </td>
       </tr>
