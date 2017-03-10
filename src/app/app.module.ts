@@ -22,6 +22,7 @@ import { MapComponent } from './map/map.component';
 import { SearchNavComponent } from './search-nav/search-nav.component';
 import { LocalJsonService } from './local-json.service';
 import { SearchService } from './search.service';
+import { NccwscDrupalService } from './nccwsc-drupal.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,7 @@ import { SearchService } from './search.service';
     MultiselectDropdownModule,
     NgbModule.forRoot(),
   ],
-  providers: [LocalJsonService, SearchService, {provide: LocationStrategy, useClass: HashLocationStrategy}],
+  providers: [LocalJsonService, NccwscDrupalService, SearchService, {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

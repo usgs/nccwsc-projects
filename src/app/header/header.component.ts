@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NccwscDrupalService } from '../nccwsc-drupal.service';
 
 @Component({
   selector: 'app-header',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor() { }
+  private nccwscMenu;
+  constructor(private nccwscDrupal: NccwscDrupalService) { }
 
   ngOnInit() {
+     this.nccwscDrupal.loadMenu().subscribe(data => {
+       this.nccwscMenu = data;
+       console.log(this.nccwscMenu);
+     });
+
   }
 
 }

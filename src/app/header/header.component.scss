@@ -20,7 +20,7 @@ a:active, a:focus {
 
 div.row.header {
     background-color: #000 !important;
-    height: 60px;
+    height: 0px;
     margin-bottom: 0;
 }
 
@@ -295,7 +295,7 @@ div.search_form {
 
 @media (min-width: 1200px) {
     div.row.header {
-        height: 65px;
+        height: 85px;
     }
 
     .btn-search {
