@@ -13,7 +13,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
      this.nccwscDrupal.loadMenu().subscribe(data => {
        this.nccwscMenu = data;
-       console.log(this.nccwscMenu);
      });
 
   }

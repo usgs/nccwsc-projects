@@ -23,6 +23,7 @@ import { SearchNavComponent } from './search-nav/search-nav.component';
 import { LocalJsonService } from './local-json.service';
 import { SearchService } from './search.service';
 import { NccwscDrupalService } from './nccwsc-drupal.service';
+import { CscComponent } from './csc/csc.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { NccwscDrupalService } from './nccwsc-drupal.service';
     CscsComponent,
     TopicsComponent,    
     MapComponent, 
-    SearchNavComponent
+    SearchNavComponent, CscComponent
   ],
   imports: [
     LeafletModule,
