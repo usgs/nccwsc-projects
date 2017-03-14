@@ -9,7 +9,7 @@ export class LocalJsonService {
   constructor(private http: Http) { }
 
   loadCscProjects(csc_id) {
-    var cscUrl = 'http://localhost:8000/projects/' + csc_id;
+    var cscUrl = 'https://my-beta.usgs.gov/nccwsc-service/projects/' + csc_id;
     return this.http.get(cscUrl).map((res:Response) => res.json());  
   }
 
