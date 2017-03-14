@@ -30,13 +30,7 @@ export class ProjectsComponent implements OnInit {
        this.sortByKey(data, 'title');
        this.cscJson = data;
        this.csc_title= this.cscJson[0].csc;
-       console.log(this.cscJson);
-
-
-
     });
-
-
   }
 
 }
