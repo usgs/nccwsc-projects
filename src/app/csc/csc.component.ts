@@ -19,8 +19,30 @@ export class CscComponent implements OnInit {
   private current_topic = 'All Topics';
   private current_fy = 'All Fiscal Years';
   private current_status = 'All Statuses';
+  private title = null;
+  private dataLoading = true;
+  private 
+
+  private csc_ids = {
+    '5050cb0ee4b0be20bb30eac0' : 'NCCWSC',
+    '4f831626e4b0e84f6086809b' : 'Alaska CSC',
+    '4f83509de4b0e84f60868124' : 'North Central CSC',
+    '4f8c648de4b0546c0c397b43' : 'Northeast CSC',
+    '4f8c64d2e4b0546c0c397b46' : 'Northwest CSC',
+    '4f8c650ae4b0546c0c397b48' : 'Pacific Islands CSC',
+    '4f8c652fe4b0546c0c397b4a' : 'South Central CSC',
+    '4f8c6557e4b0546c0c397b4c' : 'Southeast CSC',
+    '4f8c6580e4b0546c0c397b4e' : 'Southwest CSC'
+  }
 
   constructor(private route: ActivatedRoute, private localJson: LocalJsonService, private router: Router) { }
+
+  showAllProjects() {
+    this.filteredCscProjectsList = [];
+    for (var project in this.cscProjectsList) {
+      this.filteredCscProjectsList.push(this.cscProjectsList[project]);
+    }
+  }
 
   sortProjectsByKey(array, key) {
     return array.sort(function(a, b) {
@@ -65,6 +87,8 @@ export class CscComponent implements OnInit {
       this.sbId = params['id'];
     });
     
+    this.title = this.csc_ids[this.sbId];
+
     this.localJson.loadCscProjects(this.sbId).subscribe(data => {
       this.cscProjectsList = data;
         for (var project in this.cscProjectsList) {
@@ -83,6 +107,7 @@ export class CscComponent implements OnInit {
           this.fiscal_years.sort();
           this.statuses.sort();
           this.filteredCscProjectsList.push(this.cscProjectsList[project]);
+          this.dataLoading = false;
       }
     });
   }
