@@ -9,8 +9,8 @@
     <th style = "width:10%;">Contains</th>
   </tr>
 
-<tr *ngFor= "let projectYear of cscJson">
-  <span class="project_year" *ngIf="projectYear.title">
+<tr *ngFor= "let projectYear of cscJson" style= "width: 100%">
+  <!--<span class="project_year" *ngIf="projectYear.title">-->
     <!--{{ projectYear.title }}-->
 
       <div *ngFor= "let project of projectYear.projects">
@@ -37,7 +37,7 @@
           </ul>
         </td>
       </div>
-    </span>
+    
 </tr>
   </table>
 <div>
