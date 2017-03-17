@@ -1,11 +1,12 @@
 <div class="row container " *ngIf="projectJson">
-  <div class="col-md-12">
-  <h1>{{ projectJson.title }}</h1>
+  <div class="col-md-12"><br>
+  <h1>{{ projectJson.title }}</h1><br>
   <h2>Project Summary</h2>
+  <hr>
     <div class="body" [innerHTML]="projectJson.body"></div>
-  </div>
-  <div class="col-md-12">
-  <h2>Project Information</h2>
+  </div><br>
+  <div class="col-md-12"><br>
+  <h2>Project Information</h2><hr>
   </div>
 <div class="col-md-6">
 <strong>Affliation(s):</strong>

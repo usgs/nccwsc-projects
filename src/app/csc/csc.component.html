@@ -2,25 +2,30 @@
   <div class="col-md-12">
     <h1>{{ title }} Projects</h1>
   </div>
-</div>
+
+
+</div><br><br>
 
 <span class="row">
-  <div class="col-md-4">
+  <div class=" col-xs-12 col-md-2">
     <select (change)="filterProjectsList($event.target.value)" [(ngModel)]="current_topic" class="filter">
       <option *ngFor="let topic of topics" [value]="topic">{{ topic }}</option>
     </select>
   </div>
-  <div class="col-md-4">
+  <div class="col-xs-12 col-md-2">
     <select (change)="filterProjectsList($event.target.value)"  [(ngModel)]="current_fy" class="filter">
       <option *ngFor="let fiscal_year of fiscal_years" [value]="fiscal_year">{{ fiscal_year }}</option>
     </select>
   </div>
-  <div class="col-md-4">
+  <div class="col-xs-12 col-md-2">
     <select  (change)="filterProjectsList($event.target.value)" [(ngModel)]="current_status" class="filter">
       <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
     </select>
   </div>
+  <a style = "padding: 12px; margin-left: 10px; float: right" class = "btn btn-primary col-xs-12 col-md-2" href= "">Explore Other Topics</a>
 </span>
+
+
 
 <div class="row" *ngIf="!dataLoading">
   <div class="col-md-12">
@@ -28,9 +33,9 @@
       <tr>
         <th style = "width:10%;">Funding Year</th>
         <th style = "width:60%;">Title</th>
-        <th style = "width:20%;">Principle Investigator(s)</th>
+        <th style = "width:30%;">Principle Investigator(s)</th>
         <th style = "width:20%;">Topic(s)</th>
-        <th style = "width:20%;">Status</th>
+        <th style = "width:10%;">Status</th>
         <th style = "width:10%;">Contains</th>
       </tr>
       <tr *ngFor= "let project of filteredCscProjectsList">
@@ -65,10 +70,10 @@
         <td *ngIf="!project.status">
           Unknown
         </td>
-        <td>
+        <td style="text-align:center;">
           <ul>
-            <li *ngIf="project.hasFolders"><img src = "src\assets\images\Folder_Icon.png" alt = "Folder">Folder</li>
-            <li *ngIf="project.hasMaps"><img src = "src\assets\images\GIS_Icon.png" alt = "Map">Map</li>
+            <li *ngIf="project.hasFolders"><img src = "src\assets\images\Folder_Icon.png" alt = "Folder"></li>
+            <li *ngIf="project.hasMaps"><img src = "src\assets\images\GIS_Icon.png" alt = "Map"></li>
           </ul>
         </td>
       </tr>

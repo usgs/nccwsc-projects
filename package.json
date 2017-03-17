@@ -24,7 +24,7 @@
     "@angular/platform-server": "^2.4.9",
     "@angular/router": "~3.4.9",
     "@asymmetrik/angular2-leaflet": "latest",
-    "@ng-bootstrap/ng-bootstrap": "1.0.0-alpha.20",
+    "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.21",
     "angular-2-dropdown-multiselect": "latest",
     "core-js": "^2.4.1",
     "ng2-select": "latest",
