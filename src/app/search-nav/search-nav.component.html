@@ -9,15 +9,13 @@
             value="searchQuery" 
             placeholder="Search terms ..."
             name="queryTerms"><br /><br />
-    <ss-multiselect-dropdown [options]="tags" [settings]="mySettings" [texts]="tagTexts" [(ngModel)]="selectedTags" (ngModelChange)="onTagsChange($event)" [ngModelOptions]="{standalone: true}">
-    </ss-multiselect-dropdown><br />
-    <ss-multiselect-dropdown [options]="authors" [settings]="mySettings" [texts]="authorTexts" [(ngModel)]="selectedAuthors" (ngModelChange)="onAuthorsChange($event)" [ngModelOptions]="{standalone: true}">
-    </ss-multiselect-dropdown><br />
-    <ss-multiselect-dropdown [options]="orgs" [settings]="mySettings" [texts]="orgTexts" [(ngModel)]="selectedOrgs" (ngModelChange)="onOrgsChange($event)" [ngModelOptions]="{standalone: true}">
-    </ss-multiselect-dropdown>   
+    <ng-select placeholder="Topic" [options]="topics" (selected)="onTopicsChange($event.value)"></ng-select>
+    <ng-select placeholder="Subtopic" *ngIf="subtopics.length > 0" [options]="subtopics" (selected)="onSubtopicsChange($event.value)"></ng-select>
+    <ng-select placeholder="NCCWSC/CSCs" [options]="orgs" (selected)="onOrgsChange($event.value)"></ng-select>
    </div>
 
    <div class="col-md-12">
-   <button type="submit" class="btn btn-primary">Search</button></div>
+    <button type="submit" class="btn btn-primary">Search</button>
+   </div>
 
  </form>

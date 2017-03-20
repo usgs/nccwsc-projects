@@ -12,19 +12,14 @@ export class SearchService {
   
   constructor(private http: Http) { }
 
-  getTags() {
-    var tagsUrl = 'http://localhost:8000/tags';
-    return this.http.get(tagsUrl).map((res:Response) => res.json());  
+  getTopics() {
+    var topicsUrl = 'http://localhost:8000/topics';
+    return this.http.get(topicsUrl).map((res:Response) => res.json());  
   }
 
   getOrganizations() {
     var organizationsUrl = 'http://localhost:8000/organizations';
     return this.http.get(organizationsUrl).map((res:Response) => res.json());  
-  }
-
-  getAuthors() {
-    var authorsUrl = 'http://localhost:8000/contacts';
-    return this.http.get(authorsUrl).map((res:Response) => res.json());  
   }
 
   updateResults(item) {
@@ -33,6 +28,7 @@ export class SearchService {
   }
 
   searchProjects(queryString) {
+    console.log(queryString);
     var searchUrl = 'http://localhost:8000/search' + queryString;
     return this.http.get(searchUrl).map((res:Response) => {
       this.results = res.json();

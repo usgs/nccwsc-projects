@@ -9,7 +9,7 @@ import { routing,
          appRoutingProviders } from './app.routing';
 import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { LeafletModule } from "@asymmetrik/angular2-leaflet";
-import {MultiselectDropdownModule} from 'angular-2-dropdown-multiselect/src/multiselect-dropdown';
+import {SelectModule} from 'ng-select';
 
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -44,7 +44,7 @@ import { CscComponent } from './csc/csc.component';
     FormsModule,
     HttpModule,
     routing,
-    MultiselectDropdownModule,
+    SelectModule,
     NgbModule.forRoot(),
   ],
   providers: [LocalJsonService, NccwscDrupalService, SearchService, {provide: LocationStrategy, useClass: HashLocationStrategy}],

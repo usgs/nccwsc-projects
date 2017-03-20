@@ -9,22 +9,12 @@ import {IMultiSelectOption, IMultiSelectSettings, IMultiSelectTexts} from 'angul
 })
 export class SearchNavComponent implements OnInit {
   private searchQuery = null;
-  private selectedTags:number[] = [];
-  private selectedAuthors:number[] = [];
-  private selectedOrgs:number[] = [];
-  private tags:IMultiSelectOption[] = [];
-  private orgs:IMultiSelectOption[] = [
-    {id: 0, name: 'NCCWSC'},
-    {id: 1, name: 'Alaska CSC'},
-    {id: 2, name: 'North Central CSC'},
-    {id: 3, name: 'Northeast CSC'},
-    {id: 4, name: 'Northwest CSC'},
-    {id: 5, name: 'Pacific Islands CSC'},
-    {id: 6, name: 'South Central CSC'},
-    {id: 7, name: 'Southeast CSC'},
-    {id: 8, name: 'Southwest CSC'}
-  ];
-  private authors:IMultiSelectOption[] = [];
+  private selectedTopic;
+  private selectedSubtopic;
+  private selectedOrg;
+  private topics = [];
+  private subtopics = [];  
+  private orgs = [];
 
 private mySettings: IMultiSelectSettings = {
     pullRight: false,
@@ -39,71 +29,68 @@ private mySettings: IMultiSelectSettings = {
     maxHeight: '300px',
 };
 
-private tagTexts: IMultiSelectTexts = {
-    searchPlaceholder: 'Search...',
-    defaultTitle: 'Topic(s)'
-};
-
-private authorTexts: IMultiSelectTexts = {
-    searchPlaceholder: 'Search...',
-    defaultTitle: 'People'
-};
-
-private orgTexts: IMultiSelectTexts = {
-    searchPlaceholder: 'Search...',
-    defaultTitle: 'NCCWSC/CSC(s)'
-};
-
-
   constructor(private searchService: SearchService) { }
 
   onQueryChange(query) {
 
   }
 
-  onTagsChange(event) {
+  onTopicsChange(event) {
     console.log(event);
+    console.log(this.topics)
+    this.selectedTopic = event;
+    var topic = this.topics[event]
+    this.subtopics = topic['subtopics']
   };
 
-  onAuthorsChange(event) {
+  onSubtopicsChange(event) {
+    this.selectedSubtopic = event;
     console.log(event);
   }
 
   onOrgsChange(event) {
+    this.selectedOrg = event;
+    console.log("New Organization.")
     console.log(event);
   }
 
   onSubmit(value) {
     var queryString = '';
     var query = '?query=';
-    var tags = '&tags=';
-    var orgs = '&orgs=';
-    var authors = '&authors=';
-    
+    var subtopic = '&subtopics=';
+    if (this.selectedSubtopic) {
+       subtopic = subtopic + encodeURIComponent(this.subtopics[this.selectedSubtopic]['label']);
+    }
+    var topic = '&topics=';
+    if (this.selectedTopic) {
+      topic = topic + encodeURIComponent(this.topics[this.selectedTopic]['label']);
+    }
+    var organizations = '&organizations=';
+    if (this.selectedOrg) {
+      console.log("Here.")
+      organizations = organizations + encodeURIComponent(this.orgs[this.selectedOrg]['label']);
+    } else {
+      console.log("No selected org?  wtf?")
+      console.log(this.selectedOrg);
+    }
     if (this.searchQuery.length > 0) {
       query = query + encodeURIComponent(this.searchQuery);
     }
-    
-    if (this.selectedTags.length > 0) {
+    console.log(query);
+    console.log(topic);
+    console.log(subtopic);
+    console.log(organizations)
+
+/*    
+    if (this.selectedTopics.length > 0) {
       for (var key in this.selectedTags) {
         for (var tag in this.tags) {
           if (this.tags[tag].id == this.selectedTags[key]) {
-            tags = tags + encodeURIComponent(this.tags[tag].name) + ','
+            topic = tags + encodeURIComponent(this.tags[tag].name) + ','
           }
         }
       }
       tags = tags.substring(0, tags.length-1);
-    }
-    
-    if (this.selectedOrgs.length > 0) {
-      for (var key in this.selectedOrgs) {
-        for (var org in this.orgs) {
-          if (this.orgs[org].id == this.selectedOrgs[key]) {
-            orgs = orgs + encodeURIComponent(this.orgs[org].name) + ','
-          }
-        }
-      }
-      orgs = orgs.substring(0, orgs.length-1);
     }
 
     if (this.selectedAuthors.length > 0) {
@@ -117,15 +104,37 @@ private orgTexts: IMultiSelectTexts = {
       }
       authors = authors.substring(0, authors.length-1);
     }
-    queryString = query + tags + authors + orgs;  
-    console.log(queryString);
+
+    
+    if (this.selectedOrgs.length > 0) {
+      for (var key in this.selectedOrgs) {
+        for (var org in this.orgs) {
+          if (this.orgs[org].id == this.selectedOrgs[key]) {
+            orgs = orgs + encodeURIComponent(this.orgs[org].name) + ','
+          }
+        }
+      }
+      orgs = orgs.substring(0, orgs.length-1);
+    }
+*/
+    queryString = query + topic + subtopic + organizations;  
     this.searchService.searchProjects(queryString).subscribe(results => {
-      console.log(results);
     });    
   }
 
   ngOnInit() {
-    /*this.searchService.getTags().subscribe(tags => {
+    this.searchService.getTopics().subscribe(topics => {
+      this.topics = topics;
+      console.log(this.topics);
+    });
+
+    this.searchService.getOrganizations().subscribe(organizations => {
+      this.orgs = organizations;
+      console.log(this.orgs);
+    });
+
+    /*
+    this.searchService.getTags().subscribe(tags => {
       var tag_id = 0;
       for (var tag in tags['tags']) {
         this.tags.push({id : tag_id, name: tags['tags'][tag]});
