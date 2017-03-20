@@ -25,6 +25,8 @@ import { SearchService } from './search.service';
 import { NccwscDrupalService } from './nccwsc-drupal.service';
 import { CscComponent } from './csc/csc.component';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,8 +36,8 @@ import { CscComponent } from './csc/csc.component';
     ProjectsComponent,
     SearchComponent,
     CscsComponent,
-    TopicsComponent,    
-    MapComponent, 
+    TopicsComponent,
+    MapComponent,
     SearchNavComponent, CscComponent
   ],
   imports: [
