@@ -9,7 +9,7 @@ import { DOCUMENT } from '@angular/platform-browser'
 })
 export class FooterComponent implements OnInit {
 
-  private currentPage: string;
+  currentPage: string;
   constructor(@Inject(DOCUMENT) private document: any) { 
     this.currentPage = this.document.location.href;
   }

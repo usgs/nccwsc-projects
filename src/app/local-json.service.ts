@@ -18,8 +18,9 @@ export class LocalJsonService {
     return this.http.get(cscUrl).map((res:Response) => res.json());  
   }
 
-  loadTopic(topic_id) {
-    var cscUrl = 'https://my-beta.usgs.gov/nccwsc-service/themes/' + topic_id;
+  loadTopic(topic_name) {
+    var cscUrl = 'https://my-beta.usgs.gov/nccwsc-service/search?query=&topics=' + topic_name + '&subtopics=&organizations=';
+    console.log(cscUrl);
     return this.http.get(cscUrl).map((res:Response) => res.json());  
   }
 

@@ -1,60 +1,41 @@
-<div class="row header ">
-    <div class="top-nav navbar navbar-default">
-        <div class="navbar-header">
-
-            <a class="navbar-brand " href="https://my-beta.usgs.gov/nccwsc" title="home">
-
-                <img class="img-responsive" id='usgs_logo' src="{{ approot }}assets/usgs-logo_0.png" class="usgs_logo" />
-            </a>
-
-            <a class="navbar-brand " href="https://my-beta.usgs.gov/nccwsc" title="home">
-                <span class="col-xs-6 col-md-10" id="top-site-name">National Climate Change and Wildlife Science Center & Climate Science Centers</span>
-
-            </a>
-
-        </div>
-
-    </div>
-
-
-    <nav class="navbar navbar-dark bg-inverse menu nav navbar-nav" style="background-color: #555; border-radius: 0; height: 54px">
-        <ul class="nav navbar-nav " *ngFor="let menu_item of nccwscMenu">
-
-            <li class="nav-item" *ngIf="!menu_item.children">
-                <a *ngIf="menu_item.title !='Login'" [href]="'https://my-beta.usgs.gov/nccwsc/' + menu_item.url">{{ menu_item.title }}</a>
-            </li>
-
-            <li class="nav-item  " *ngIf="menu_item.children">
-                <a [href]="'https://my-beta.usgs.gov/nccwsc/' + menu_item.url">{{ menu_item.title }} </a>
-                <!--<a   href= "#">{{ menu_item.title }} </a>
-
-
-          <ul  *ngFor="let child of menu_item.children">
-                    <li  ><a [href]="'https://my-beta.usgs.gov/nccwsc/' + child.url">{{ child.title }}</a></li>
-
-                  </ul>-->
-
-            </li>
-        </ul>
-    </nav>
-
-
-
-
+<div class="row branding">
+  <div class="col-md-2">
+    <a class="navbar-brand " href="https://my-beta.usgs.gov/nccwsc" title="home">
+      <img class="img-responsive" id='usgs_logo' src="{{ approot }}assets/usgs-logo_0.png" class="usgs_logo" />
+    </a>
+  </div>
+  <div class="col-md-10">
+    <a class="navbar-brand " href="https://my-beta.usgs.gov/nccwsc" title="home">
+      <span id="top-site-name">
+        National Climate Change and Wildlife Science Center & Climate Science Centers
+      </span>
+    </a>
+  </div>
 </div>
 
-
-
-
-<!--  <br><br>
-        <div class="row">
-  <div class="col">
-    <div ngbDropdown class="d-inline-block">
-      <button class="btn btn-outline-primary" id="dropdownMenu1" ngbDropdownToggle>Toggle dropdown</button>
+<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto" *ngFor="let menu_item of nccwscMenu">
+      <li class="nav-item" *ngIf="!menu_item.children">
+        <a *ngIf="menu_item.title !='Login'" [href]="'https://my-beta.usgs.gov/nccwsc/' + fixLink(menu_item.url)">
+          {{ menu_item.title }}
+        </a>
+      </li>
+      <li ngbDropdown class="nav-item" *ngIf="menu_item.children">
+      <a class="" id="dropdownMenu1" ngbDropdownToggle>{{ menu_item.title }}</a>
       <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-        <button class="dropdown-item">Action - 1</button>
-        <button class="dropdown-item">Another Action</button>
-        <button class="dropdown-item">Something else is here</button>
+        <ul class="navbar-nav mr-auto" *ngFor="let child_item of menu_item.children">
+          <li class="nav-item">
+            <a *ngIf="menu_item.title !='Login'" [href]="'https://my-beta.usgs.gov/nccwsc/' + fixLink(child_item.url)">
+              {{ child_item.title }}
+            </a>
+          </li>
+        </ul>
       </div>
-    </div>
-  </div>-->
+      </li>
+    </ul>
+  </div>
+</nav>

@@ -9,21 +9,20 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 
 export class CscComponent implements OnInit {
-  private sub: any;
-  private sbId: any;
-  private cscProjectsList = [];
-  private filteredCscProjectsList = [];
-  private topics = ['All Topics'];
-  private fiscal_years = ['All Fiscal Years'];
-  private statuses = ['All Statuses'];
-  private current_topic = 'All Topics';
-  private current_fy = 'All Fiscal Years';
-  private current_status = 'All Statuses';
-  private title = null;
-  private dataLoading = true;
-  private 
-
-  private csc_ids = {
+  sub: any;
+  id: any;
+  sbId: any;
+  cscProjectsList = [];
+  filteredCscProjectsList = [];
+  topics = ['All Topics'];
+  fiscal_years = ['All Fiscal Years'];
+  statuses = ['All Statuses'];
+  current_topic = 'All Topics';
+  current_fy = 'All Fiscal Years';
+  current_status = 'All Statuses';
+  title = null;
+  dataLoading = true;
+  csc_ids = {
     '5050cb0ee4b0be20bb30eac0' : 'NCCWSC',
     '4f831626e4b0e84f6086809b' : 'Alaska CSC',
     '4f83509de4b0e84f60868124' : 'North Central CSC',
@@ -33,6 +32,18 @@ export class CscComponent implements OnInit {
     '4f8c652fe4b0546c0c397b4a' : 'South Central CSC',
     '4f8c6557e4b0546c0c397b4c' : 'Southeast CSC',
     '4f8c6580e4b0546c0c397b4e' : 'Southwest CSC'
+  }
+
+  csc_english_ids = {
+    'nccwsc' : '5050cb0ee4b0be20bb30eac0',
+    'alaska' : '4f831626e4b0e84f6086809b',
+    'north-central' : '4f83509de4b0e84f60868124',
+    'northeast' : '4f8c648de4b0546c0c397b43',
+    'northwest' : '4f8c64d2e4b0546c0c397b46',
+    'pacific-islands': '4f8c650ae4b0546c0c397b48',
+    'south-central' : '4f8c652fe4b0546c0c397b4a',
+    'southeast' : '4f8c6557e4b0546c0c397b4c',
+    'southwest' : '4f8c6580e4b0546c0c397b4e'
   }
 
   constructor(private route: ActivatedRoute, private localJson: LocalJsonService, private router: Router) { }
@@ -55,7 +66,6 @@ export class CscComponent implements OnInit {
     this.filteredCscProjectsList = [];   
     for (var project in this.cscProjectsList) {
       var display = true;
-      console.log(this.current_topic);
       if (this.current_topic != 'All Topics') {
         for (var topic in this.cscProjectsList[project].topics) {
           var matched_topic = true;
@@ -78,17 +88,19 @@ export class CscComponent implements OnInit {
         }
       }      
       this.filteredCscProjectsList.push(this.cscProjectsList[project]);
-      console.log(this.filteredCscProjectsList);
     }
   }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-      this.sbId = params['id'];
+      this.id = params['id'];
     });
-    
+    if (this.id.length != 24) {
+      this.sbId = this.csc_english_ids[this.id];
+    } else {
+      this.sbId = this.id;
+    }
     this.title = this.csc_ids[this.sbId];
-
     this.localJson.loadCscProjects(this.sbId).subscribe(data => {
       this.cscProjectsList = data;
         for (var project in this.cscProjectsList) {

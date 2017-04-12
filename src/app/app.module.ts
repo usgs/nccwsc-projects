@@ -7,7 +7,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AppComponent } from './app.component';
 import { routing,
          appRoutingProviders } from './app.routing';
-import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbActiveModal, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { LeafletModule } from "@asymmetrik/angular2-leaflet";
 import {SelectModule} from 'ng-select';
 
@@ -47,6 +47,7 @@ import { CscComponent } from './csc/csc.component';
     HttpModule,
     routing,
     SelectModule,
+    NgbDropdownModule.forRoot(),
     NgbModule.forRoot(),
   ],
   providers: [LocalJsonService, NccwscDrupalService, SearchService, {provide: LocationStrategy, useClass: HashLocationStrategy}],

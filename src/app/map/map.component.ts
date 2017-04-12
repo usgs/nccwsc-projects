@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-
+import { Http } from '@angular/http';
 import { LeafletMapModel } from './map.model';
-
 import * as L from 'leaflet';
 
 @Component({
@@ -9,15 +8,22 @@ import * as L from 'leaflet';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
+
 export class MapComponent {
   @Input() mapurl: string;
-  public LAYER_OCM: any;
-  private LAYER_OSM: any;
-  private model: any;
-  private shapename: any;
-  private projectshape_wms_url: any;
-  private sb_footprint: any;
-
+  LAYER_OCM: any;
+  LAYER_OSM: any;
+  model: any;
+  shapename: any;
+  shapename2: any;
+  shapename3: any;
+  projectshape_wms_url: any;
+  sb_footprint: any;
+  sb_boundingbox: any;
+  sb_children: any;
+  xms_capabilities;
+  parseString = require('xml2js').parseString;
+  
   defineBaseLayers(){
     this.LAYER_OCM = {
       id: 'opencyclemap',
@@ -40,11 +46,10 @@ export class MapComponent {
   }
 
   defineOverlays() {
-  console.log('Building Overlays...');
-  console.log(this.mapurl)
   this.shapename = 'sb:footprint';
   this.projectshape_wms_url = this.mapurl.replace(/service=wms&request=getcapabilities&version=1.3.0/, '');
-
+  //this.getWMSCapabilities(this.mapurl).then(data=>{
+  
   this.sb_footprint = {
     id: 'sb_footprint',
     name: 'Footprint',
@@ -55,6 +60,43 @@ export class MapComponent {
           transparent: true,
           enabled: true})
     }
+
+  this.sb_boundingbox = {
+    id: 'sb_boundingbox',
+    name: 'Bounding Box',
+    enabled: true,
+    layer: L.tileLayer.wms(this.projectshape_wms_url, {
+          layers: this.shapename2,
+          format: 'image/png',
+          transparent: true,
+          enabled: true})
+    }
+
+  this.sb_children = {
+    id: 'sb_children',
+    name: 'Children',
+    enabled: true,
+    layer: L.tileLayer.wms(this.projectshape_wms_url, {
+          layers: this.shapename3,
+          format: 'image/png',
+          transparent: true,
+          enabled: true})
+    }
+
+ //   })
+  }
+
+  getWMSCapabilities(mapUrl) {
+    return this.http.get(mapUrl).toPromise()
+      .then(response => {
+        this.parseString(response.text(), function (err, result) {
+          var object = result;
+          if (typeof(object) != 'undefined') {
+            this.xms_capabilties = object;
+          }
+        });
+      })
+      .catch(this.handleError);
   }
 
   defineModel() {
@@ -62,20 +104,21 @@ export class MapComponent {
     this.model = new LeafletMapModel(
       [ this.LAYER_OSM, this.LAYER_OCM ],
       this.LAYER_OCM.id,
-      [ this.sb_footprint ]
+      [ this.sb_footprint, this.sb_boundingbox, this.sb_children ]
     );
   }
 
+
   // Values to bind to Leaflet Directive
   layers: L.Layer[];
-  tileLayers:L.tileLayer[];
+  //tileLayers:L.tileLayer[];
   layersControl: any;
   options = {
-    zoom: 10,
-    center: L.latLng([ 46.879966, -121.726909 ])
+    zoom: 3,
+    center: L.latLng([ 39.8282, -98.5795 ])
   };
 
-  constructor() {
+  constructor(private http: Http) {
   }
 
   ngOnInit() {
@@ -83,6 +126,11 @@ export class MapComponent {
     this.defineOverlays();
     this.defineModel();
     this.onApply();
+  }
+  
+  private handleError(error: any): Promise < any > {
+    console.error('An error occurred', error);
+    return Promise.reject(error.message || error);
   }
 
   onApply() {
@@ -93,7 +141,6 @@ export class MapComponent {
       .filter((l) => { return l.enabled; })
       .map((l) => { return l.layer; });
     newLayers.unshift(baseLayer.layer);
-    console.log(newLayers)
     this.layers = newLayers;
     this.layersControl = {
       baseLayers: {
@@ -101,7 +148,9 @@ export class MapComponent {
         'Open Cycle Map': this.LAYER_OCM.layer
       },
       overlays: {
-        'SB Layer': this.sb_footprint.layer
+        'SB Footprint': this.sb_footprint.layer,
+        'SB Bounding Box': this.sb_boundingbox.layer,
+        'SB Children': this.sb_children.layer
       }
 
     };

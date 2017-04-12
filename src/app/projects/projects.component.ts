@@ -8,10 +8,10 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./projects.component.scss']
 })
 export class ProjectsComponent implements OnInit {
-  private sub: any;
-  private sbId: any;
-  private cscJson = new Array();
-  private csc_title;
+  sub: any;
+  sbId: any;
+  cscJson = new Array();
+  csc_title;
 
   constructor(private route: ActivatedRoute, private localJson: LocalJsonService, private router: Router) { }
 

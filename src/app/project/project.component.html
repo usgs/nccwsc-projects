@@ -1,4 +1,13 @@
-<div class="row container " *ngIf="projectJson">
+<!--<img id="previewImage" *ngIf="previewImage" alt='{{ previewImage.title }}' title='{{ previewImage.title }}' src='{{ previewImage.url }}'/> -->
+<div class="">
+
+<div class="image_container">
+  <img class="project_image" *ngIf="previewImage" alt='{{ previewImage.title }}' title='{{ previewImage.title }}' src='{{ previewImage.url }}'/>
+  <div class="gradientback"></div>                    
+</div>
+<div class="row project_content" *ngIf="projectJson">
+
+<!--<div class="row container " *ngIf="projectJson" [ngStyle]="{ 'background-background-image': 'url(' + previewImage.url+ ')'}"> -->
   <div class="col-md-12"><br>
   <h1>{{ projectJson.title }}</h1><br>
   <h2>Project Summary</h2>
@@ -9,7 +18,7 @@
   <h2>Project Information</h2><hr>
   </div>
 <div class="col-md-6">
-<strong>Affliation(s):</strong>
+<span><strong>Affliation(s):</strong><a [routerLink]="['/csc/', projectJson.csc.id]">{{ projectJson.csc.name }}</a></span><br />
 
 <span *ngIf="projectJson.contacts.principal_investigators && projectJson.contacts.principal_investigators.length > 0">
   <strong>Principal Investigator(s):</strong>
@@ -51,26 +60,44 @@
   </ul>
 </span>
 
-<span class = "dates" *ngIf="projectJson.dates.start">
-  <p><strong>Start Date:</strong>
-  {{ projectJson.dates.start}}</p>
+<span *ngIf="projectJson.dates.start_date">
+  <p class="single"><strong>Start Date:</strong>
+  {{ projectJson.dates.start_date}}</p>
 </span>
 
-<span class = "dates" *ngIf="projectJson.dates.end">
-  <p><strong>End Date:</strong>
-  {{ projectJson.dates.end}}</p>
-</span><br>
+<span *ngIf="projectJson.dates.end_date">
+  <p class="single"><strong>End Date:</strong>
+  {{ projectJson.dates.end_date}}</p>
+</span>
 
 <span *ngIf="projectJson.status">
-  <p><strong>Status:</strong>
+  <p class="single"><strong>Status:</strong>
   {{ projectJson.status}}</p>
 </span>
 
-<span *ngIf="projectJson.tags && projectJson.tags.length > 0">
-  <strong>Tags(s):</strong>
-  <ul class="tags">
-    <li *ngFor = "let tag of projectJson.tags">
-      {{ tag.name }}
+<span class="list-group-item" *ngIf="projectJson.keywords && projectJson.keywords.length > 0">
+  <strong>Keywords(s):</strong>
+  <ul class="taglist">
+    <li *ngFor = "let keyword of projectJson.keywords">
+      {{ keyword }}
+    </li>
+  </ul>
+</span>
+
+<span class="list-group-item" *ngIf="projectJson.topics && projectJson.topics.length > 0">
+  <strong>Science Topics(s):</strong>
+  <ul class="taglist">
+    <li *ngFor = "let topic of projectJson.topics">
+      {{ topic }} 
+    </li>
+  </ul>
+</span>
+
+<span class="list-group-item" *ngIf="projectJson.topics && projectJson.topics.length > 0">
+  <strong>Science Subtopics(s):</strong>
+  <ul class="taglist">
+    <li *ngFor = "let subtopic of projectJson.subtopics">
+      {{ subtopic }} 
     </li>
   </ul>
 </span>
@@ -91,11 +118,111 @@
 </li>
 </ul>
 </div>
-<div class="col-md-12" *ngIf="projectJson.approved_products">
-<h2>Project Products</h2>
-<ul></ul>
+<div class="col-md-12" *ngIf="projectJson.relationships && projectJson.relationships.length > 0">
+<h2>Sub-Projects</h2>
+<ul *ngFor="let relationship of projectJson.relationships">
+  <li>
+    <a href="/project/{{projectJson.csc.id}}/{{relationship.id}}">{{ relationship.relatedTitle }}</a>
+  </li>
+</ul>
+</div>
+<div class="col-md-12" *ngIf="projectJson.approved_products && projectJson.approved_products.length > 0 || projectJson.other_approved && projectJson.other_approved.length > 0">
+<h2>Publications and Other</h2>
+<ul *ngFor="let product of projectJson.approved_products">
+  <li>
+    {{ product.title }}
+    <div *ngIf="product.webLinks">
+      <ul *ngFor="let webLink of product.webLinks">
+        <li>{{ webLink.title }} <a href="{{ webLink.uri }}" target="_blank">(External URL)</a></li>
+      </ul>
+    </div>
+    <div *ngIf="product.files">
+      <ul *ngFor="let file of product.files">
+        <li>{{ file.name }} (<a href="{{ file.url }}" target="_blank">Download</a>)</li>
+      </ul>
+    </div>
+  </li>
+</ul>
+<ul *ngFor="let other of projectJson.other_approved">
+  <li>{{ other.title }}
+    <div *ngIf="other.webLinks">
+      <ul *ngFor="let webLink of other.webLinks">
+        <li>{{ webLink.title }} <a href="{{ webLink.uri }}" target="_blank">(External URL)</a></li>
+      </ul>
+    </div>
+    <div *ngIf="other.files">
+      <ul *ngFor="let file of other.files">
+        <li>{{ file.name }} (<a href="{{ file.url }}" target="_blank">Download</a>)</li>
+      </ul>
+    </div>
+  </li>
+</ul>
 
 </div>
 
+<div class="col-md-12" *ngIf="projectJson.approved_data && projectJson.approved_data.length > 0">
+<h2>Data</h2>
+<ul *ngFor="let data of projectJson.approved_data">
+  <li>{{ data.title }}
+    <div *ngIf="data.webLinks">
+      <ul *ngFor="let webLink of data.webLinks">
+        <li>{{ webLink.title }} <a href="{{ webLink.uri }}" target="_blank">(External URL)</a></li>
+      </ul>
+    </div>
+    <div *ngIf="data.files">
+      <ul *ngFor="let file of data.files">
+        <li>{{ file.name }} (<a href="{{ file.url }}" target="_blank">Download</a>)</li>
+      </ul>
+    </div>
+    <div *ngIf="data.children">
+      <ul *ngFor="let child of data.children">
+        <li>{{ child.title }}
+          <div *ngIf="child.webLinks">
+            <ul *ngFor="let webLink of child.webLinks">
+              <li>{{ webLink.title }} <a href="{{ webLink.uri }}" target="_blank">(External URL)</a></li>
+          </ul>
+        </div>
+        <div *ngIf="child.files">
+          <ul *ngFor="let file of child.files">
+            <li>{{ file.name }} (<a href="{{ file.url }}" target="_blank">Download</a>)</li>
+          </ul>
+        </div>
+        </li>
+      </ul>
+    </div>
+
+  </li>
+</ul>
+</div>
+<div class="col-md-12" *ngIf="projectJson.other_approved && projectJson.other_approved.length > 0">
+<h2>Other Products</h2>
 
 </div>
+<div class="col-md-12" *ngIf="projectJson.other && projectJson.other > 0">
+<h2>Other Stuff</h2>
+<ul *ngFor="let other of projectJson.other">
+  <li>{{ other.title }}</li>
+</ul>
+</div>
+<div class="col-md-12" *ngIf="projectJson.images && projectJson.images.length > 1">
+<h2>Pictures</h2>
+  <div class="row">
+    <div class="col-md-3" *ngFor="let image of projectJson.images">
+      <a (click)="openImage(imageModal, image)"><img class="preview-image" src="{{ image.url }}"/></a>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<template #imageModal let-c="close" let-d="dismiss" style="width: 90% !important;">
+  <div class="modal-header">
+    <h4 *ngIf="modal_image.title">{{ modal_image.title}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+  <img class="modal-image" src="{{modal_image.url }}" alt="{{ modal_image.title }}" title="{{ modal_image.title }}" />
+  </div>
+</template>
+

@@ -1,35 +1,111 @@
-<h1>{{ topic_names[topic] }} CSC</h1>
-<span>
-  <div>
+<div class="row topic">
+  <div class="col-md-12">
+    <h1>Topic: {{ page_title }}</h1>
+  </div>
+  <div class=" col-xs-12 col-md-2 filter-bar">
+    <select (change)="filterProjectsList($event.target.value)" [(ngModel)]="current_subtopic" class="filter">
+      <option *ngFor="let subtopic of subtopics" [value]="subtopic">{{ subtopic }}</option>
+    </select>
+  </div>
+  <div class="col-xs-12 col-md-2 filter-bar">
+    <select (change)="filterProjectsList($event.target.value)"  [(ngModel)]="current_fy" class="filter">
+      <option *ngFor="let fiscal_year of fiscal_years" [value]="fiscal_year">{{ fiscal_year }}</option>
+    </select>
+  </div>
+  <div class="col-xs-12 col-md-2 filter-bar">
+    <select  (change)="filterProjectsList($event.target.value)" [(ngModel)]="current_status" class="filter">
+      <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
+    </select>
+  </div>
+  <div class="col-xs-12 col-md-2 filter-bar">
+    <select  (change)="filterProjectsList($event.target.value)" [(ngModel)]="current_type" class="filter">
+      <option *ngFor="let type of types" [value]="type">{{ type }}</option>
+    </select>
+  </div>
+  <div class="col-xs-12 col-md-2 filter-bar">
+    <select  (change)="filterProjectsList($event.target.value)" [(ngModel)]="current_csc" class="filter">
+      <option *ngFor="let csc of cscs" [value]="csc">{{ csc }}</option>
+    </select>
+  </div>  
+  <div class="col-xs-12 col-md-2 filter-bar">
+    <a class = "btn btn-outline-secondary btn-sm">Explore Other Topics</a>
+  </div>
+
+<div *ngIf="!dataLoading && filteredProjectsList.length > 0">
+  <div class="col-md-12">
     <table class = "table table-striped table-bordered">
       <tr>
-        <th style = "width:10%;">Year(s)</th>
-        <th style = "width:60%;">Title</th>
-        <th style = "width:20%;">Principle Investigator(s)</th>
-        <th style = "width:10%;">Contains</th>
+        <th class="fy">Funding Year</th>
+        <th class="title">Title</th>
+        <th class="csc">CSC</th>
+        <!-- <th class="pi">Principle Investigator(s)</th> -->
+        <th class="subtopics">Subtopic(s)</th>
+        <th class='types'>Types</th>        
+        <th class="status">Status</th>
+        <th class="contains">Contains</th>
       </tr>
-      <tr *ngFor= "let key of topicKeys">
-        <td>
-          {{ projectsJson[key].dates}}
+      <tr *ngFor= "let project of filteredProjectsList">
+        <td *ngIf="project['fiscal_year']">
+          {{ project.fiscal_year}}
+        </td>
+        <td *ngIf="!project.fiscal_year">
+          N/A
         </td>
         <td>
-          <a [routerLink]="['/project/', projectsJson[key].parent_csc, projectsJson[key].id]">{{ projectsJson[key].title}}</a>
-          <ul *ngIf="projectsJson[key].children?.length > 0">
-            <li *ngFor= "let childProject of projectsJson[key].children">{{ childProject.title }}</li>
+          <a [routerLink]="['/project/', project.csc['id'], project.id]">
+            {{ project['title']}}
+          </a>
+          <ul *ngIf="project.children?.length > 0">
+            <li *ngFor= "let childProject of project.children">{{ childProject.title }}</li>
           </ul>
         </td>
-        <td *ngIf="projectsJson[key].principal_investigator">
-          <ul *ngFor="let pi of projectsJson[key].principal_investigator">
-            <li>{{ pi.name }} (<em>{{ pi.organization}})</em></li>
+        <td>
+          {{ project.csc.name}}
+        </td>
+        <td *ngIf="project?.subtopics">
+          <ul *ngFor="let st of project.subtopics">
+            <li *ngIf="isOnTopic(st)">{{ st }}</li>
           </ul>
         </td>
-        <td>
+        <td *ngIf="!project.subtopics">
+          N/A
+        </td>
+        <td *ngIf="project.types">
+          {{ project.types }}
+        </td>
+        <td *ngIf="!project.types">
+          N/A
+        </td>
+        <td *ngIf="project.status">
+          {{ project.status }}
+        </td>
+        <td *ngIf="!project.status">
+          N/A
+        </td>
+        <td style="text-align:center;">
           <ul>
-            <li *ngIf="projectsJson[key].hasFolders"><img src = "src\assets\images\Folder_Icon.png" alt = "Folder"></li>
-            <li *ngIf="projectsJson[key].hasMaps"><img src = "src\assets\images\GIS_Icon.png" alt = "Map"></li>
+            <li class="icons" *ngIf="project.hasFolders">
+              <i class="icon-products fa fa-folder fa-2x" title="This project has products." aria-hidden="true"></i>      
+            </li>
+            <li *ngIf="project.hasMaps">
+              <i class="icon-map fa fa-map fa-2x" title="This project has maps." aria-hidden="true"></i>
+            </li>
           </ul>
         </td>
       </tr>
     </table>
+    </div>
   </div>
-</span>
+  
+  <div class="col-md-12 loading" *ngIf="dataLoading">
+    <h4 class="loading">Loading {{ title }} ScienceBase Projects.</h4>
+      <img src="{{ approot }}assets/loading.gif" class="loading" alt="Loading Results" title="Loading Results" />
+  </div>
+
+  <div class="no_data col-md-12" *ngIf="filteredProjectsList.length == 0 && dataLoading == false">
+    <h4 class="no_data">
+      Use one or more filters above to select the topics, fiscal years, or statises for the projects you wish to view.
+    </h4>
+    <button class="btn btn-outline-secondary btn-small" (click)="showAllProjects()">See All Projects</button>    
+  </div>
+</div>

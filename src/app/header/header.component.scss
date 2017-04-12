@@ -6,6 +6,11 @@
     border-radius: 0px;
     border-color: black;
 }
+
+div.branding {
+    background: black !important;
+}
+
 .col-xs-12 {
     padding: 0px !important;
 }
@@ -20,11 +25,22 @@
 #top-site-name {
     font-size: 25px;
     color: white;
-    position: absolute;
-    bottom: 15px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    line-height: 20px;
+    line-height: 25px;
+    margin-top: 12px;
+    display: block;
+
 }
+.dropdown-menu {
+    margin-top: 1em;
+    background: #333 !important;
+    padding: 1em !important;
+}
+
+.dropdown-menu a {
+    font-size: 14px !important;
+}
+
 .top-menu {
     background-color: #333;
 }

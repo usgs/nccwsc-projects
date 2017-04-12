@@ -1,3 +1,22 @@
-<p>
-  cscs works!
-</p>
+<div class="row container">
+  <div class="col-md-12">
+    <h2>Advanced Search</h2>
+    <button class="btn btn-success nav-link" [routerLink]="['/search']">Advanced Search</button>
+  </div>
+
+  <div class="col-md-12">
+    <h2>CSC Landing Pages</h2>
+  </div>
+  <div class="col-md-4" *ngFor="let csc of csc_ids">
+    <button class="btn btn-primary nav-link" [routerLink]="['/csc/', csc.id]">{{ csc.name}}</button>  
+  </div>
+
+
+  <div class="col-md-12">
+    <h2>Science Topic Landing Pages</h2>
+  </div>
+  <div class="col-md-6" *ngFor="let topic of topic_ids">
+    <button class="btn btn-info nav-link" [routerLink]="['/topics/', topic.id]">{{ topic.name }}</button>  
+  </div>
+
+</div>
