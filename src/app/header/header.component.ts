@@ -25,6 +25,7 @@ export class HeaderComponent implements OnInit {
      this.nccwscDrupal.loadMenu().subscribe(data => {
        data[0].url = "";
        this.nccwscMenu = data;
+       console.log(this.nccwscMenu)
      });
 
 

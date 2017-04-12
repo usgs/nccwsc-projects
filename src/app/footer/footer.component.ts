@@ -14,6 +14,7 @@ export class FooterComponent implements OnInit {
     this.currentPage = this.document.location.href;
   }
   ngOnInit() {
+    console.log('Footer initialized')
   }
 
 }
