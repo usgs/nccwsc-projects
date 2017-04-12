@@ -14,10 +14,10 @@
 </div>
 
 <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation" (click)="isNavbarCollapsed=!isNavbarCollapsed">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+  <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto" *ngFor="let menu_item of nccwscMenu">
       <li class="nav-item" *ngIf="!menu_item.children">
         <a *ngIf="menu_item.title !='Login'" [href]="'https://my-beta.usgs.gov/nccwsc/' + fixLink(menu_item.url)">
