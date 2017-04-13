@@ -30,6 +30,7 @@ export class TopicsComponent implements OnInit {
     'wildlife-plants': 'Wildlife and Plants'
   }
 
+  topics_url = ['https://my-beta.usgs.gov/nccwsc/explore-by-topic'];
   subtopics = ['All Subtopics'];
   fiscal_years = ['All Fiscal Years'];
   statuses = ['All Statuses'];
