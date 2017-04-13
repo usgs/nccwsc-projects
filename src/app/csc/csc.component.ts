@@ -14,6 +14,7 @@ export class CscComponent implements OnInit {
   sbId: any;
   cscProjectsList = [];
   filteredCscProjectsList = [];
+  csc_url = ['https://my-beta.usgs.gov/nccwsc/csc-list'];
   topics = ['All Topics'];
   fiscal_years = ['All Fiscal Years'];
   statuses = ['All Statuses'];
