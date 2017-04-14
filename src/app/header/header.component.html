@@ -1,41 +1,44 @@
-<div class="row branding">
-  <div class="col-md-2">
-    <a class="navbar-brand " href="https://my-beta.usgs.gov/nccwsc" title="home">
-      <img class="img-responsive" id='usgs_logo' src="{{ approot }}assets/usgs-logo_0.png" class="usgs_logo" />
-    </a>
+
+  <div class="row branding">
+    <div class="col-md-2">
+      <a class="navbar-brand " href="https://my-beta.usgs.gov/nccwsc" title="home">
+        <img class="img-responsive" id='usgs_logo' src="{{ approot }}assets/usgs-logo_0.png" class="usgs_logo" />
+      </a>
+    </div>
+    <div class="col-md-10 site-name-wrapper" >
+      <a class="navbar-brand " href="https://my-beta.usgs.gov/nccwsc" title="home">
+        <span id="top-site-name">
+          National Climate Change and Wildlife Science Center & Climate Science Centers
+        </span>
+      </a>
+    </div>
   </div>
-  <div class="col-md-10">
-    <a class="navbar-brand " href="https://my-beta.usgs.gov/nccwsc" title="home">
-      <span id="top-site-name">
-        National Climate Change and Wildlife Science Center & Climate Science Centers
-      </span>
-    </a>
-  </div>
-</div>
 
 <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation" (click)="isNavbarCollapsed=!isNavbarCollapsed">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarsExampleDefault">
-    <ul class="navbar-nav mr-auto" *ngFor="let menu_item of nccwscMenu">
-      <li class="nav-item" *ngIf="!menu_item.children">
-        <a *ngIf="menu_item.title !='Login'" [href]="'https://my-beta.usgs.gov/nccwsc/' + fixLink(menu_item.url)">
-          {{ menu_item.title }}
-        </a>
-      </li>
-      <li ngbDropdown class="nav-item" *ngIf="menu_item.children">
-      <a class="" id="dropdownMenu1" ngbDropdownToggle>{{ menu_item.title }}</a>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-        <ul class="navbar-nav mr-auto" *ngFor="let child_item of menu_item.children">
-          <li class="nav-item">
-            <a *ngIf="menu_item.title !='Login'" [href]="'https://my-beta.usgs.gov/nccwsc/' + fixLink(child_item.url)">
-              {{ child_item.title }}
-            </a>
-          </li>
-        </ul>
-      </div>
-      </li>
-    </ul>
+    <span *ngFor="let menu_item of nccwscMenu">
+      <ul class="navbar-nav mr-auto" *ngIf="menu_item.title !='Login'">
+        <li class="nav-item" *ngIf="!menu_item.children">
+          <a [href]="'https://my-beta.usgs.gov/nccwsc/' + fixLink(menu_item.url)">
+            {{ menu_item.title }}
+          </a>
+        </li>
+        <li ngbDropdown class="nav-item" *ngIf="menu_item.children">
+          <a class="" id="dropdownMenu1" ngbDropdownToggle>{{ menu_item.title }}</a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <ul class="navbar-nav mr-auto" *ngFor="let child_item of menu_item.children">
+              <li class="nav-item">
+                <a *ngIf="menu_item.title !='Login'" [href]="'https://my-beta.usgs.gov/nccwsc/' + fixLink(child_item.url)">
+                  {{ child_item.title }}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </span>
   </div>
 </nav>
