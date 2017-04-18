@@ -1,8 +1,8 @@
 <!--<img id="previewImage" *ngIf="previewImage" alt='{{ previewImage.title }}' title='{{ previewImage.title }}' src='{{ previewImage.url }}'/> -->
 <div class="">
 
-<div class="image_container">
-  <img class="project_image" *ngIf="previewImage" alt='{{ previewImage.title }}' title='{{ previewImage.title }}' src='{{ previewImage.url }}'/>
+<div class="image_container" *ngIf="previewImage">
+  <img class="project_image" alt='{{ previewImage.title }}' title='{{ previewImage.title }}' src='{{ previewImage.url }}'/>
   <div class="gradientback"></div>                    
 </div>
 <div class="row project_content" *ngIf="projectJson">
@@ -213,7 +213,7 @@
   </div>
 </div>
 </div>
-</div>
+</div> <!--close row project_content-->
 <template #imageModal let-c="close" let-d="dismiss" style="width: 90% !important;">
   <div class="modal-header">
     <h4 *ngIf="modal_image.title">{{ modal_image.title}}</h4>
