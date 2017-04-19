@@ -44,12 +44,14 @@ img#previewImage {
 }
 
 div.row.project_content {
-    position: absolute;
-    top: 150px;
+    position: relative;
+    
     background: rgba(255,255,255, .9) !important;
     color: black;
     margin-left: 10%;
     margin-right: 10%;
+    margin-bottom: 65px;
+    margin-top: 60px;
     padding: .5em;
 }
 
@@ -128,10 +130,14 @@ img.modal-image {
 }
 
 div.image_container {
+    position: absolute;
     overflow: hidden; 
     vertical-align: middle;
     margin: 0;
     padding: 0;
+    width: 100%;
+    top: 130px;
+    z-index: 0;
 }
 
 img.project_image {
