@@ -21,6 +21,7 @@ export class MapComponent {
   sb_footprint: any;
   sb_boundingbox: any;
   sb_children: any;
+  arrMapCenterLatLong: any;
   xms_capabilities;
   parseString = require('xml2js').parseString;
   
@@ -48,6 +49,7 @@ export class MapComponent {
   defineOverlays() {
   this.shapename = 'sb:footprint';
   this.projectshape_wms_url = this.mapurl.replace(/service=wms&request=getcapabilities&version=1.3.0/, '');
+        console.log(this.mapurl);
   //this.getWMSCapabilities(this.mapurl).then(data=>{
   
   this.sb_footprint = {
@@ -85,6 +87,7 @@ export class MapComponent {
 
  //   })
   }
+  
 
   getWMSCapabilities(mapUrl) {
     return this.http.get(mapUrl).toPromise()
@@ -107,14 +110,14 @@ export class MapComponent {
       [ this.sb_footprint, this.sb_boundingbox, this.sb_children ]
     );
   }
-
-
+  
   // Values to bind to Leaflet Directive
   layers: L.Layer[];
   //tileLayers:L.tileLayer[];
   layersControl: any;
   options = {
     zoom: 3,
+    //center: L.latLng([ 56.37692652561914, -137.8891296838142 ])
     center: L.latLng([ 39.8282, -98.5795 ])
   };
 
