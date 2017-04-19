@@ -33,6 +33,7 @@ export class ProjectComponent implements OnInit {
     });
     this.localJson.loadProject(this.cscId, this.projectId).subscribe(data => {
       this.projectJson = data;
+      console.log(this.projectJson);
       if (this.projectJson.images) {
         for (var image in this.projectJson.images) {
           if (this.projectJson.images[image]['useForPreview']) {
