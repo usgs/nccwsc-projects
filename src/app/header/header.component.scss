@@ -7,8 +7,15 @@
     border-color: black;
 }
 
+.navbarsExampleDefault{
+  width: 1001px !important;
+}
+
 div.branding {
     background: black !important;
+    width: 100%;
+    margin-right: 0px;
+    margin-left: 0px;
 }
 
 .col-xs-12 {
@@ -61,9 +68,7 @@ div.branding {
     background: transparent !important;
     background-color: #333 !important;
 }
-.mobile-nav {
-    display: none;
-}
+
 nav li a {
     color: rgba(255, 255, 255, .9) !important;
     padding-top: 15px;
@@ -72,14 +77,71 @@ nav li a {
     font-size: 16px;
     padding-right: 20px;
 }
-@media (max-width: 900px) {
+
+.navbar-brand {
+  white-space: normal;
+}
+
+.container {
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  width: 100%;
+}
+
+@media (max-width: 1199px) {
+		#top-site-name{
+		font-size: 21px;
+	}
+}
+
+
+@media (max-width: 991px) {
     #top-site-name {
-        font-size: 14px;
-        margin-left: 5px;
-        position: absolute;
-        bottom: 0px;
+      font-size: 18px;
+      margin-left: 5px;
+      //position: absolute;
+      bottom: 0px;
+      z-index: 200;
     }
     .navbar {
-        height: 100%;
+      height: auto !important;
     }
+    
+    .bg-inverse {
+      background-color: #000000 !important;
+      height: 49px;
+      z-index: 10;
+      position: relative;
+    }
+
+    .navbar-toggler-right {
+     top: -40px; 
+    }
+    
+    .branding {
+      height: 119px;
+    }
+}
+
+@media (max-width: 767px) {
+  .navbar-brand {
+    margin-right: 0;
+    margin-left: 0;
+  }
+  
+  .brandContainer {
+    width: auto;
+  }
+  .site-name-wrapper {
+    width: calc(100% - 216px);
+    padding-left: 0px;
+    padding-right: 0px;
+    position: relative;
+  }
+  
+  #top-site-name {
+    margin-top: 0;
+  }
 }
