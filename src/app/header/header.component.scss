@@ -145,3 +145,10 @@ nav li a {
     margin-top: 0;
   }
 }
+
+/*Custom media query for tiny viewport (below 344)*/
+@media (max-width: 344px) {
+		#top-site-name{
+		font-size: 15px !important;
+		}
+}
