@@ -11,7 +11,7 @@
       </a>
     </div>
   </div>
-
+  
 <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation" (click)="isNavbarCollapsed=!isNavbarCollapsed">
     <span class="navbar-toggler-icon"></span>
@@ -27,13 +27,15 @@
         <li ngbDropdown class="nav-item" *ngIf="menu_item.children">
           <a class="" id="dropdownMenu1" ngbDropdownToggle>{{ menu_item.title }}</a>
           <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-            <ul class="navbar-nav mr-auto" *ngFor="let child_item of menu_item.children">
-              <li class="nav-item">
-                <a *ngIf="menu_item.title !='Login'" [href]="'https://my-beta.usgs.gov/nccwsc/' + fixLink(child_item.url)">
-                  {{ child_item.title }}
-                </a>
-              </li>
-            </ul>
+              <ul class="navbar-nav mr-auto" *ngFor="let child_item of menu_item.children" >
+                <span *ngIf="child_item.title !='Learn More About Us'">
+                <li class="nav-item">
+                  <a *ngIf="menu_item.title !='Login'" [href]="'https://my-beta.usgs.gov/nccwsc/' + fixLink(child_item.url)">
+                    {{ child_item.title }}
+                  </a>
+                </li>
+                </span>
+              </ul>
           </div>
         </li>
       </ul>
