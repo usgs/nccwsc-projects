@@ -146,9 +146,19 @@ nav li a {
   }
 }
 
+/*Custom media query for Small viewport (below 415)*/
+@media (max-width: 415px) {
+  #top-site-name {
+    font-size: 15px !important;
+    line-height: 1.5;
+  }
+}
+
+
 /*Custom media query for tiny viewport (below 344)*/
 @media (max-width: 344px) {
-		#top-site-name{
-		font-size: 15px !important;
-		}
+  #top-site-name {
+    font-size: 13px !important;
+    line-height: 1.2;
+  }
 }
