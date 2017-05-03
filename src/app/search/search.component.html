@@ -86,7 +86,7 @@
     <P class="no_data">Use the search controls on the left to create and filter your query.</P></div>
 </div>
 
-<template #nonProject let-c="close" let-d="dismiss">
+<ng-template #nonProject let-c="close" let-d="dismiss">
   <div class="modal-header">
     <h4 class="modal-title">{{ nonProjectItem.title }}</h4>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
@@ -191,4 +191,4 @@
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
   </div>
-</template>
+</ng-template>

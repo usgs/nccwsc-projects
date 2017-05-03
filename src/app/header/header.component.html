@@ -28,9 +28,9 @@
           <a class="" id="dropdownMenu1" ngbDropdownToggle>{{ menu_item.title }}</a>
           <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
               <ul class="navbar-nav mr-auto" *ngFor="let child_item of menu_item.children" >
-                <span *ngIf="child_item.title !='Learn More About Us'">
+                <span>
                 <li class="nav-item">
-                  <a *ngIf="menu_item.title !='Login'" [href]="'https://my-beta.usgs.gov/nccwsc/' + fixLink(child_item.url)">
+                  <a [href]="'https://my-beta.usgs.gov/nccwsc/' + fixLink(child_item.url)">
                     {{ child_item.title }}
                   </a>
                 </li>

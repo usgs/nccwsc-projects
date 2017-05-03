@@ -108,7 +108,7 @@
 </span>
 </div>
 <div class="col-md-6 map">
-<sb-map *ngIf="projectJson.map_url" [mapurl]="projectJson.map_url"></sb-map>
+<sb-map *ngIf="projectJson.map_url" [mapUrl]="projectJson.map_url"></sb-map>
 </div>
 <div class="col-md-12" *ngIf="projectJson.sub_projects && projectJson.sub_projects.length > 0">
 <h2>Sub-Project(s)</h2>
@@ -212,9 +212,12 @@
     </div>
   </div>
 </div>
+<div class="col-md-12">
+ScienceBase Link: <a href="https://sciencebase.gov/catalog/item/{{ projectJson.id}}" title="{{ projectJson.title }} ScienceBase Record">https://sciencebase.gov/catalog/item/{{ projectJson.id}}</a>
+</div>
 </div>
 </div> <!--close row project_content-->
-<template #imageModal let-c="close" let-d="dismiss" style="width: 90% !important;">
+<ng-template #imageModal let-c="close" let-d="dismiss" style="width: 90% !important;">
   <div class="modal-header">
     <h4 *ngIf="modal_image.title">{{ modal_image.title}}</h4>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
@@ -224,5 +227,5 @@
   <div class="modal-body">
   <img class="modal-image" src="{{modal_image.url }}" alt="{{ modal_image.title }}" title="{{ modal_image.title }}" />
   </div>
-</template>
+</ng-template>
 
