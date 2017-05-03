@@ -9,10 +9,10 @@
         <ng-select placeholder="Topic" [options]="topics" (selected)="onTopicsChange($event.value)"></ng-select>
       </div>
       <div class="field">
-        <ng-select placeholder="Subtopic" *ngIf="subtopics.length > 0" [options]="subtopics" (selected)="onSubtopicsChange($event.value)"></ng-select>
+        <ng-select placeholder="Subtopic" *ngIf="subtopics.length > 0" [options]="subtopics" (selected)="onSubtopicsChange($event.value)" [multiple]="true" [(ngModel)] = "selectedSubtopics" [ngModelOptions]="{standalone: true}"></ng-select>
       </div>
       <div class="field">
-        <ng-select placeholder="NCCWSC/CSCs" [options]="orgs" (selected)="onOrgsChange($event.value)"></ng-select>
+        <ng-select placeholder="NCCWSC/CSCs" [(ngModel)]="selectedOrgs" [options]="orgs" [multiple]="true" (selected)="onOrgsChange($event.value)" [ngModelOptions]="{standalone: true}"></ng-select>
       </div>
       <button (click)="onSubmit()" class="btn btn-primary">Search</button>
     </form>

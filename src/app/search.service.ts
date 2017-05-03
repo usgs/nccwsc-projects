@@ -204,6 +204,7 @@ export class SearchService {
 
   searchProjects(queryString) {
     console.log('New Query...')
+    console.log(queryString)
     this.updateTotalResults(-1);
     var searchUrl = 'https://my-beta.usgs.gov/nccwsc-service/search' + queryString;
     this.results = [];

@@ -13,21 +13,24 @@ export class SearchNavComponent implements OnInit {
   resultStatusSubscription: Subscription;
   resultTypesSubscription: Subscription;
 
-  searchQuery:string = null;
-  selectedTopic: number = null;
-  selectedSubtopic: number = null;
-  selectedOrg: number = null;
-  topics = [];
-  subtopics = [];  
-  orgs = [];
-  resultOrgs;
-  resultFY;
-  resultTypes;
-  resultStatus;
-  filteredOrg:any = '0';
-  filteredFY:any = '0';
-  filteredType:any = '0';
-  filteredStatus:any = '0';
+  searchQuery:string = null
+  selectedTopic: number = null
+  selectedSubtopic: number = null
+  selectedOrg: number = null
+  selectedOrgs = []
+  selectedSubtopics = []
+  topics = []
+  subtopics = []
+  orgs = []
+  multipleOrgs = true
+  resultOrgs
+  resultFY
+  resultTypes
+  resultStatus
+  filteredOrg:any = '0'
+  filteredFY:any = '0'
+  filteredType:any = '0'
+  filteredStatus:any = '0'
 
   constructor(private searchService: SearchService) { }
 
@@ -49,11 +52,9 @@ export class SearchNavComponent implements OnInit {
   };
 
   onSubtopicsChange(event) {
-    this.selectedSubtopic = event;
   }
 
   onOrgsChange(event) {
-    this.selectedOrg = event;
   }
 
   onOrgSourceChange(orgSource) {
@@ -74,7 +75,6 @@ export class SearchNavComponent implements OnInit {
   }
 
   updateFilters(){
-    console.log(this.filteredOrg);
     this.filteredOrg = '0';
     this.filteredFY = '0';
     this.filteredType = '0';
@@ -89,9 +89,14 @@ export class SearchNavComponent implements OnInit {
   onSubmit(value) {
     var queryString = '';
     var query = '?query=';
-    var subtopic = '&subtopics=';
-    if (this.selectedSubtopic !== null) {
-       subtopic = subtopic + encodeURIComponent(this.subtopics[this.selectedSubtopic]['label']);
+    var subtopics = '&subtopics=';
+    if (this.selectedSubtopics.length > 0) {
+       console.log(this.selectedSubtopics)
+       console.log(this.subtopics)
+       for (var st in this.selectedSubtopics) {
+         subtopics = subtopics + encodeURIComponent(this.subtopics[this.selectedSubtopics[st]]['label'])  + ',';
+       }
+       subtopics = subtopics.substring(0, subtopics.length -1)
     }
     var topic = '&topics=';
     
@@ -99,13 +104,16 @@ export class SearchNavComponent implements OnInit {
       topic = topic + encodeURIComponent(this.topics[this.selectedTopic]['label']);
     }
     var organizations = '&organizations=';
-    if (this.selectedOrg !== null) {
-      organizations = organizations + encodeURIComponent(this.orgs[this.selectedOrg]['label']);
+    if (this.selectedOrgs.length > 0) {
+      for (var org of this.selectedOrgs) {
+        organizations = organizations + encodeURIComponent(this.orgs[org]['label']) + ',';
+      }
+      organizations = organizations.substring(0, organizations.length - 1)
     }
     if (this.searchQuery && this.searchQuery.length > 0) {
       query = query + encodeURIComponent(this.searchQuery);
     }
-    queryString = query + topic + subtopic + organizations;  
+    queryString = query + topic + subtopics + organizations;  
     this.searchService.searchProjects(queryString).subscribe(results => {
       this.updateFilters();
     });    
