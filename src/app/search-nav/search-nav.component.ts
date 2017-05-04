@@ -22,15 +22,17 @@ export class SearchNavComponent implements OnInit {
   topics = []
   subtopics = []
   orgs = []
+  totalResults: number;
+  totalResultsSubscription: Subscription; 
   multipleOrgs = true
   resultOrgs
   resultFY
   resultTypes
   resultStatus
   filteredOrg:any = '0'
-  filteredFY:any = '0'
-  filteredType:any = '0'
-  filteredStatus:any = '0'
+  filteredFY:any = null
+  filteredType:any = null
+  filteredStatus:any = null
 
   constructor(private searchService: SearchService) { }
 
@@ -47,7 +49,6 @@ export class SearchNavComponent implements OnInit {
   }
 
   onTopicsChange(event) {
-    console.log(this.selectedTopic)
     var topic = this.topics[event]
     this.subtopics = topic['subtopics']
   };
@@ -59,27 +60,26 @@ export class SearchNavComponent implements OnInit {
   }
 
   onOrgSourceChange(orgSource) {
-    this.searchService.updateOrgItems(orgSource);
-
+    this.searchService.updateOrgItems(this.filteredOrg)
   }
 
   onTypeSourceChange(typeSource) {
-    this.searchService.updateTypeItems(typeSource);
+    this.searchService.updateTypeItems(this.filteredType)
   }
 
   onStatusSourceChange(statusSource) {
-    this.searchService.updateStatusItems(statusSource);
+    this.searchService.updateStatusItems(this.filteredStatus)
   }
 
   onFYSourceChange(fySource) {
-    this.searchService.updateFYItems(fySource);
+    this.searchService.updateFYItems(this.filteredFY)
   }
 
   updateFilters(){
-    this.filteredOrg = '0';
-    this.filteredFY = '0';
-    this.filteredType = '0';
-    this.filteredStatus = '0';
+    this.filteredOrg = null;
+    this.filteredFY = null;
+    this.filteredType = null;
+    this.filteredStatus = null;
   }
 
   resetFilters() {
@@ -99,7 +99,7 @@ export class SearchNavComponent implements OnInit {
        subtopics = subtopics.substring(0, subtopics.length -1)
     }
     var topic = '&topics=';
-    if (this.selectedTopic > -1) {
+    if ((this.selectedTopic != null) && (this.selectedTopic > -1)) {
       topic = topic + encodeURIComponent(this.topics[this.selectedTopic]['label']);
     }
     var organizations = '&organizations=';
@@ -128,6 +128,11 @@ export class SearchNavComponent implements OnInit {
       this.orgs = organizations;
     });
 
+    this.totalResultsSubscription = this.searchService.totalItem$.subscribe(totalItems=>
+    {
+      this.totalResults = totalItems;
+    });
+
     this.resultOrgsSubscription = this.searchService.resultOrg$.subscribe(resultOrgs=>
     {
       this.resultOrgs = resultOrgs;
@@ -146,6 +151,8 @@ export class SearchNavComponent implements OnInit {
     {
       this.resultStatus = resultStatus;
     });
+    this.updateFilters();
+    this.searchService.resetFilters();
 
   }
 

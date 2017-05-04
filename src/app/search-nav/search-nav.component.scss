@@ -20,10 +20,15 @@ div.field {
 
 div.filters {
   width: 100%;
-  margin: 1em 0 0 .5em;
+  margin: 0 0 0 .5em;
   h4 {
     margin-left: 0;
   }
+}
+
+label {
+  padding: 0;
+  margin: 0;
 }
 
 input#queryTerms {
@@ -33,4 +38,8 @@ input#queryTerms {
 .btn-primary,
 button {
   margin-top: 1em !important;
+}
+
+div.buttons {
+  margin-bottom: 1em;
 }

@@ -4,7 +4,7 @@
   </div>
   <div class="col-md-9 results">
   <div *ngIf="results.length > 0">
-  <span><h4>Search Results</h4><p *ngIf="total_results > 0">( Total Results: {{ total_results }} )</p></span>
+  <span><h4>Search Results</h4><p *ngIf="total_results > 0 && filteredResultsCount != -1">( Total Results: {{ total_results }}, Filtered Results: {{ filteredResultsCount }} )</p></span>
   <div class="haveResults" *ngIf="total_results > 0">
   <div *ngFor="let result of results">
   <div class="card card-result">
@@ -85,6 +85,13 @@
     <h4>Search Results</h4>
     <P class="no_data">Use the search controls on the left to create and filter your query.</P></div>
 </div>
+
+<div class="row">
+    <div class="col-md-12 no_search" *ngIf="filteredResultsCount == -1">
+      <h4>Search Results</h4>
+      <P class="no_data">No projects exist that match the current filter configuration.  Please reset the filters and refine your filters.</P></div>
+</div>
+
 
 <ng-template #nonProject let-c="close" let-d="dismiss">
   <div class="modal-header">

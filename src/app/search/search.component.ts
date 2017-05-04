@@ -9,14 +9,16 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
-  query = '';
-  results = [];
-  total_results: number;
-  closeResult: string;
-  filteredResultsSubscription: Subscription;
-  totalResultsSubscription: Subscription; 
-  nonProjectItem: any;
-  loadingResults = false;
+  query = ''
+  results = []
+  total_results: number
+  filteredResultsCount: number
+  closeResult: string
+  filteredResultsSubscription: Subscription
+  filteredResultsCountSubscription: Subscription
+  totalResultsSubscription: Subscription 
+  nonProjectItem: any
+  loadingResults = false
 
   constructor(private searchService: SearchService, private modalService: NgbModal) { }
 
@@ -42,6 +44,10 @@ export class SearchComponent implements OnInit {
     this.filteredResultsSubscription = this.searchService.filteredResults$.subscribe(filteredResults=>
     {
       this.results = filteredResults;
+    });
+    this.filteredResultsCountSubscription = this.searchService.filteredResultsCount$.subscribe(filteredResultsCount=>
+    {
+      this.filteredResultsCount = filteredResultsCount;
     });
     this.totalResultsSubscription = this.searchService.totalItem$.subscribe(totalItems=>
     {

@@ -10,14 +10,15 @@ export class SearchService {
   statuses:any = [];
   results:any = [];
   filteredResults:any = [];
-  resultOrgs:any = [{'value': 0, 'label': 'All Organizations' }];
-  resultFY:any = [{'value': 0, 'label': 'All Fiscal Years'}];
-  resultTypes:any = [{'value': 0, 'label': 'All Types'}];
-  resultStatus:any = [{'value': 0, 'label': 'All Statuses'}];
-  orgFilter = 'All Organizations';
-  statusFilter = 'All Statuses';
-  fyFilter = 'All Fiscal Years';
-  typeFilter = 'All Types';
+  filteredResultsCount:number = 0;
+  resultOrgs:any = []
+  resultFY:any = []
+  resultTypes:any = []
+  resultStatus:any = []
+  orgFilter = []
+  statusFilter = []
+  fyFilter = []
+  typeFilter = []
   _resultOrgs = new BehaviorSubject < any > ([]);
   resultOrg$ = this._resultOrgs.asObservable();
   _resultFY = new BehaviorSubject < any > ([]);
@@ -30,6 +31,8 @@ export class SearchService {
   filteredResults$ = this._filteredResultsSource.asObservable();
   _totalResultsSource = new BehaviorSubject < number > (0);
   totalItem$ = this._totalResultsSource.asObservable();
+  _filteredResultsCountSource = new BehaviorSubject < number > (0);
+  filteredResultsCount$ = this._filteredResultsCountSource.asObservable();
   
 
   constructor(private http: Http) { }
@@ -49,7 +52,6 @@ export class SearchService {
   }
 
   sortProjectsByKey(array, key) {
-    console.log(array);
     return array.sort(function(a, b) {
         var x = a[key].trim().replace(/['"]/g, '').toLowerCase(); var y = b[key].trim().replace(/['"]/g, '').toLowerCase();
         return ((x < y) ? -1 : ((x > y) ? 1 : 0));
@@ -60,13 +62,19 @@ export class SearchService {
     this._totalResultsSource.next(number);
   }
 
+  updateFilteredResultsCount(number) {
+    this._filteredResultsCountSource.next(number);
+  }
+
   updateOrgItems(orgSource){
     this.orgFilter = orgSource;
     this.filterItems();
   }
   
   updateTypeItems(typeSource) {
+    console.log('Updating type filters')
     this.typeFilter = typeSource;
+    console.log(this.typeFilter)
     this.filterItems();
   }
 
@@ -76,20 +84,22 @@ export class SearchService {
   }
 
   updateFYItems(fySource) {
-    this.fyFilter = fySource;
-    this.filterItems();
+    this.fyFilter = fySource
+    this.filterItems()
   }
 
   resetFilters() {
-    this.orgFilter = 'All Organizations';
-    this.typeFilter = 'All Types';
-    this.statusFilter = 'All Statuses';
-    this.fyFilter = 'All Fiscal Years';
-    this.filterItems();
+    this.orgFilter = []
+    this.typeFilter = []
+    this.statusFilter = []
+    this.fyFilter = []
+    this.clearFilters()
+    this.filterItems()
   }
 
   filterItems() {
-    this.updateTotalResults(-1);
+    console.log('Filtering the items..')
+    this.updateFilteredResultsCount(-1);
     this.filteredResults = [];
     var tempOrgs = [];
     var tempTypes = [];
@@ -100,115 +110,92 @@ export class SearchService {
       var hasStatus = false;
       var hasFY = false;
       var hasType = false;
-      if (this.orgFilter == 'All Organizations') {
-        hasOrg = true;
-      } else {
+      
+      if (this.orgFilter.length > 0) {
         if (item.organizations) {
-          for (var org in item.organizations) {
-            if (item.organizations[org].trim() == this.orgFilter) {
-              hasOrg = true;
-              break;
+          for (var orgf of this.orgFilter) {
+            for (var org in item.organizations) {
+              if (item.organizations[org].trim() == this.resultOrgs[orgf].label.trim()) {
+                hasOrg = true;
+                break;
+              }
             }
+          }          
+        }
+      } else {
+        hasOrg = true
+      }
+
+      if (this.statusFilter.length > 0) {
+        for (var sf of this.statusFilter) {
+          if (item.status == this.resultStatus[sf].label) {
+            hasStatus = true;
           }
         }
-      }
-      if ((item.status == this.statusFilter) || (this.statusFilter == 'All Statuses')) {
-        hasStatus = true;
-      }
-      if ((item.fiscal_year == this.fyFilter) || (this.fyFilter == 'All Fiscal Years')) {
-        hasFY = true;
-      }
-      console.log(this.typeFilter);
-      if (this.typeFilter == 'All Types') {
-        hasType = true;
       } else {
-        if (item.types) {
+        hasStatus = true
+      }
+      
+      if (this.fyFilter.length > 0) {
+        for (var fy of this.fyFilter) {
+          if (item.fiscal_year == this.resultFY[fy].label) {
+            hasFY = true
+          }
+        }
+      } else {
+        hasFY = true
+      }
+   
+      if (this.typeFilter.length > 0) {
+        for (var ft of this.typeFilter) {
           for (var type in item.types) {
-            if (item.types[type] == this.typeFilter) {
-    
+            if (item.types[type] == this.resultTypes[ft].label) {
               hasType = true;
               break;
-            } else {
             }
           }
-        }
+        }   
+      } else {
+        hasType = true;
       }
+
       if ((hasOrg) && (hasStatus) && (hasFY) && (hasType)) {
         this.filteredResults.push(item);
-        for (var org in item.organizations) {
-          if ((tempOrgs.indexOf(item.organizations[org].trim()) < 0) && item.organizations[org] != null) {
-            tempOrgs.push(item.organizations[org].trim());
-          }
+      } else {
+        if (hasOrg) {
+          console.log(hasStatus)
+          console.log(hasFY)
+          console.log(hasType)
         }
-        for (var type in item.types) {
-          if ((tempTypes.indexOf(item.types[type]) < 0) && (item.types[type] != null)){
-            tempTypes.push(item.types[type])
-          }
-        } 
-        if ((tempFY.indexOf(item.fiscal_year) < 0) && (item.fiscal_year != null)) {
-          tempFY.push(item.fiscal_year)
-        }      
-        if ((tempStatus.indexOf(item.status) < 0) && (item.status != null)){
-          tempStatus.push(item.status)
-        }        
       }
     }
 
-      this.resultOrgs = [{'value': 0, 'label': 'All Organizations' }];
-      this.resultFY = [{'value': 0, 'label': 'All Fiscal Years'}];
-      this.resultTypes = [{'value': 0, 'label': 'All Types'}];
-      this.resultStatus = [{'value': 0, 'label': 'All Statuses'}];
-      var value = 1;
-      tempOrgs.sort();
-      for (var org in tempOrgs) {
-        this.resultOrgs.push({'value': value, 'label': tempOrgs[org]});
-        value = value + 1;
-      }
-      value = 1;
-      tempTypes.sort();
-      for (var type in tempTypes) {
-        this.resultTypes.push({'value': value, 'label': tempTypes[type]});
-        value = value + 1;
-      }
-
-      value = 1;
-      tempFY.sort();
-      for (var fy in tempFY) {
-        this.resultFY.push({'value': value, 'label': tempFY[fy]});
-        value = value + 1;
-      }
-
-      value = 1;
-      tempStatus.sort();
-      for (var status in tempStatus) {
-        this.resultStatus.push({'value': value, 'label': tempStatus[status]});
-        value = value + 1;
-      }
-    this.updateTotalResults(Object.keys(this.filteredResults).length);
+    if (Object.keys(this.filteredResults).length == 0) {
+      this.updateFilteredResultsCount(-1)
+    } else {
+      this.updateFilteredResultsCount(Object.keys(this.filteredResults).length);
+    }
+    
     this._filteredResultsSource.next(this.filteredResults);
-      this._resultOrgs.next(this.resultOrgs);
-      this._resultFY.next(this.resultFY);
-      this._resultTypes.next(this.resultTypes);
-      this._resultStatus.next(this.resultStatus);
 
   }
 
   clearFilters() {
-    this.filteredResults = [];
-    this.orgFilter = 'All Organizations';
-    this.statusFilter = 'All Statuses';
-    this.fyFilter = 'All Fiscal Years';
-    this.typeFilter = 'All Types';
+    this.filteredResults = []
+    this.orgFilter = []
+    this.statusFilter = []
+    this.fyFilter = []
+    this.typeFilter = []
     this.filterItems();
   }
 
   wipeQuery() {
-    this.results = [];
-    this.filteredResults = [];
-    this.resultOrgs = [{'value': 0, 'label': 'All Organizations' }];
-    this.resultFY = [{'value': 0, 'label': 'All Fiscal Years'}];
-    this.resultTypes = [{'value': 0, 'label': 'All Types'}];
-    this.resultStatus = [{'value': 0, 'label': 'All Statuses'}];
+    this.results = []
+    this.filteredResults = []
+    this.resultOrgs = [{'value': 0, 'label': 'All Organizations' }]
+    this.resultFY = []
+    this.resultTypes = []
+    this.resultStatus = []
     this.updateTotalResults(0)
     this._filteredResultsSource.next(this.filteredResults);
     this._resultOrgs.next(this.resultOrgs);
@@ -231,6 +218,7 @@ export class SearchService {
       var tempStatus = [];
       var tempFY = [];
       this.updateTotalResults(Object.keys(this.results).length);
+      this.updateFilteredResultsCount(Object.keys(this.results).length)
       for (var item of this.results) {       
         for (var org in item.organizations) {
           if ((tempOrgs.indexOf(item.organizations[org].trim()) < 0) && item.organizations[org] != null) {
@@ -250,27 +238,27 @@ export class SearchService {
         }      
         this.updateResults(item);
       }
-      var value = 1;
+      var value = 0;
       tempOrgs.sort();
       for (var org in tempOrgs) {
         this.resultOrgs.push({'value': value, 'label': tempOrgs[org]});
         value = value + 1;
       }
-      value = 1;
+      value = 0;
       tempTypes.sort();
       for (var type in tempTypes) {
         this.resultTypes.push({'value': value, 'label': tempTypes[type]});
         value = value + 1;
       }
 
-      value = 1;
+      value = 0;
       tempFY.sort();
       for (var fy in tempFY) {
         this.resultFY.push({'value': value, 'label': tempFY[fy]});
         value = value + 1;
       }
 
-      value = 1;
+      value = 0;
       tempStatus.sort();
       for (var status in tempStatus) {
         this.resultStatus.push({'value': value, 'label': tempStatus[status]});
