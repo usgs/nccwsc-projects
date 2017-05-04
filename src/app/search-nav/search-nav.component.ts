@@ -36,17 +36,18 @@ export class SearchNavComponent implements OnInit {
 
 
   resetQuery() {
-    this.selectedTopic = 0;
-    this.selectedSubtopic = 0;
-    this.searchQuery = '';
-    this.selectedOrg = 0;
+    this.selectedSubtopics = []
+    this.selectedTopic = null
+    this.selectedOrgs = []
+    this.searchQuery = null
+    this.searchService.wipeQuery()
   }
 
   onQueryChange(query) {
   }
 
   onTopicsChange(event) {
-    this.selectedTopic = event;
+    console.log(this.selectedTopic)
     var topic = this.topics[event]
     this.subtopics = topic['subtopics']
   };
@@ -86,21 +87,19 @@ export class SearchNavComponent implements OnInit {
     this.searchService.resetFilters();
   }
 
+
   onSubmit(value) {
     var queryString = '';
     var query = '?query=';
     var subtopics = '&subtopics=';
     if (this.selectedSubtopics.length > 0) {
-       console.log(this.selectedSubtopics)
-       console.log(this.subtopics)
        for (var st in this.selectedSubtopics) {
          subtopics = subtopics + encodeURIComponent(this.subtopics[this.selectedSubtopics[st]]['label'])  + ',';
        }
        subtopics = subtopics.substring(0, subtopics.length -1)
     }
     var topic = '&topics=';
-    
-    if ((this.selectedTopic) && (this.selectedTopic !== null)) {
+    if (this.selectedTopic > -1) {
       topic = topic + encodeURIComponent(this.topics[this.selectedTopic]['label']);
     }
     var organizations = '&organizations=';

@@ -202,6 +202,21 @@ export class SearchService {
     this.filterItems();
   }
 
+  wipeQuery() {
+    this.results = [];
+    this.filteredResults = [];
+    this.resultOrgs = [{'value': 0, 'label': 'All Organizations' }];
+    this.resultFY = [{'value': 0, 'label': 'All Fiscal Years'}];
+    this.resultTypes = [{'value': 0, 'label': 'All Types'}];
+    this.resultStatus = [{'value': 0, 'label': 'All Statuses'}];
+    this.updateTotalResults(0)
+    this._filteredResultsSource.next(this.filteredResults);
+    this._resultOrgs.next(this.resultOrgs);
+    this._resultFY.next(this.resultFY);
+    this._resultTypes.next(this.resultTypes);
+    this._resultStatus.next(this.resultStatus);
+  }
+
   searchProjects(queryString) {
     console.log('New Query...')
     console.log(queryString)

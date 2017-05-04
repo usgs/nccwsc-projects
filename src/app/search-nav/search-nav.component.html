@@ -6,15 +6,18 @@
         <input type="text" id="queryTerms" [(ngModel)]="searchQuery" value="searchQuery" placeholder="Search terms ..." name="queryTerms">
       </div>
       <div class="field">
-        <ng-select placeholder="Topic" [options]="topics" (selected)="onTopicsChange($event.value)"></ng-select>
+        <ng-select placeholder="Topic" [options]="topics" [(ngModel)]="selectedTopic" (selected)="onTopicsChange($event.value)" [ngModelOptions]="{standalone: true}"></ng-select>
       </div>
       <div class="field">
-        <ng-select placeholder="Subtopic" *ngIf="subtopics.length > 0" [options]="subtopics" (selected)="onSubtopicsChange($event.value)" [multiple]="true" [(ngModel)] = "selectedSubtopics" [ngModelOptions]="{standalone: true}"></ng-select>
+        <ng-select placeholder="Subtopics" *ngIf="subtopics.length > 0" [options]="subtopics" (selected)="onSubtopicsChange($event.value)" [multiple]="true" [(ngModel)] = "selectedSubtopics" [ngModelOptions]="{standalone: true}"></ng-select>
       </div>
       <div class="field">
         <ng-select placeholder="NCCWSC/CSCs" [(ngModel)]="selectedOrgs" [options]="orgs" [multiple]="true" (selected)="onOrgsChange($event.value)" [ngModelOptions]="{standalone: true}"></ng-select>
       </div>
-      <button (click)="onSubmit()" class="btn btn-primary">Search</button>
+      <div class="float-right">
+        <button (click)="resetQuery()" class="btn btn-sm btn-warning">Reset Query</button>
+        <button (click)="onSubmit()" class="btn btn-sm btn-success">Search</button>
+      </div>
     </form>
   </div>
   <div class="filters" *ngIf="resultOrgs.length > 0">
@@ -33,7 +36,7 @@
       <ng-select placeholder="All Statuses" [options]="resultStatus" (selected)="onStatusSourceChange($event.label)" [(ngModel)]="filteredStatus"></ng-select>
     </div>
     <div class="field">  
-      <a (click)="resetFilters()">Reset Filters</a>
+      <button (click)="resetFilters()" class="btn btn-sm btn-warning">Reset Filters</button>
     </div>
   </div>
 </div>
