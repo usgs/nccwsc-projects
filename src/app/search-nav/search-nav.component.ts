@@ -22,6 +22,7 @@ export class SearchNavComponent implements OnInit {
   topics = []
   subtopics = []
   orgs = []
+  showReset = false
   totalResults: number;
   totalResultsSubscription: Subscription; 
   multipleOrgs = true
@@ -46,17 +47,22 @@ export class SearchNavComponent implements OnInit {
   }
 
   onQueryChange(query) {
+    this.showReset = true
   }
 
   onTopicsChange(event) {
     var topic = this.topics[event]
     this.subtopics = topic['subtopics']
+    this.showReset = true
   };
 
   onSubtopicsChange(event) {
+    this.showReset = true
   }
 
+
   onOrgsChange(event) {
+    this.showReset = true
   }
 
   onOrgSourceChange(orgSource) {
@@ -83,6 +89,7 @@ export class SearchNavComponent implements OnInit {
   }
 
   resetFilters() {
+    this.showReset = false
     this.updateFilters();
     this.searchService.resetFilters();
   }
@@ -92,6 +99,7 @@ export class SearchNavComponent implements OnInit {
     var queryString = '';
     var query = '?query=';
     var subtopics = '&subtopics=';
+    this.showReset = true
     if (this.selectedSubtopics.length > 0) {
        for (var st in this.selectedSubtopics) {
          subtopics = subtopics + encodeURIComponent(this.subtopics[this.selectedSubtopics[st]]['label'])  + ',';
