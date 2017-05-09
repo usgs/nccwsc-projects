@@ -186,13 +186,21 @@ export class SearchService {
     this.statusFilter = []
     this.fyFilter = []
     this.typeFilter = []
+    this.resultOrgs = []
+    this.resultFY = []
+    this.resultTypes = []
+    this.resultStatus = []
+    this._resultOrgs.next(this.resultOrgs);
+    this._resultFY.next(this.resultFY);
+    this._resultTypes.next(this.resultTypes);
+    this._resultStatus.next(this.resultStatus);
     this.filterItems();
   }
 
   wipeQuery() {
     this.results = []
     this.filteredResults = []
-    this.resultOrgs = [{'value': 0, 'label': 'All Organizations' }]
+    this.resultOrgs = []
     this.resultFY = []
     this.resultTypes = []
     this.resultStatus = []
@@ -207,7 +215,8 @@ export class SearchService {
   searchProjects(queryString) {
     console.log('New Query...')
     console.log(queryString)
-    this.updateTotalResults(-1);
+    this.updateTotalResults(-1)
+    this.clearFilters()
     var searchUrl = 'https://my-beta.usgs.gov/nccwsc-service/search' + queryString;
     this.results = [];
     this.filteredResults = [];

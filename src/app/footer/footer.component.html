@@ -21,7 +21,7 @@
         <a class="nav-link" [ngbPopover]="legalContent" title="Legal Information">Legal</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/contact']" [routerLinkActive]="'active'">Contact Us</a>
+        <a class="nav-link" href="https://nccwsc.usgs.gov/staffPage">Contact Us</a>
       </li>
     </ul>
   </div></nav>
@@ -33,9 +33,5 @@
         <li><a href="http://www.doioig.gov/" title="Department of Interior Inspector General's Office">DOI Inspector General</a></li>
         <li><strong>URL:</strong> <a href="/" title="Natural Values Resource Center">{{ currentPage }}</a></li>
         <li><strong>Last Modified:</strong> Wednesday, June 15, 2016</li>
-        <li class="login" *ngIf="allowAuthentication">
-          <a *ngIf="!authenticated" (click)="doLogin()" class="nav-link login" href="#">Team</a>
-          <a *ngIf="authenticated" (click)="doLogout()" class="nav-link login" href="#">Logout {{userName}}</a>
-        </li>
       </ul>
 </ng-template>
