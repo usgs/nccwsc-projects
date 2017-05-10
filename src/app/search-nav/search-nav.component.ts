@@ -82,13 +82,15 @@ export class SearchNavComponent implements OnInit {
   }
 
   updateFilters(){
-    this.filteredOrg = null;
-    this.filteredFY = null;
-    this.filteredType = null;
-    this.filteredStatus = null;
+    console.log('update filters - snc')
+    this.filteredOrg = []    
+    this.filteredFY = []
+    this.filteredType = []
+    this.filteredStatus = []
   }
 
   resetFilters() {
+    console.log('Reset Filters - snc')
     this.showReset = false
     this.updateFilters();
     this.searchService.resetFilters();

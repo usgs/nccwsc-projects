@@ -1,6 +1,6 @@
 <div class="row search">
   <h4>Search</h4>
-  <div class="col-xs-12">
+  <div class="search-nav">
     <form class="ui form row" (keyup.enter)="onSubmit()">
       <div class="field">
         <input type="text" id="queryTerms" [(ngModel)]="searchQuery" value="searchQuery" placeholder="Search terms ..." name="queryTerms">
@@ -24,22 +24,22 @@
     <h4>Filters</h4>
     <div class="field">
       <label>Organizations</label>
-      <ng-select placeholder="All Organizations" [multiple]="true" [label]="Organizations" [options]="resultOrgs" (deselected)="onOrgSourceChange($event.label)" (selected)="onOrgSourceChange($event.label)" [(ngModel)]="filteredOrg"></ng-select>
+      <ng-select #orgs placeholder="All Organizations" [multiple]="true" [label]="Organizations" [options]="resultOrgs" (deselected)="onOrgSourceChange($event.label)" (selected)="onOrgSourceChange($event.label)" [(ngModel)]="filteredOrg"></ng-select>
     </div>
     <div class="field">  
       <label>Types</label>
-      <ng-select placeholder="All Types" [label]="Types" [options]="resultTypes" (deselected)="onTypeSourceChange($event.label)" (selected)="onTypeSourceChange($event.label)" [(ngModel)]="filteredType" [multiple]="true"></ng-select>
+      <ng-select #types placeholder="All Types" [label]="Types" [options]="resultTypes" (deselected)="onTypeSourceChange($event.label)" (selected)="onTypeSourceChange($event.label)" [(ngModel)]="filteredType" [multiple]="true"></ng-select>
       </div>
     <div class="field">  
       <label>Fiscal Years</label>
-      <ng-select placeholder="All Fiscal Years" [label]="FiscalYears" [options]="resultFY" (deselected)="onFYSourceChange($event.label)" (selected)="onFYSourceChange($event.label)" [(ngModel)]="filteredFY" [multiple]="true"></ng-select>
+      <ng-select #fy placeholder="All Fiscal Years" [label]="FiscalYears" [options]="resultFY" (deselected)="onFYSourceChange($event.label)" (selected)="onFYSourceChange($event.label)" [(ngModel)]="filteredFY" [multiple]="true"></ng-select>
       </div>
     <div class="field">  
       <label>Statuses</label>
-      <ng-select placeholder="All Statuses" [label]="Statuses" [options]="resultStatus" (deselected)="onStatusSourceChange($event.label)" (selected)="onStatusSourceChange($event.label)" [(ngModel)]="filteredStatus" [multiple]="true"></ng-select>
+      <ng-select #statuses placeholder="All Statuses" [label]="Statuses" [options]="resultStatus" (deselected)="onStatusSourceChange($event.label)" (selected)="onStatusSourceChange($event.label)" [(ngModel)]="filteredStatus" [multiple]="true"></ng-select>
     </div>
     <div class="field">  
-      <button (click)="resetFilters()" class="btn btn-sm btn-warning">Reset Filters</button>
+      <button (click)="statuses.clear(); fy.clear(); types.clear(); orgs.clear()" class="btn btn-sm btn-warning">Reset Filters</button>
     </div>
   </div>
 </div>

@@ -11,6 +11,7 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 export class HeaderComponent implements OnInit {
   nccwscMenu;
   isNavbarCollapsed:boolean = true;
+  isCollapsed = true
   constructor(private nccwscDrupal: NccwscDrupalService) { }
 
   fixLink(link) {
@@ -25,6 +26,7 @@ export class HeaderComponent implements OnInit {
      this.nccwscDrupal.loadMenu().subscribe(data => {
        data[0].url = "";
        this.nccwscMenu = data;
+       console.log(this.nccwscMenu)
      });
 
 

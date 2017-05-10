@@ -34,7 +34,6 @@ export class SearchService {
   _filteredResultsCountSource = new BehaviorSubject < number > (0);
   filteredResultsCount$ = this._filteredResultsCountSource.asObservable();
   
-
   constructor(private http: Http) { }
 
   getTopics() {
@@ -72,9 +71,7 @@ export class SearchService {
   }
   
   updateTypeItems(typeSource) {
-    console.log('Updating type filters')
     this.typeFilter = typeSource;
-    console.log(this.typeFilter)
     this.filterItems();
   }
 
@@ -89,16 +86,71 @@ export class SearchService {
   }
 
   resetFilters() {
-    this.orgFilter = []
-    this.typeFilter = []
-    this.statusFilter = []
-    this.fyFilter = []
+    console.log('reset filters - ss')
     this.clearFilters()
-    this.filterItems()
   }
 
+  setFilters() {
+    console.log('Setting the filters... - ss')
+    var tempOrgs = [];
+    var tempTypes = [];
+    var tempStatus = [];
+    var tempFY = [];
+
+      for (var item of this.filteredResults) {       
+        for (var org in item.organizations) {
+          if ((tempOrgs.indexOf(item.organizations[org].trim()) < 0) && item.organizations[org] != null) {
+            tempOrgs.push(item.organizations[org].trim());
+          }
+        }
+        for (var type in item.types) {
+          if ((tempTypes.indexOf(item.types[type]) < 0) && (item.types[type] != null)){
+            tempTypes.push(item.types[type])
+          }
+        } 
+        if ((tempFY.indexOf(item.fiscal_year) < 0) && (item.fiscal_year != null)) {
+          tempFY.push(item.fiscal_year)
+        }      
+        if ((tempStatus.indexOf(item.status) < 0) && (item.status != null)){
+          tempStatus.push(item.status)
+        }      
+        this.updateResults(item);
+      }
+      var value = 0;
+      tempOrgs.sort();
+      for (var org in tempOrgs) {
+        this.resultOrgs.push({'value': value, 'label': tempOrgs[org]});
+        value = value + 1;
+      }
+      value = 0;
+      tempTypes.sort();
+      for (var type in tempTypes) {
+        this.resultTypes.push({'value': value, 'label': tempTypes[type]});
+        value = value + 1;
+      }
+
+      value = 0;
+      tempFY.sort();
+      for (var fy in tempFY) {
+        this.resultFY.push({'value': value, 'label': tempFY[fy]});
+        value = value + 1;
+      }
+
+      value = 0;
+      tempStatus.sort();
+      for (var status in tempStatus) {
+        this.resultStatus.push({'value': value, 'label': tempStatus[status]});
+        value = value + 1;
+      }
+    this._resultOrgs.next(this.resultOrgs);
+    this._resultFY.next(this.resultFY);
+    this._resultTypes.next(this.resultTypes);
+    this._resultStatus.next(this.resultStatus);
+  }
+
+
   filterItems() {
-    console.log('Filtering the items..')
+    console.log('Filtering the items. - ss')
     this.updateFilteredResultsCount(-1);
     this.filteredResults = [];
     var tempOrgs = [];
@@ -160,27 +212,71 @@ export class SearchService {
       }
 
       if ((hasOrg) && (hasStatus) && (hasFY) && (hasType)) {
-        this.filteredResults.push(item);
-      } else {
-        if (hasOrg) {
-          console.log(hasStatus)
-          console.log(hasFY)
-          console.log(hasType)
+
+        for (var org in item.organizations) {
+          if ((tempOrgs.indexOf(item.organizations[org].trim()) < 0) && item.organizations[org] != null) {
+            tempOrgs.push(item.organizations[org].trim());
+          }
         }
+        for (var type in item.types) {
+          if ((tempTypes.indexOf(item.types[type]) < 0) && (item.types[type] != null)){
+            tempTypes.push(item.types[type])
+          }
+        } 
+        if ((tempFY.indexOf(item.fiscal_year) < 0) && (item.fiscal_year != null)) {
+          tempFY.push(item.fiscal_year)
+        }      
+        if ((tempStatus.indexOf(item.status) < 0) && (item.status != null)){
+          tempStatus.push(item.status)
+        }
+
+        this.filteredResults.push(item);
       }
     }
+
+      var value = 0;
+      tempOrgs.sort();
+      for (var org in tempOrgs) {
+        this.resultOrgs.push({'value': value, 'label': tempOrgs[org]});
+        value = value + 1;
+      }
+      value = 0;
+      tempTypes.sort();
+      for (var type in tempTypes) {
+        this.resultTypes.push({'value': value, 'label': tempTypes[type]});
+        value = value + 1;
+      }
+
+      value = 0;
+      tempFY.sort();
+      for (var fy of tempFY) {
+        this.resultFY.push({'value': value, 'label': fy});
+        value = value + 1;
+      }
+
+      value = 0;
+      tempStatus.sort();
+      for (var status in tempStatus) {
+        this.resultStatus.push({'value': value, 'label': tempStatus[status]});
+        value = value + 1;
+      }
+
+      this._resultOrgs.next(this.resultOrgs);
+      this._resultFY.next(this.resultFY);
+      this._resultTypes.next(this.resultTypes);
+      this._resultStatus.next(this.resultStatus);
 
     if (Object.keys(this.filteredResults).length == 0) {
       this.updateFilteredResultsCount(-1)
     } else {
       this.updateFilteredResultsCount(Object.keys(this.filteredResults).length);
-    }
-    
+    }    
     this._filteredResultsSource.next(this.filteredResults);
 
   }
 
   clearFilters() {
+    console.log('clear filters - ss')
     this.filteredResults = []
     this.orgFilter = []
     this.statusFilter = []
@@ -213,8 +309,7 @@ export class SearchService {
   }
 
   searchProjects(queryString) {
-    console.log('New Query...')
-    console.log(queryString)
+    console.log('New Query... - ss')
     this.updateTotalResults(-1)
     this.clearFilters()
     var searchUrl = 'https://my-beta.usgs.gov/nccwsc-service/search' + queryString;
