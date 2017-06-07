@@ -130,7 +130,7 @@
 <h2>Publications and Other</h2>
 <ul *ngFor="let product of projectJson.approved_products">
   <li>
-    {{ product.title }}
+    <div class="pubTitle">{{ product.title }}</div>
     <div *ngIf="product.webLinks">
       <ul *ngFor="let webLink of product.webLinks">
         <li>{{ webLink.title }} <a href="{{ webLink.uri }}" target="_blank">(External URL)</a></li>
@@ -144,7 +144,7 @@
   </li>
 </ul>
 <ul *ngFor="let other of projectJson.other_approved">
-  <li>{{ other.title }}
+  <li><div class="pubTitle">{{ other.title }}</div>
     <div *ngIf="other.webLinks">
       <ul *ngFor="let webLink of other.webLinks">
         <li>{{ webLink.title }} <a href="{{ webLink.uri }}" target="_blank">(External URL)</a></li>
@@ -163,7 +163,7 @@
 <div class="col-md-12" *ngIf="projectJson.approved_data && projectJson.approved_data.length > 0">
 <h2>Data</h2>
 <ul *ngFor="let data of projectJson.approved_data">
-  <li>{{ data.title }}
+  <li><div class="pubTitle">{{ data.title }}</div>
     <div *ngIf="data.webLinks">
       <ul *ngFor="let webLink of data.webLinks">
         <li>{{ webLink.title }} <a href="{{ webLink.uri }}" target="_blank">(External URL)</a></li>
@@ -201,7 +201,7 @@
 <div class="col-md-12" *ngIf="projectJson.other && projectJson.other > 0">
 <h2>Other Stuff</h2>
 <ul *ngFor="let other of projectJson.other">
-  <li>{{ other.title }}</li>
+  <li><div class="pubTitle">{{ other.title }}</div></li>
 </ul>
 </div>
 <div class="col-md-12" *ngIf="projectJson.images && projectJson.images.length > 1">
