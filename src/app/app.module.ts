@@ -5,11 +5,10 @@ import { HttpModule } from '@angular/http';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { AppComponent } from './app.component';
-import { routing,
-         appRoutingProviders } from './app.routing';
+import { routing, appRoutingProviders } from './app.routing';
 import { NgbModule, NgbActiveModal, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { LeafletModule } from "@asymmetrik/angular2-leaflet";
-import {SelectModule} from 'ng-select';
+import { SelectModule } from 'ng-select';
 
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -24,8 +23,6 @@ import { LocalJsonService } from './local-json.service';
 import { SearchService } from './search.service';
 import { NccwscDrupalService } from './nccwsc-drupal.service';
 import { CscComponent } from './csc/csc.component';
-
-
 
 @NgModule({
   declarations: [

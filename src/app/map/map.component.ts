@@ -40,7 +40,7 @@ export class MapComponent {
       name: 'Open Cycle Map',
       enabled: true,
       layer: L.tileLayer('https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-        maxZoom: 18,
+        maxZoom: 15,
         attribution: 'Open Cycle Map'
       })
     }
@@ -49,7 +49,7 @@ export class MapComponent {
       name: 'Open Street Map',
       enabled: false,
       layer: L.tileLayer('https://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
-        maxZoom: 18,
+        maxZoom: 15,
         attribution: 'Open Street Map'
       })
     }

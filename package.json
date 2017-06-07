@@ -33,7 +33,6 @@
     "core-js": "^2.4.1",
     "jasmine-spec-reporter": "^4.1.0",
     "ng-select": "^1.0.0-beta.5",
-    "ng2-select": "latest",
     "rxjs": "^5.3.0",
     "ts-helpers": "^1.1.1",
     "x2js": "^3.1.1",

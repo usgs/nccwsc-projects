@@ -6,10 +6,22 @@
         <input type="text" id="queryTerms" [(ngModel)]="searchQuery" value="searchQuery" placeholder="Search terms ..." name="queryTerms">
       </div>
       <div class="field">
-        <ng-select placeholder="Topic" [options]="topics" [(ngModel)]="selectedTopic" (selected)="onTopicsChange($event.value)" [ngModelOptions]="{standalone: true}"></ng-select>
+        <ng-select placeholder="Topic" 
+          [options]="topics" 
+          (selected)="onTopicsChange($event.value)" 
+          [(ngModel)]="selectedTopic" 
+          [ngModelOptions]="{standalone: true}">
+        </ng-select>
       </div>
-      <div class="field">
-        <ng-select placeholder="Subtopics" *ngIf="subtopics.length > 0" [options]="subtopics" (selected)="onSubtopicsChange($event.value)" [multiple]="true" [(ngModel)] = "selectedSubtopics" [ngModelOptions]="{standalone: true}"></ng-select>
+      <div class="field" *ngIf="subtopics.length > 0">
+        <ng-select 
+          [options]="subtopics" 
+          (selected)="onSubtopicsChange($event.value)" 
+          [multiple]="true" 
+          [(ngModel)] = "selectedSubtopics" 
+          [ngModelOptions]="{standalone: true}"
+          placeholder="Subtopics" >
+        </ng-select>
       </div>
       <div class="field">
         <ng-select placeholder="NCCWSC/CSCs" [(ngModel)]="selectedOrgs" [options]="orgs" [multiple]="true" (selected)="onOrgsChange($event.value)" [ngModelOptions]="{standalone: true}"></ng-select>
@@ -20,6 +32,14 @@
       </div>
     </form>
   </div>
+
+  <ng-select [options]="locales"
+             [multiple]="true"
+             (selected)="langSelectedPushToForm($event)"
+             (deselected)="langDeselectedPopFromForm($event)"
+             placeholder="Choose the languages">
+  </ng-select>
+  
   <div class="filters" *ngIf="totalResults > 0">
     <h4>Filters</h4>
     <div class="field">

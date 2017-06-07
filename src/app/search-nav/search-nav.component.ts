@@ -18,7 +18,7 @@ export class SearchNavComponent implements OnInit {
   selectedSubtopic: number = null
   selectedOrg: number = null
   selectedOrgs = []
-  selectedSubtopics = []
+  selectedSubtopics = null
   topics = []
   subtopics = []
   orgs = []
