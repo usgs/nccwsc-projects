@@ -101,9 +101,14 @@ div.loading {
 
 div.filter-bar {
   margin-bottom: 1em;
+
   a {
     display: block;
     margin-left: auto;
     margin-right: auto;
   }
+}
+
+select {
+  color: #a9a9a9;
 }

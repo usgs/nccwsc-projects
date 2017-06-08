@@ -6,7 +6,7 @@
         <input type="text" id="queryTerms" [(ngModel)]="searchQuery" value="searchQuery" placeholder="Search terms ..." name="queryTerms">
       </div>
       <div class="field">
-        <ng-select placeholder="Topic" 
+        <ng-select style="color: #000000 !important;" placeholder="Topic" 
           [options]="topics" 
           (selected)="onTopicsChange($event.value)" 
           [(ngModel)]="selectedTopic" 
