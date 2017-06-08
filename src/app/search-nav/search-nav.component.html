@@ -1,12 +1,12 @@
 <div class="row search">
   <h4>Search</h4>
-  <div class="search-nav">
+  <div class="search-nav" style="">
     <form class="ui form row" (keyup.enter)="onSubmit()">
       <div class="field">
         <input type="text" id="queryTerms" [(ngModel)]="searchQuery" value="searchQuery" placeholder="Search terms ..." name="queryTerms">
       </div>
       <div class="field">
-        <ng-select style="color: #000000 !important;" placeholder="Topic" 
+        <ng-select placeholder="Topic" 
           [options]="topics" 
           (selected)="onTopicsChange($event.value)" 
           [(ngModel)]="selectedTopic" 

@@ -48,3 +48,13 @@ div.buttons {
 div.search-nav {
   width: 100% !important;
 }
+
+.btn-success {
+  background-color: rgb(86,171,182) !important;
+  border-color: rgb(86,171,182) !important;
+  font-weight: bold;
+}
+
+.btn-success:focus {
+  box-shadow: 0 0 0 2px rgba(86,171,182,.5);
+}
