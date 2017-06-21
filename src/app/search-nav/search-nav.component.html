@@ -32,30 +32,19 @@
       </div>
     </form>
   </div>
-
-  <ng-select [options]="locales"
-             [multiple]="true"
-             (selected)="langSelectedPushToForm($event)"
-             (deselected)="langDeselectedPopFromForm($event)"
-             placeholder="Choose the languages">
-  </ng-select>
   
   <div class="filters" *ngIf="totalResults > 0">
     <h4>Filters</h4>
     <div class="field">
-      <label>Organizations</label>
       <ng-select #orgs placeholder="All Organizations" [multiple]="true" [label]="Organizations" [options]="resultOrgs" (deselected)="onOrgSourceChange($event.label)" (selected)="onOrgSourceChange($event.label)" [(ngModel)]="filteredOrg"></ng-select>
     </div>
     <div class="field">  
-      <label>Types</label>
       <ng-select #types placeholder="All Types" [label]="Types" [options]="resultTypes" (deselected)="onTypeSourceChange($event.label)" (selected)="onTypeSourceChange($event.label)" [(ngModel)]="filteredType" [multiple]="true"></ng-select>
       </div>
     <div class="field">  
-      <label>Fiscal Years</label>
       <ng-select #fy placeholder="All Fiscal Years" [label]="FiscalYears" [options]="resultFY" (deselected)="onFYSourceChange($event.label)" (selected)="onFYSourceChange($event.label)" [(ngModel)]="filteredFY" [multiple]="true"></ng-select>
       </div>
     <div class="field">  
-      <label>Statuses</label>
       <ng-select #statuses placeholder="All Statuses" [label]="Statuses" [options]="resultStatus" (deselected)="onStatusSourceChange($event.label)" (selected)="onStatusSourceChange($event.label)" [(ngModel)]="filteredStatus" [multiple]="true"></ng-select>
     </div>
     <div class="field">  

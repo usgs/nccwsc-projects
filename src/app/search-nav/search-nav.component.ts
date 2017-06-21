@@ -18,7 +18,7 @@ export class SearchNavComponent implements OnInit {
   selectedSubtopic: number = null
   selectedOrg: number = null
   selectedOrgs = []
-  selectedSubtopics = []
+  selectedSubtopics = [null]
   topics = []
   subtopics = []
   orgs = []
@@ -30,10 +30,10 @@ export class SearchNavComponent implements OnInit {
   resultFY
   resultTypes
   resultStatus
-  filteredOrg:any = '0'
-  filteredFY:any = null
-  filteredType:any = null
-  filteredStatus:any = null
+  filteredOrg:any = [null]
+  filteredFY:any = [null]
+  filteredType:any = [null]
+  filteredStatus:any = [null]
 
   constructor(private searchService: SearchService) { }
 
@@ -52,14 +52,15 @@ export class SearchNavComponent implements OnInit {
 
   onTopicsChange(event) {
     var topic = this.topics[event]
+    console.log(this.selectedSubtopics)
     this.subtopics = topic['subtopics']
     this.showReset = true
   };
 
   onSubtopicsChange(event) {
     this.showReset = true
+    console.log(this.selectedSubtopics)
   }
-
 
   onOrgsChange(event) {
     this.showReset = true
@@ -83,10 +84,10 @@ export class SearchNavComponent implements OnInit {
 
   updateFilters(){
     console.log('update filters - snc')
-    this.filteredOrg = []    
-    this.filteredFY = []
-    this.filteredType = []
-    this.filteredStatus = []
+    this.filteredOrg = [null]    
+    this.filteredFY = [null]
+    this.filteredType = [null]
+    this.filteredStatus = [null]
   }
 
   resetFilters() {
@@ -102,7 +103,7 @@ export class SearchNavComponent implements OnInit {
     var query = '?query=';
     var subtopics = '&subtopics=';
     this.showReset = true
-    if (this.selectedSubtopics.length > 0) {
+    if ((this.selectedSubtopics.length > 0) && (this.selectedSubtopics[0] != null)) {
        for (var st in this.selectedSubtopics) {
          subtopics = subtopics + encodeURIComponent(this.subtopics[this.selectedSubtopics[st]]['label'])  + ',';
        }

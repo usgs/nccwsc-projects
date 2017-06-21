@@ -153,12 +153,10 @@ export class SearchService {
     console.log('Filtering the items. - ss')
     this.updateFilteredResultsCount(-1);
     this.filteredResults = [];
-    this.resultTypes = []
     var tempOrgs = [];
+    var tempTypes = [];
     var tempStatus = [];
     var tempFY = [];
-    this._resultTypes.next(this.resultTypes)
-    console.log(this.resultTypes)
 
     for (var item of this.results) {
       var hasOrg = false;
@@ -214,17 +212,16 @@ export class SearchService {
         hasType = true;
       }
 
-
       if ((hasOrg) && (hasStatus) && (hasFY) && (hasType)) {
-/*
-        for (var org in item.organizations) {
+
+/*        for (var org in item.organizations) {
           if ((tempOrgs.indexOf(item.organizations[org].trim()) < 0) && item.organizations[org] != null) {
             tempOrgs.push(item.organizations[org].trim());
           }
         }
         for (var type in item.types) {
-          if ((this.resultTypes.indexOf(item.types[type]) < 0) && (item.types[type] != null)){
-            this.resultTypes.push(item.types[type])
+          if ((tempTypes.indexOf(item.types[type]) < 0) && (item.types[type] != null)){
+            tempTypes.push(item.types[type])
           }
         } 
         if ((tempFY.indexOf(item.fiscal_year) < 0) && (item.fiscal_year != null)) {
@@ -245,9 +242,9 @@ export class SearchService {
         value = value + 1;
       }
       value = 0;
-      this.resultTypes.sort();
-      for (var type in this.resultTypes) {
-        this.resultTypes.push({'value': value, 'label': this.resultTypes[type]});
+      tempTypes.sort();
+      for (var type in tempTypes) {
+        this.resultTypes.push({'value': value, 'label': tempTypes[type]});
         value = value + 1;
       }
 
@@ -267,7 +264,6 @@ export class SearchService {
 
       this._resultOrgs.next(this.resultOrgs);
       this._resultFY.next(this.resultFY);
-      console.log(this.resultTypes)
       this._resultTypes.next(this.resultTypes);
       this._resultStatus.next(this.resultStatus);
 

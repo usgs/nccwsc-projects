@@ -35,7 +35,7 @@
                   </a>
                 </li>
                 <li ngbDropdown class="nav-item" *ngIf="child_item.children">
-                  <a class="" id="dropdownMenu2" ngbDropdownToggle>{{ menu_item.title }}</a>
+                  <a class="" id="dropdownMenu2" ngbDropdownToggle>{{ child_item.title }}</a>
                   <div class="dropdown-menu" autoClose="false" aria-labelledby="dropdownMenu2">
                     <ul class="navbar-nav mr-auto" *ngFor="let grandchild_item of child_item.children" >
                       <span>
