@@ -13,7 +13,7 @@
           [ngModelOptions]="{standalone: true}">
         </ng-select>
       </div>
-      <div class="field" *ngIf="subtopics.length > 0">
+      <div class="field" *ngIf="subtopics?.length > 0">
         <ng-select 
           [options]="subtopics" 
           (selected)="onSubtopicsChange($event.value)" 

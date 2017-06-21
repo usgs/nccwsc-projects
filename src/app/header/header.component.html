@@ -20,7 +20,7 @@
     <span *ngFor="let menu_item of nccwscMenu">
       <ul class="navbar-nav mr-auto" *ngIf="menu_item.title !='Login'">
         <li class="nav-item" *ngIf="!menu_item.children">
-          <a [href]="'https://my-beta.usgs.gov/nccwsc/' + fixLink(menu_item.url)">
+          <a [href]="fixLink(menu_item.url)">
             {{ menu_item.title }}
           </a>
         </li>
@@ -30,7 +30,7 @@
               <ul class="navbar-nav mr-auto" *ngFor="let child_item of menu_item.children" >
                 <span>
                 <li class="nav-item" *ngIf="!child_item.children">
-                  <a [href]="'https://my-beta.usgs.gov/nccwsc/' + fixLink(child_item.url)">
+                  <a [href]="fixLink(child_item.url)">
                     {{ child_item.title }}
                   </a>
                 </li>
@@ -40,7 +40,7 @@
                     <ul class="navbar-nav mr-auto" *ngFor="let grandchild_item of child_item.children" >
                       <span>
                         <li class="nav-item" *ngIf="!grandchild_item.children">
-                          <a [href]="'https://my-beta.usgs.gov/nccwsc/' + fixLink(grandchild_item.url)">
+                          <a [href]="fixLink(grandchild_item.url)">
                             {{ grandchild_item.title }}
                           </a>
                         </li>
