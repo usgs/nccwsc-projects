@@ -29,8 +29,9 @@ export class ProjectComponent implements OnInit {
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.projectId = params['id'];
-      this.cscId = params['csc'];
-    });
+      this.cscId = params['csc'];    
+      console.log(this.projectId)
+      console.log(this.cscId)
     this.localJson.loadProject(this.cscId, this.projectId).subscribe(data => {
       this.projectJson = data;
       console.log(this.projectJson);
@@ -42,6 +43,9 @@ export class ProjectComponent implements OnInit {
           }
         }
       }
+    });
+
+
     });
   }
 }

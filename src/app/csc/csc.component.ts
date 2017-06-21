@@ -103,14 +103,12 @@ export class CscComponent implements OnInit {
     }
     this.title = this.csc_ids[this.sbId];
     this.localJson.loadCscProjects(this.sbId).subscribe(data => {
-      console.log(data)
       this.cscProjectsList = data;
         for (var project in this.cscProjectsList) {
           for (var topic in this.cscProjectsList[project].topics) {
             if (this.topics.indexOf(this.cscProjectsList[project].topics[topic]) < 0) {
               this.topics.push(this.cscProjectsList[project].topics[topic])
             }
-            this.sortProjectsByKey(this.cscProjectsList, 'fiscal_year')
           }      
           if (this.fiscal_years.indexOf(this.cscProjectsList[project].fiscal_year) < 0) {
             this.fiscal_years.push(this.cscProjectsList[project].fiscal_year)
