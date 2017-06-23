@@ -110,7 +110,7 @@ export class CscComponent implements OnInit {
             if (this.topics.indexOf(this.cscProjectsList[project].topics[topic]) < 0) {
               this.topics.push(this.cscProjectsList[project].topics[topic])
             }
-            this.sortProjectsByKey(this.cscProjectsList, 'fiscal_year')
+            /*this.sortProjectsByKey(this.cscProjectsList, 'fiscal_year')*/
           }      
           if (this.fiscal_years.indexOf(this.cscProjectsList[project].fiscal_year) < 0) {
             this.fiscal_years.push(this.cscProjectsList[project].fiscal_year)
