@@ -7,6 +7,7 @@ div .card {
   .card-block {
     margin: .5em !important;
     padding: 0;
+    padding-left: 0.25em;
   }
 }
 
@@ -53,22 +54,28 @@ div.modal-body .list-group-flush .list-group-item {
 
 h4.card-title a {
   font-size: .8em !important;
-  font-weight: normal !important;
+  font-weight: bold !important;
   margin-bottom: 0 !important;
-  margin-left: .25em;
-
+  color: white ; 
+  background-color: #56abb6;
+  padding: 6px;
+  width: 100%;
+  line-height: 45px !important;
+    
 }
 
 h4.card-title a.nonProject {
   font-size: .75em !important;
-  font-weight: normal;
-  color: #111;
-  text-decoration: underline;
+  font-weight: bold !important;
+  color: #56abb6;
+  background-color: white;
+  line-height: 35px !important;
+  padding: 0px;
+
 }
 
 h4.card-title a.nonProject:hover {
- text-decoration: underline;
- color: #014c8c; 
+ 
 }
 
 strong {
