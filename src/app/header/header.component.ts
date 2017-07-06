@@ -15,16 +15,16 @@ export class HeaderComponent implements OnInit {
   constructor(private nccwscDrupal: NccwscDrupalService) { }
 
   fixLink(link) {
-    
+
     if ((link.substr(0, 24) == 'https://nccwsc.usgs.gov/')  || (link.substr(0, 32) == 'https://my-beta.usgs.gov/nccwsc/')) {
       if ((link.substr(0,43) == 'https://my-beta.usgs.gov/nccwsc/projects/#/') || (link.substr(0, 35) == 'https://nccwsc.usgs.gov/projects/#/')) {
-         
+
         return link
       } else {
         return link.replace('https://nccwsc.usgs.gov/', '');
       }
     } else {
-      
+
         return link;
       }
   }
@@ -35,8 +35,5 @@ export class HeaderComponent implements OnInit {
        this.nccwscMenu = data;
        console.log(this.nccwscMenu)
      });
-
-
   }
-
 }
