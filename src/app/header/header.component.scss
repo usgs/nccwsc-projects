@@ -1,8 +1,9 @@
 
 .navbar {
     margin-bottom: 0px !important;
-    background-color: black;
-    height: 65px;
+    //background-color: black;
+    background-color: #333 !important;
+    height: 55px;
     border-radius: 0px;
     border-color: black;
 }
@@ -16,37 +17,37 @@ div.branding {
     width: 100%;
     margin-right: 0px;
     margin-left: 0px;
+    line-height: 0.5rem !important;
 }
 
 .col-xs-12 {
     padding: 0px !important;
 }
 #usgs_logo {
-    padding: 3px;
-    height: 50px;
+
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: auto;
+    margin: 6px 0 2px 15px;
+    width: 120px;
+    float: left;
 }
 #top-site-name {
     font-size: 25px;
     color: white;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     line-height: 25px;
-    margin-top: 12px;
+    margin-top: 20px;
     display: block;
+}
 
-}
 .dropdown-menu {
-    margin-top: 1em;
     background: #333 !important;
-    padding: 1em !important;
-}
+    min-width: 18rem;
+    border-radius: 0.2rem;
+  }
 
 .dropdown-menu a {
-    font-size: 14px !important;
-}
+    font-size: 1.2vw !important;
+    }
 
 .top-menu {
     background-color: #333;
@@ -68,16 +69,26 @@ div.branding {
     background: transparent !important;
     background-color: #333 !important;
 }
-
-nav li a {
+nav li{
+  margin-bottom: 0.3em;
+}
+nav li a{
     color: rgba(255, 255, 255, .9) !important;
     padding-top: 15px;
-    padding-bottom: 15px;
+    padding-bottom: 18px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 16px;
-    padding-right: 20px;
+    font-size: 1.2vw;
+    padding-right: 15px;
+    padding-left: 16px;
 }
 
+.dropdown-toggle::after,.dropdown-toggle::before{
+height: 4px !important;
+width: 4px !important;
+border-top: 4px solid;
+border-right: 4px solid transparent;
+border-left: 4px solid transparent;
+}
 .navbar-brand {
   white-space: normal;
 }
@@ -88,6 +99,11 @@ nav li a {
   padding-left: 0px;
   padding-right: 0px;
   width: 100%;
+}
+
+.navbar-brand{
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
 }
 
 @media (max-width: 1199px) {
@@ -108,21 +124,21 @@ nav li a {
     .navbar {
       height: auto !important;
     }
-    
+
     .bg-inverse {
-      background-color: #000000 !important;
+      background-color:#333!important;
       height: 49px;
       z-index: 10;
       position: relative;
     }
 
     .navbar-toggler-right {
-     top: -40px; 
+     top: -40px;
     }
-    
+
     .branding {
-      height: 119px;
-    }
+    height: 119px;
+      }
 }
 
 @media (max-width: 767px) {
@@ -130,7 +146,7 @@ nav li a {
     margin-right: 0;
     margin-left: 0;
   }
-  
+
   .brandContainer {
     width: auto;
   }
@@ -140,7 +156,7 @@ nav li a {
     padding-right: 0px;
     position: relative;
   }
-  
+
   #top-site-name {
     margin-top: 0;
   }
