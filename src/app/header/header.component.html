@@ -1,17 +1,17 @@
 
   <div class="row branding">
     <div class="col-md-2 brandContainer">
-      <a class="navbar-brand " href="https://my-beta.usgs.gov/nccwsc" title="home">
+      <a class="navbar-brand " href="https://www.usgs.gov/" title="home">
         <img class="img-responsive" id='usgs_logo' src="{{ approot }}assets/usgs-logo_0.png" class="usgs_logo" />
       </a>
     </div>
     <div class="col-md-10 site-name-wrapper" >
-      <a class="navbar-brand " href="https://my-beta.usgs.gov/nccwsc" title="home">
+    <a class="navbar-brand " [href]="setTitleUrl()" title="home">
         <span id="top-site-name">Climate Science Centers & National Climate Change and Wildlife Science Center</span>
       </a>
     </div>
   </div>
-  
+
 <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation" (click)="isNavbarCollapsed=!isNavbarCollapsed">
     <span class="navbar-toggler-icon"></span>
