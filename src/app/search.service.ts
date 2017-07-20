@@ -86,12 +86,10 @@ export class SearchService {
   }
 
   resetFilters() {
-    console.log('reset filters - ss')
     this.clearFilters()
   }
 
   setFilters() {
-    console.log('Setting the filters... - ss')
     var tempOrgs = [];
     var tempTypes = [];
     var tempStatus = [];
@@ -150,7 +148,6 @@ export class SearchService {
 
 
   filterItems() {
-    console.log('Filtering the items. - ss')
     this.updateFilteredResultsCount(-1);
     this.filteredResults = [];
     var tempOrgs = [];
@@ -277,7 +274,6 @@ export class SearchService {
   }
 
   clearFilters() {
-    console.log('clear filters - ss')
     this.filteredResults = []
     this.orgFilter = []
     this.statusFilter = []
@@ -310,7 +306,6 @@ export class SearchService {
   }
 
   searchProjects(queryString) {
-    console.log('New Query... - ss')
     this.updateTotalResults(-1)
     this.clearFilters()
     var searchUrl = 'https://my-beta.usgs.gov/nccwsc-service/search' + queryString;

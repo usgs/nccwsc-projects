@@ -11,6 +11,7 @@ import { environment } from '../../environments/environment';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  
   nccwscMenu;
   isNavbarCollapsed:boolean = true;
   isCollapsed = true
@@ -28,10 +29,6 @@ let titleURL = "";
 
 return titleURL;
 }
-
-
-
-
 
   fixLink(link) {
      // sets url prefix deppending if it prod or beta
@@ -63,5 +60,6 @@ let url_prefix = "";
        this.nccwscMenu = data;
        console.log(this.nccwscMenu)
      });
+     console.log(environment)
   }
 }

@@ -4,19 +4,19 @@
     <h1>{{ title }} Projects</h1>
   </div>
 
-  <div class="col-xs-12 col-md-3 filter-bar">
+  <div class="col-xs-12 col-md-3 filter-bar" *ngIf="topics">
     <select (change)="filterProjectsList($event.target.value)" [(ngModel)]="current_topic" class="filter">
       <option *ngFor="let topic of topics" [value]="topic">{{ topic }}</option>
     </select>
   </div>
 
-  <div class="col-xs-12 col-md-3 filter-bar">
+  <div class="col-xs-12 col-md-3 filter-bar" *ngIf="fiscal_years">
     <select (change)="filterProjectsList($event.target.value)"  [(ngModel)]="current_fy" class="filter">
       <option *ngFor="let fiscal_year of fiscal_years" [value]="fiscal_year">{{ fiscal_year }}</option>
     </select>
   </div>
 
-  <div class="col-xs-12 col-md-3 filter-bar">
+  <div class="col-xs-12 col-md-3 filter-bar" *ngIf="statuses">
     <select  (change)="filterProjectsList($event.target.value)" [(ngModel)]="current_status" class="filter">
       <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
     </select>

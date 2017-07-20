@@ -37,7 +37,6 @@ export class SearchNavComponent implements OnInit {
 
   constructor(private searchService: SearchService) { }
 
-
   resetQuery() {
     this.selectedSubtopics = []
     this.selectedTopic = null
@@ -55,7 +54,7 @@ export class SearchNavComponent implements OnInit {
     console.log(this.selectedSubtopics)
     this.subtopics = topic['subtopics']
     this.showReset = true
-  };
+  }
 
   onSubtopicsChange(event) {
     this.showReset = true
@@ -98,7 +97,7 @@ export class SearchNavComponent implements OnInit {
   }
 
 
-  onSubmit(value) {
+  onSubmit() {
     var queryString = '';
     var query = '?query=';
     var subtopics = '&subtopics=';

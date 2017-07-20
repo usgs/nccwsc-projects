@@ -63,33 +63,44 @@ export class CscComponent implements OnInit {
     });
   }
 
-  filterProjectsList() {
+  filterProjectsList(event) {
     this.filteredCscProjectsList = [];   
     for (var project in this.cscProjectsList) {
       var display = true;
       if (this.current_topic != 'All Topics') {
         for (var topic in this.cscProjectsList[project].topics) {
           var matched_topic = true;
-          if (this.cscProjectsList[project].topics[topic] !== this.current_topic) {
+          if (this.cscProjectsList[project].topics[topic].replace(/,/g, "").trim() !== this.current_topic.replace (/,/g, "").trim()) {
              matched_topic = false;
+          } else {
+             // Found our topic, let's check year and status.
+             break
           }
+
         }
-        if (!matched_topic) {
+        if (matched_topic == false) {
+          console.log('Continuing?')
           continue;
+        } else {
+          console.log('Moving forward...')
         }
       }
+      console.log(this.current_fy)
       if (this.current_fy != 'All Fiscal Years') {
         if (this.cscProjectsList[project].fiscal_year !== this.current_fy) {
           continue;
         }
       }
+      console.log(this.current_status)
       if (this.current_status != 'All Statuses') {
         if (this.cscProjectsList[project].status !== this.current_status) {
           continue;
         }
       }      
+
       this.filteredCscProjectsList.push(this.cscProjectsList[project]);
     }
+    console.log(this.filteredCscProjectsList)
   }
 
   ngOnInit() {
