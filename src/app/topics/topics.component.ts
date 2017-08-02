@@ -56,50 +56,28 @@ export class TopicsComponent implements OnInit {
         for (var subtopic in this.projectsList[project].subtopics) {
           var matched_subtopic = true;
           if (this.projectsList[project].subtopics[subtopic] !== this.current_subtopic) {
-             matched_subtopic = false;
+             matched_subtopic = false
+          } else {
+            break
           }
         }
         if (!matched_subtopic) {
           continue;
         }
       }
-
-      var debug = false;
       var matchedType = false;
-      if (this.projectsList[project].id == '57178b4fe4b0ef3b7caaab9b') {
-        var debug = true;
-      }
-
       if (this.current_type != 'All Types') {
-        if (debug) {
-          console.log('Current Type is All types')
-        }
         for (var thisType in this.projectsList[project].types) {
-          if (debug) {
-           console.log('Cycling through types')
-          }
-          var matchedType = true;
+          var matchedType = true
           if (this.projectsList[project].types[thisType] !== this.current_type) {
-            if (debug) {
-             console.log('thisType != currentType')
-            }
-            matchedType = false;
+            matchedType = false
+          } else {
+            break
           }
         }
         if (!matchedType) {
-          if (debug) {
-            console.log('matchedType is false.  Continuing...')
-          }
           continue;
         }
-        if (!matchedType) {
-          if (debug) {
-            console.log('matchedType is false 2.  Continuing...')
-          }
-          continue;
-        }
-      
-
       }
       if (this.current_fy != 'All Fiscal Years') {
         if (this.projectsList[project].fiscal_year !== this.current_fy) {

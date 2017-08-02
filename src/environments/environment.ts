@@ -4,5 +4,8 @@
 // The list of which env maps to which file can be found in `angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  baseURL: 'https://my-beta.usgs.gov/nccwsc',
+  projectsPath: '/projects/#',
+  urlPrefix: "/nccwsc/"
 };

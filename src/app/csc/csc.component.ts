@@ -79,10 +79,7 @@ export class CscComponent implements OnInit {
 
         }
         if (matched_topic == false) {
-          console.log('Continuing?')
           continue;
-        } else {
-          console.log('Moving forward...')
         }
       }
       console.log(this.current_fy)

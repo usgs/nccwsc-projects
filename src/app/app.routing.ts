@@ -4,6 +4,7 @@ import { CscRoutes } from './csc/csc.routes';
 import { TopicsRoutes } from './topics/topics.routes';
 import { ProjectRoutes } from './project/project.routes';
 import { ProjectsRoutes } from './projects/projects.routes';
+import { ProjectResourceRoutes } from './project-resource/project-resource.routes';
 import { SearchRoutes } from './search/search.routes';
 
 const appRoutes: Routes = [
@@ -12,6 +13,7 @@ const appRoutes: Routes = [
   ...TopicsRoutes,
   ...ProjectRoutes,
   ...ProjectsRoutes,
+  ...ProjectResourceRoutes,
   ...SearchRoutes
 ];
 
