@@ -3,19 +3,32 @@
 
 <div class="image_container" *ngIf="previewImage">
   <img class="project_image" alt='{{ previewImage.title }}' title='{{ previewImage.title }}' src='{{ previewImage.url }}'/>
-  <div class="gradientback"></div>                    
+  <div class="gradientback"></div>
 </div>
 <div class="row project_content" *ngIf="projectJson">
 
 <!--<div class="row container " *ngIf="projectJson" [ngStyle]="{ 'background-background-image': 'url(' + previewImage.url+ ')'}"> -->
   <div class="col-md-12"><br>
   <h1>{{ projectJson.title }}</h1><br>
+<span *ngIf="projectJson.types[0]!='Project'">
+  <h2>Product Summary</h2>
+</span>
+<span *ngIf="projectJson.types[0]=='Project'">
   <h2>Project Summary</h2>
+</span>
+
   <hr/>
     <div class="body" [innerHTML]="projectJson.body"></div>
   </div><br>
   <div class="col-md-12"><br>
-  <h2>Project Information</h2><hr/>
+    <span *ngIf="projectJson.types[0]!='Project'">
+      <h2>Product Information</h2>
+    </span>
+    <span *ngIf="projectJson.types[0]=='Project'">
+      <h2>Project Information</h2>
+    </span>
+
+<hr/>
   </div>
 <div class="col-md-6">
 <span><strong>Affliation(s):</strong><a [routerLink]="['/csc/', projectJson.csc.id]">{{ projectJson.csc.name }}</a></span><br />
@@ -88,7 +101,7 @@
   <strong>Science Topics(s):</strong>
   <ul class="taglist">
     <li *ngFor = "let topic of projectJson.topics">
-      {{ topic }} 
+      {{ topic }}
     </li>
   </ul>
 </span>
@@ -97,7 +110,7 @@
   <strong>Science Subtopics(s):</strong>
   <ul class="taglist">
     <li *ngFor = "let subtopic of projectJson.subtopics">
-      {{ subtopic }} 
+      {{ subtopic }}
     </li>
   </ul>
 </span>
@@ -228,4 +241,3 @@ ScienceBase Link: <a href="https://sciencebase.gov/catalog/item/{{ projectJson.i
   <img class="modal-image" src="{{modal_image.url }}" alt="{{ modal_image.title }}" title="{{ modal_image.title }}" />
   </div>
 </ng-template>
-

@@ -26,7 +26,7 @@
     <select  (change)="filterProjectsList($event.target.value)" [(ngModel)]="current_csc" class="filter">
       <option *ngFor="let csc of cscs" [value]="csc">{{ csc }}</option>
     </select>
-  </div>  
+  </div>
   <div class="col-xs-12 col-md-2 filter-bar">
     <a class = "btn btn-outline-secondary btn-sm" href="{{ topics_url }}">Explore Other Topics</a>
   </div>
@@ -40,7 +40,7 @@
         <th class="csc">CSC</th>
         <!-- <th class="pi">Principle Investigator(s)</th> -->
         <th class="subtopics">Subtopic(s)</th>
-        <th class='types'>Types</th>        
+        <th class='types'>Types</th>
         <th class="status">Status</th>
         <th class="contains">Contains</th>
       </tr>
@@ -52,9 +52,16 @@
           N/A
         </td>
         <td>
+          <span *ngIf="project.types=='Project'">
           <a [routerLink]="['/project/', project.csc['id'], project.id]">
             {{ project['title']}}
           </a>
+        </span>
+        <span *ngIf="project.types!='Project'">
+        <a [routerLink]="['/component/', project.id]">
+          {{ project['title']}}
+        </a>
+      </span>
           <ul *ngIf="project.children?.length > 0">
             <li *ngFor= "let childProject of project.children">{{ childProject.title }}</li>
           </ul>
@@ -85,7 +92,7 @@
         <td style="text-align:center;">
           <ul>
             <li class="icons" *ngIf="project.hasFolders">
-              <i class="icon-products fa fa-folder fa-2x" title="This project has products." aria-hidden="true"></i>      
+              <i class="icon-products fa fa-folder fa-2x" title="This project has products." aria-hidden="true"></i>
             </li>
             <li *ngIf="project.hasMaps">
               <i class="icon-map fa fa-map fa-2x" title="This project has maps." aria-hidden="true"></i>
@@ -96,7 +103,7 @@
     </table>
     </div>
   </div>
-  
+
   <div class="col-md-12 loading" *ngIf="dataLoading">
     <h4 class="loading">Loading {{ title }} ScienceBase Projects.</h4>
       <img src="{{ approot }}assets/loading.gif" class="loading" alt="Loading Results" title="Loading Results" />
@@ -106,7 +113,7 @@
     <h4 class="no_data">
       Use one or more filters above to select the topics, fiscal years, or statises for the projects you wish to view.
     </h4>
-    <button class="btn btn-outline-secondary btn-small" (click)="showAllProjects()">See All Projects</button>    
+    <button class="btn btn-outline-secondary btn-small" (click)="showAllProjects()">See All Projects</button>
   </div>
 </div>
 
@@ -170,8 +177,8 @@
 				<span> <span class="icons" *ngIf="project.hasFolders"> <i class="icon-products fa fa-folder fa-2x" title="This project has products." aria-hidden="true"></i> </span> <span *ngIf="project.hasMaps"> <i class="icon-map fa fa-map fa-2x" title="This project has maps." aria-hidden="true"></i> </span> </span>
 <span class="icons" *ngIf="!project.hasFolders&&!project.hasMaps"> N/A </span>
 
-			
-			
+
+
 			</div>
 
 		</div>
@@ -185,4 +192,3 @@
 <br>
 <br>
 <!--/.Card-->
-
