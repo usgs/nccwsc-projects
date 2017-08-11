@@ -1,6 +1,7 @@
 import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { LocalJsonService } from '../local-json.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-csc',
@@ -14,7 +15,9 @@ export class CscComponent implements OnInit {
   sbId: any;
   cscProjectsList = [];
   filteredCscProjectsList = [];
-  csc_url = ['https://my-beta.usgs.gov/nccwsc/csc-list'];
+//  csc_url = ['https://my-beta.usgs.gov/nccwsc/csc-list'];
+   //csc_url = this.setButtonUrl();
+   csc_url=environment.baseURL + '/csc-list';
   topics = ['All Topics'];
   fiscal_years = ['All Fiscal Years'];
   statuses = ['All Statuses'];
@@ -47,6 +50,8 @@ export class CscComponent implements OnInit {
     'southwest' : '4f8c6580e4b0546c0c397b4e'
   }
 
+
+
   constructor(private route: ActivatedRoute, private localJson: LocalJsonService, private router: Router) { }
 
   showAllProjects() {
@@ -63,8 +68,21 @@ export class CscComponent implements OnInit {
     });
   }
 
+  setButtonUrl(){
+  // sets "Explore Other topics" btn urls
+  let buttonUrl = "";
+   if (environment.production==false){
+          buttonUrl = "https://my-beta.usgs.gov/nccwsc/csc-list";
+       }
+   else{
+      buttonUrl = "https://nccwsc.usgs.gov/csc-list";
+   }
+
+  return buttonUrl;
+  }
+
   filterProjectsList(event) {
-    this.filteredCscProjectsList = [];   
+    this.filteredCscProjectsList = [];
     for (var project in this.cscProjectsList) {
       var display = true;
       if (this.current_topic != 'All Topics') {
@@ -93,7 +111,7 @@ export class CscComponent implements OnInit {
         if (this.cscProjectsList[project].status !== this.current_status) {
           continue;
         }
-      }      
+      }
 
       this.filteredCscProjectsList.push(this.cscProjectsList[project]);
     }
@@ -117,13 +135,13 @@ export class CscComponent implements OnInit {
             if (this.topics.indexOf(this.cscProjectsList[project].topics[topic]) < 0) {
               this.topics.push(this.cscProjectsList[project].topics[topic])
             }
-          }      
+          }
           if (this.fiscal_years.indexOf(this.cscProjectsList[project].fiscal_year) < 0) {
             this.fiscal_years.push(this.cscProjectsList[project].fiscal_year)
-          }      
+          }
           if (this.statuses.indexOf(this.cscProjectsList[project].status) < 0) {
             this.statuses.push(this.cscProjectsList[project].status)
-          }      
+          }
           this.topics.sort();
           this.fiscal_years.sort();
           this.statuses.sort();

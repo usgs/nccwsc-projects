@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LocalJsonService } from '../local-json.service';
 import { SearchService } from '../search.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-topics',
@@ -30,7 +31,9 @@ export class TopicsComponent implements OnInit {
     'wildlife-plants': 'Wildlife and Plants'
   }
 
-  topics_url = ['https://my-beta.usgs.gov/nccwsc/explore-by-topic'];
+  //topics_url = ['https://my-beta.usgs.gov/nccwsc/explore-by-topic'];
+  topics_url = environment.baseURL + '/explore-by-topic';
+
   subtopics = ['All Subtopics'];
   fiscal_years = ['All Fiscal Years'];
   statuses = ['All Statuses'];
@@ -50,7 +53,7 @@ export class TopicsComponent implements OnInit {
   constructor(private route: ActivatedRoute, private localJson: LocalJsonService, private searchService: SearchService, private router: Router) { }
 
   filterProjectsList(event:any = null) {
-    this.filteredProjectsList = [];   
+    this.filteredProjectsList = [];
     for (var project in this.projectsList) {
       if (this.current_subtopic != 'All Subtopics') {
         for (var subtopic in this.projectsList[project].subtopics) {
@@ -88,12 +91,12 @@ export class TopicsComponent implements OnInit {
         if (this.projectsList[project].status !== this.current_status) {
           continue;
         }
-      }      
+      }
       if (this.current_csc != 'All CSCs') {
         if (this.projectsList[project].csc['name'] !== this.current_csc) {
           continue;
         }
-      }      
+      }
       this.filteredProjectsList.push(this.projectsList[project]);
 
     }
@@ -117,8 +120,7 @@ export class TopicsComponent implements OnInit {
     return false;
   }
 
-
-  ngOnInit() {
+    ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.topic = params['topic'];
       this.page_title = this.topic_names[this.topic]
@@ -138,27 +140,27 @@ export class TopicsComponent implements OnInit {
           for (var subtopic in this.projectsList[project].topics) {
             if (this.subtopicsFilter != null) {
               for (var topicSubtopic in this.subtopicsFilter) {
-                if ((this.projectsList[project].subtopics[subtopic] == this.subtopicsFilter[topicSubtopic]['label']) 
+                if ((this.projectsList[project].subtopics[subtopic] == this.subtopicsFilter[topicSubtopic]['label'])
                   && (this.subtopics.indexOf(this.projectsList[project].subtopics[subtopic]) < 0)) {
                   this.subtopics.push(this.projectsList[project].subtopics[subtopic])
                 }
               }
             }
-          }      
+          }
           if (this.fiscal_years.indexOf(this.projectsList[project].fiscal_year) < 0) {
             this.fiscal_years.push(this.projectsList[project].fiscal_year)
-          }      
+          }
           if (this.statuses.indexOf(this.projectsList[project].status) < 0) {
             this.statuses.push(this.projectsList[project].status)
-          }      
+          }
           if (this.cscs.indexOf(this.projectsList[project].csc['name']) < 0) {
             this.cscs.push(this.projectsList[project].csc['name'])
-          }      
+          }
           if (this.projectsList[project].types) {
           for (var this_type of this.projectsList[project].types) {
             if (this.types.indexOf(this_type) < 0) {
               this.types.push(this_type)
-            }      
+            }
           } }
           this.subtopics.sort();
           this.fiscal_years.sort();
@@ -166,8 +168,11 @@ export class TopicsComponent implements OnInit {
           this.cscs.sort();
           this.filteredProjectsList.push(this.projectsList[project]);
           this.dataLoading = false;
-      }    
+      }
     });
   }
+
+
+
 
 }

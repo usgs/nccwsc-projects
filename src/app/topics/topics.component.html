@@ -128,8 +128,18 @@
 			<h4 class="card-title "><a [routerLink]="['/project/', project.csc['id'], project.id]"> {{ project['title']}} </a>
 			<ul *ngIf="project.children?.length > 0">
 				<li *ngFor= "let childProject of project.children">
-					{{ childProject.title }}
-				</li>
+
+          <span *ngIf="project.types=='Project'">
+          <a [routerLink]="['/project/', project.csc['id'], project.id]">
+            {{ project['title']}}
+          </a>
+          </span>
+          <span *ngIf="project.types!='Project'">
+          <a [routerLink]="['/component/', project.id]">
+          {{ project['title']}}
+          </a>
+          </span>
+          				</li>
 			</ul></h4>
 			<!--Project Year-->
 			<div class="card-text">
