@@ -135,7 +135,6 @@ export class TopicsComponent implements OnInit {
     });
     this.localJson.loadTopic(encodeURIComponent(this.topic_names[this.topic])).subscribe(data => {
       this.projectsList = data;
-      console.log(this.projectsList)
         for (var project in this.projectsList) {
           for (var subtopic in this.projectsList[project].topics) {
             if (this.subtopicsFilter != null) {
@@ -171,8 +170,4 @@ export class TopicsComponent implements OnInit {
       }
     });
   }
-
-
-
-
 }

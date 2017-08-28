@@ -8,12 +8,13 @@ import { DOCUMENT } from '@angular/platform-browser'
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
-
-  currentPage: string;
+  currentVersion: string = ''
+  currentPage: string
   constructor(@Inject(DOCUMENT) private document: any) { 
     this.currentPage = this.document.location.href;
   }
   ngOnInit() {
+    this.currentVersion = environment.version
     console.log('Footer initialized')
   }
 
