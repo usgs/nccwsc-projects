@@ -15,7 +15,7 @@ export class TopicsComponent implements OnInit {
   page_title = null;
 
   topics = {
-    'dought-fire-extremes': '588244b0e4b0b3d9add24391',
+    'drought-fire-extremes': '588244b0e4b0b3d9add24391',
     'education-modeling-tools': '588247c7e4b0b3d9add243a5',
     'landscapes': '5882456be4b0b3d9add24395',
     'native-communities': '588246dae4b0b3d9add243a1',
@@ -23,7 +23,7 @@ export class TopicsComponent implements OnInit {
     'wildlife-plants': '58824220e4b0b3d9add2438b'
   }
   topic_names = {
-    'dought-fire-extremes': 'Drought, Fire and Extreme Weather',
+    'drought-fire-extremes': 'Drought, Fire and Extreme Weather',
     'education-modeling-tools': 'Education, Modeling and Tools',
     'landscapes': 'Landscapes',
     'native-communities': 'Native Communities',

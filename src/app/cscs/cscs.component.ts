@@ -20,7 +20,7 @@ export class CscsComponent implements OnInit {
   ]
 
   topic_ids = [
-    {'id': 'dought-fire-extremes', 'name': 'Drought, Fire and Extreme Weather'},
+    {'id': 'drought-fire-extremes', 'name': 'Drought, Fire and Extreme Weather'},
     {'id': 'education-modeling-tools', 'name': 'Education, Modeling and Tools'},
     {'id': 'landscapes', 'name': 'Landscapes'},
     {'id': 'native-communities', 'name': 'Native Communities'},
