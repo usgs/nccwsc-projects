@@ -59,6 +59,8 @@ div.branding {
     color: rgba(255, 255, 255, .5) !important;
     background-color: #333 !important;
     background: transparent !important;
+    text-decoration: none;
+    cursor: pointer;
 }
 .top-menu li a:active {
     color: white;
@@ -80,7 +82,13 @@ nav li a{
     font-size: 18px;
     padding-right: 15px;
     padding-left: 16px;
+    cursor: pointer;
+    text-decoration: none;
 }
+nav li a:hover{
+ color: rgba(255, 255, 255, .5) !important;
+}
+
 
 .dropdown-toggle::after,.dropdown-toggle::before{
 height: 4px !important;
