@@ -1,14 +1,15 @@
 <div class="container">
   <div class="row" *ngIf="currentResource">
     <div class="col-md-12 content">
-    <!-- CONTENT -->
-      <h1 class="page-title">Product / Resource</h1>
+    <!-- CONTENT-->
+        <h1 class="page-title">Product / Resource</h1>
       <h2 class="title"> {{ currentResource.title }}</h2>
-      <p *ngIf="resourceOrgs?.length > 0">
+
+      <p *ngIf="resourceOrgs?.length != null">
         <strong>Organization(s): </strong>
         {{ resourceOrgs }}
       </p>
-      <div *ngIf="resourceContacts?.authors?.length > 0">
+     <div *ngIf="resourceContacts?.authors?.length > 0">
         <strong>Authors(s): </strong>
         <ul class="contacts">
           <li *ngFor="let contact of resourceContacts.authors">
@@ -16,14 +17,18 @@
           </li>
         </ul>
       </div>
-      <p *ngIf="resourceDates?.publication != null">
+
+
+     <p *ngIf="resourceDates?.publication != null">
         <strong>Publication Date: </strong>
         {{ resourceDates.publication.dateString }}
       </p>
-      <p *ngIf="currentResource.browseCategories.length > 0">
+
+      <p *ngIf="currentResource.browseCategories">
         <strong>Type:</strong>
         {{ currentResource.browseCategories[0] }}
       </p>
+
       <div class="links" *ngIf="currentResource?.webLinks?.length > 0">
         <h1 class="page-title">Links</h1>
         <p *ngFor="let weblink of currentResource.webLinks"><a href="weblink.uri" target="_blank">{{ weblink.title }}</a></p>
@@ -33,6 +38,6 @@
         <p class="summary" [innerHtml]="currentResource.body"></p>
       </div>
       <p>ScienceBase URL: <a href="https://www.sciencebase.gov/catalog/item/{{sbId}}" target="_blank">https://www.sciencebase.gov/catalog/item/{{sbId}}</a></p>
-    </div>
+ </div>
   </div>
 </div>
