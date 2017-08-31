@@ -49,6 +49,17 @@ div.search-nav {
   width: 100% !important;
 }
 
+div.info {
+  margin: .5em .25em .5em .25em;
+  background-color: #F5F5F5;
+  border: solid 1px #E0E0E0;
+  padding: .25em;
+  p {
+    margin: 0;
+    padding: 0;
+  }
+}
+
 .btn-success {
   background-color: rgb(86,171,182) !important;
   border-color: rgb(86,171,182) !important;

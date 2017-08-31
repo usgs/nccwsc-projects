@@ -4,9 +4,10 @@
 // The list of which env maps to which file can be found in `angular-cli.json`.
 
 export const environment = {
-  version: '1.0.21a-dev',
+  version: '1.0.22a-dev',
   production: false,
   baseURL: 'https://my-beta.usgs.gov/nccwsc',
+  serviceURL: 'https://my-beta.usgs.gov/nccwsc-service/',
   projectsPath: '/projects/#',
   urlPrefix: "/nccwsc/"
 };

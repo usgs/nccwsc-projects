@@ -2,10 +2,12 @@ import { Injectable } from '@angular/core';
 import {Http, Response} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { environment } from '../environments/environment'
 import 'rxjs/Rx';
 
 @Injectable()
 export class SearchService {
+  serviceURL = environment.serviceURL
   fiscal_years:any = [];
   statuses:any = [];
   results:any = [];
@@ -37,12 +39,12 @@ export class SearchService {
   constructor(private http: Http) { }
 
   getTopics() {
-    var topicsUrl = 'https://my-beta.usgs.gov/nccwsc-service/topics';
+    var topicsUrl = this.serviceURL + '/topics';
     return this.http.get(topicsUrl).map((res:Response) => res.json());  
   }
 
   getOrganizations() {
-    var organizationsUrl = 'https://my-beta.usgs.gov/nccwsc-service/organizations';
+    var organizationsUrl = this.serviceURL + '/organizations';
     return this.http.get(organizationsUrl).map((res:Response) => res.json());  
   }
 
@@ -308,7 +310,7 @@ export class SearchService {
   searchProjects(queryString) {
     this.updateTotalResults(-1)
     this.clearFilters()
-    var searchUrl = 'https://my-beta.usgs.gov/nccwsc-service/search' + queryString;
+    var searchUrl = this.serviceURL + '/search' + queryString;
     this.results = [];
     this.filteredResults = [];
     return this.http.get(searchUrl).map((res:Response) => {
