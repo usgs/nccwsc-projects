@@ -1,31 +1,34 @@
 import {Injectable} from '@angular/core';
 import {Http, Response} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
+import { environment } from '../environments/environment';
 import 'rxjs/Rx';
 
 @Injectable()
 export class LocalJsonService {
 
+  serviceURL = environment.serviceURL
+
   constructor(private http: Http) { }
 
   loadCscProjects(csc_id) {
-    var cscUrl = 'https://my-beta.usgs.gov/nccwsc-service/projects/' + csc_id;
+    var cscUrl = this.serviceURL + 'projects/' + csc_id;
     return this.http.get(cscUrl).map((res:Response) => res.json());  
   }
 
   loadTopics() {
-    var cscUrl = 'https://my-beta.usgs.gov/nccwsc-service/topics/';
+    var cscUrl = this.serviceURL + '/topics/';
     return this.http.get(cscUrl).map((res:Response) => res.json());  
   }
 
   loadTopic(topic_name) {
-    var cscUrl = 'https://my-beta.usgs.gov/nccwsc-service/search?query=&topics=' + topic_name + '&subtopics=&organizations=';
+    var cscUrl = this.serviceURL + '/search?query=&topics=' + topic_name + '&subtopics=&organizations=';
     console.log(cscUrl);
     return this.http.get(cscUrl).map((res:Response) => res.json());  
   }
 
   loadProject(csc_id, project_id) {
-    var cscUrl = 'https://my-beta.usgs.gov/nccwsc-service/projects/' + csc_id + '/' + project_id;
+    var cscUrl = this.serviceURL + '/projects/' + csc_id + '/' + project_id;
     return this.http.get(cscUrl).map((res:Response) => res.json());  
   }
 
