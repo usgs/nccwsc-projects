@@ -1,5 +1,5 @@
 export const environment = {
-  version: '1.0.22a-beta',
+  version: '1.0.22b-beta',
   production: true,
   baseURL: 'https://my-beta.usgs.gov/nccwsc',
   serviceURL: 'https://my-beta.usgs.gov/nccwsc-service/',
