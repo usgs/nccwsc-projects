@@ -12,7 +12,7 @@ export class LocalJsonService {
   constructor(private http: Http) { }
 
   loadCscProjects(csc_id) {
-    var cscUrl = this.serviceURL + 'projects/' + csc_id;
+    var cscUrl = this.serviceURL + '/projects/' + csc_id;
     return this.http.get(cscUrl).map((res:Response) => res.json());  
   }
 
