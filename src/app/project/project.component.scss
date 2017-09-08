@@ -34,6 +34,14 @@ box-shadow: 5px -6px 18px 0px rgba(0,0,0,0.75);
 padding: 0px;
 }
 
+div.cscs_list {
+  margin-left: 1em;
+  display: inline-block;
+  a {
+    display: inline-block;
+  }
+}
+
 img#previewImage {
   width: 100%;
   margin: 0;

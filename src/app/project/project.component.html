@@ -31,8 +31,17 @@
 <hr/>
   </div>
 <div class="col-md-6">
-<span><strong>Affliation(s):</strong><a [routerLink]="['/csc/', projectJson.csc.id]">{{ projectJson.csc.name }}</a></span><br />
-
+<span  *ngIf="!projectJson.cscs || projectJson.cscs.length < 1">
+  <strong>Affliation(s):</strong>
+  <a [routerLink]="['/csc/', projectJson.csc.id]">{{ projectJson.csc.name }}</a>
+</span>
+<span  *ngIf="projectJson.cscs && projectJson.cscs.length > 0">
+  <strong>Affliation(s):</strong>
+  <div class="cscs_list" *ngFor="let csc of projectJson.cscs">
+    <a [routerLink]="['/csc/', csc.id]">{{ csc.name }}</a>
+  </div>
+</span>
+<br />
 <span *ngIf="projectJson.contacts.principal_investigators && projectJson.contacts.principal_investigators.length > 0">
   <strong>Principal Investigator(s):</strong>
   <ul class="contacts">
