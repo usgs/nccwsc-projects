@@ -26,6 +26,15 @@ export class ProjectComponent implements OnInit {
     this.modalService.open(imageModal, { size: 'lg', windowClass: 'dark-modal' });
   }
 
+  goodTitle(title) {
+    console.log(title.substring(0,8))
+    if (title == 'Thumbnail' || title.substring(0,8) == 'metadata') {
+
+      return false
+    }
+    return true
+  }
+
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.projectId = params['id'];

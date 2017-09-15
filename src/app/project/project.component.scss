@@ -19,6 +19,11 @@ ul {
 
 }
 
+p {
+  display: block;
+  margin-bottom: 1em;
+}
+
 ul{
   padding-left: 0px;
 }
@@ -47,7 +52,7 @@ img#previewImage {
   margin: 0;
   padding: 0;
   position:absolute; 
-  top: 120px; 
+  top: 105px; 
   left: 0px; 
 }
 
@@ -144,7 +149,7 @@ div.image_container {
     margin: 0;
     padding: 0;
     width: 100%;
-    top: 130px;
+    top: 105px;
     z-index: 0;
 }
 

@@ -31,7 +31,7 @@
 
       <div class="links" *ngIf="currentResource?.webLinks?.length > 0">
         <h1 class="page-title">Links</h1>
-        <p *ngFor="let weblink of currentResource.webLinks"><a href="weblink.uri" target="_blank">{{ weblink.title }}</a></p>
+        <p *ngFor="let weblink of currentResource.webLinks"><a href="{{ weblink.uri }}" target="_blank">{{ weblink.title }}</a></p>
       </div>
       <div clas="summary" *ngIf="currentResource.body">
         <h1 class="page-title">Summary</h1>

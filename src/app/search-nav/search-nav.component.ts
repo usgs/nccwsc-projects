@@ -19,9 +19,9 @@ export class SearchNavComponent implements OnInit {
   selectedOrg: number = null
   selectedOrgs = []
   selectedSubtopics = [null]
-  topics = []
-  subtopics = []
-  orgs = []
+  topics = null
+  subtopics = null
+  orgs = null
   showReset = false
   totalResults: number;
   totalResultsSubscription: Subscription; 
@@ -34,6 +34,8 @@ export class SearchNavComponent implements OnInit {
   filteredFY:any = [null]
   filteredType:any = [null]
   filteredStatus:any = [null]
+  orgsLoaded = false
+  topicsLoaded = false
 
   constructor(private searchService: SearchService) { }
 
@@ -50,8 +52,8 @@ export class SearchNavComponent implements OnInit {
   }
 
   onTopicsChange(event) {
+    console.log(event)
     var topic = this.topics[event]
-    console.log(this.selectedSubtopics)
     this.subtopics = topic['subtopics']
     this.showReset = true
   }
@@ -63,6 +65,7 @@ export class SearchNavComponent implements OnInit {
 
   onOrgsChange(event) {
     this.showReset = true
+    console.log(this.selectedOrgs)
   }
 
   onOrgSourceChange(orgSource) {
@@ -82,7 +85,6 @@ export class SearchNavComponent implements OnInit {
   }
 
   updateFilters(){
-    console.log('update filters - snc')
     this.filteredOrg = [null]    
     this.filteredFY = [null]
     this.filteredType = [null]
@@ -90,7 +92,6 @@ export class SearchNavComponent implements OnInit {
   }
 
   resetFilters() {
-    console.log('Reset Filters - snc')
     this.showReset = false
     this.updateFilters();
     this.searchService.resetFilters();
@@ -103,8 +104,13 @@ export class SearchNavComponent implements OnInit {
     var subtopics = '&subtopics=';
     this.showReset = true
     if ((this.selectedSubtopics.length > 0) && (this.selectedSubtopics[0] != null)) {
-       for (var st in this.selectedSubtopics) {
-         subtopics = subtopics + encodeURIComponent(this.subtopics[this.selectedSubtopics[st]]['label'])  + ',';
+       for (var st of this.selectedSubtopics) {
+         for (var thisSubtopic of this.subtopics) {
+           if (thisSubtopic.value == st) {
+             var query_subtopic = thisSubtopic['label']
+           }
+         }
+         subtopics = subtopics + encodeURIComponent(query_subtopic)  + ',';
        }
        subtopics = subtopics.substring(0, subtopics.length -1)
     }
@@ -114,7 +120,9 @@ export class SearchNavComponent implements OnInit {
     }
     var organizations = '&organizations=';
     if (this.selectedOrgs.length > 0) {
+      console.log('Got an org')
       for (var org of this.selectedOrgs) {
+        console.log(org)
         organizations = organizations + encodeURIComponent(this.orgs[org]['label']) + ',';
       }
       organizations = organizations.substring(0, organizations.length - 1)
@@ -123,7 +131,8 @@ export class SearchNavComponent implements OnInit {
       query = query + encodeURIComponent(this.searchQuery);
     }
     queryString = query + topic + subtopics + organizations;  
-    this.searchService.searchProjects(queryString).subscribe(results => {
+    console.log(queryString)
+    this.searchService.searchProjects(queryString).subscribe(results => {      
       this.updateFilters();
     });    
     
@@ -132,10 +141,12 @@ export class SearchNavComponent implements OnInit {
   ngOnInit() {
     this.searchService.getTopics().subscribe(topics => {
       this.topics = topics;
+      this.topicsLoaded = true
     });
 
     this.searchService.getOrganizations().subscribe(organizations => {
       this.orgs = organizations;
+      this.orgsLoaded = true
     });
 
     this.totalResultsSubscription = this.searchService.totalItem$.subscribe(totalItems=>

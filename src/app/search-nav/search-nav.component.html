@@ -5,7 +5,7 @@
       <div class="field">
         <input type="text" id="queryTerms" [(ngModel)]="searchQuery" value="searchQuery" placeholder="Search terms ..." name="queryTerms">
       </div>
-      <div class="field">
+      <div class="field" *ngIf="topicsLoaded">
         <ng-select placeholder="Topic"
           [options]="topics"
           (selected)="onTopicsChange($event.value)"
@@ -13,18 +13,18 @@
           [ngModelOptions]="{standalone: true}">
         </ng-select>
       </div>
-      <div class="field" *ngIf="subtopics?.length > 0">
+      <div class="field" *ngIf="subtopics">
         <ng-select
+          [multiple]="true"
           [options]="subtopics"
           (selected)="onSubtopicsChange($event.value)"
-          [multiple]="true"
           [(ngModel)] = "selectedSubtopics"
           [ngModelOptions]="{standalone: true}"
           placeholder="Subtopics" >
         </ng-select>
       </div>
-      <div class="field">
-        <ng-select placeholder="NCCWSC/CSCs" [(ngModel)]="selectedOrgs" [options]="orgs" [multiple]="true" (selected)="onOrgsChange($event.value)" [ngModelOptions]="{standalone: true}"></ng-select>
+      <div class="field" *ngIf="orgsLoaded">
+        <ng-select placeholder="NCCWSC/CSCs" [multiple]="true" [(ngModel)]="selectedOrgs" [options]="orgs" (selected)="onOrgsChange($event.value)" [ngModelOptions]="{standalone: true}"></ng-select>
       </div>
       <div class="float-right buttons">
       	<button (click)="onSubmit()" class="btn btn-sm btn-success">Search</button>

@@ -40,6 +40,9 @@
   <div class="cscs_list" *ngFor="let csc of projectJson.cscs">
     <a [routerLink]="['/csc/', csc.id]">{{ csc.name }}</a>
   </div>
+  <div class="cscs_list" *ngFor="let organization of projectJson.organizations">
+    {{ organization }}
+  </div>
 </span>
 <br />
 <span *ngIf="projectJson.contacts.principal_investigators && projectJson.contacts.principal_investigators.length > 0">
@@ -54,7 +57,7 @@
 
 <span *ngIf="projectJson.contacts.co_investigators && projectJson.contacts.co_investigators.length > 0">
   <strong>Co-Investigator(s):</strong>
-  <ul class="contacts">Fpubli
+  <ul class="contacts">
     <li *ngFor = "let co_investigator of projectJson.contacts.co_investigators">
       {{ co_investigator.name }}
       <em *ngIf="co_investigator.organization">({{ co_investigator.organization }})</em>
@@ -152,21 +155,21 @@
 <h2>Publications and Other</h2><hr/>
 <ul *ngFor="let product of projectJson.approved_products">
   <li>
-    <div class="pubTitle">{{ product.title }}</div>
+    <div class="pubTitle"><a href="https://www.sciencebase.gov/catalog/item/{{product.id}}" target="_blank">{{ product.title }}</a></div>
     <div *ngIf="product.webLinks">
       <ul *ngFor="let webLink of product.webLinks">
-        <li>{{ webLink.title }} <a href="{{ webLink.uri }}" target="_blank">(External URL)</a></li>
+        <li *ngIf="webLink.title != 'Thumbnail'">{{ webLink.title }} <a href="{{ webLink.uri }}" target="_blank">(External URL)</a></li>
       </ul>
     </div>
     <div *ngIf="product.files">
       <ul *ngFor="let file of product.files">
-        <li>{{ file.name }} (<a href="{{ file.url }}" target="_blank">Download</a>)</li>
+        <li *ngIf="!file.name.includes('metadata')">{{ file.name }} (<a href="{{ file.url }}" target="_blank">Download</a>)</li>
       </ul>
     </div>
   </li>
 </ul>
 <ul *ngFor="let other of projectJson.other_approved">
-  <li><div class="pubTitle">{{ other.title }}</div>
+  <li><div class="pubTitle"><a href="https://www.sciencebase.gov/catalog/item/{{other.id}}" target="_blank">{{ other.title }}</a></div>
     <div *ngIf="other.webLinks">
       <ul *ngFor="let webLink of other.webLinks">
         <li>{{ webLink.title }} <a href="{{ webLink.uri }}" target="_blank">(External URL)</a></li>
