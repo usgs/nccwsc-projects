@@ -199,6 +199,15 @@
         <li>{{ file.name }} (<a href="{{ file.url }}" target="_blank">Download</a>)</li>
       </ul>
     </div>
+    <!--This prints download link if its not provided in the object-->
+      <div *ngIf="data.files?.length <= 0">
+        <div *ngIf="data.webLinks?.length <= 0">
+        <ul>
+         <li><a href = "https://www.sciencebase.gov/catalog/file/get/{{data.id}}">Download</a></li>
+        </ul>
+       </div>
+      </div>
+
     <div *ngIf="data.children">
       <ul *ngFor="let child of data.children">
         <li>{{ child.title }}
@@ -212,6 +221,14 @@
             <li>{{ file.name }} (<a href="{{ file.url }}" target="_blank">Download</a>)</li>
           </ul>
         </div>
+        <!--This prints download link if its not provided in the object-->
+          <div *ngIf="child.files?.length <= 0">
+            <div *ngIf="child.webLinks?.length <= 0">
+              <ul>
+                <li><a href = "https://www.sciencebase.gov/catalog/file/get/{{child.id}}">Download</a></li>
+              </ul>
+           </div>
+          </div>
         </li>
       </ul>
     </div>
