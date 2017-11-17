@@ -121,6 +121,7 @@ export class TopicsComponent implements OnInit {
   }
 
     ngOnInit() {
+
     this.sub = this.route.params.subscribe(params => {
       this.topic = params['topic'];
       this.page_title = this.topic_names[this.topic]
@@ -135,6 +136,7 @@ export class TopicsComponent implements OnInit {
     });
     this.localJson.loadTopic(encodeURIComponent(this.topic_names[this.topic])).subscribe(data => {
       this.projectsList = data;
+
         for (var project in this.projectsList) {
           for (var subtopic in this.projectsList[project].topics) {
             if (this.subtopicsFilter != null) {
@@ -161,13 +163,58 @@ export class TopicsComponent implements OnInit {
               this.types.push(this_type)
             }
           } }
-          this.subtopics.sort();
+
+
           this.fiscal_years.sort();
+          this.subtopics.sort();
           this.statuses.sort();
           this.cscs.sort();
           this.filteredProjectsList.push(this.projectsList[project]);
           this.dataLoading = false;
+
+      }
+      this.current_type = 'Project';
+      this.filterProjectsList();
+
+
+      console.log(this.filteredProjectsList);
+      //this.sortArray(this.filteredProjectsList);
+      //this.filteredProjectsList = filter('orderBy')(this.filteredProjectsList, 'fiscal_year');
+
+      //this.filteredProjectsList = this.filteredProjectsList.sort(function(a, b) { return b.fiscal_year - a.fiscal_year; });
+
+      //this.filteredProjectsList = this.filteredProjectsList.sort(function(a, b) { return a.title - b.title; });
+
+
+      //this.filteredProjectsList = this.sortByTitle(this.filteredProjectsList);
+      this.filteredProjectsList = this.sortByYear(this.filteredProjectsList);
+
+      console.log(this.filteredProjectsList);
+
+
+
+    });
+
+
+  }
+  sortByYear(data_array){
+    data_array = data_array.sort(function(a, b) { return b.fiscal_year - a.fiscal_year; });
+    return data_array;
+
+  }
+
+  sortByTitle(data_array){
+    data_array = data_array.sort( function(a, b) {
+      if ( a.title < b.title ){
+        return -1;
+      }else if( a.title > b.title ){
+        return 1;
+      }else{
+        return 0;
       }
     });
+
+    return data_array;
   }
+
 }
