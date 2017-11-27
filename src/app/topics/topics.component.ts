@@ -31,8 +31,55 @@ export class TopicsComponent implements OnInit {
     'wildlife-plants': 'Wildlife and Plants'
   }
 
-  //topics_url = ['https://my-beta.usgs.gov/nccwsc/explore-by-topic'];
+  settings = {
+    columns: {
+      fiscal_year: {
+        title: 'Funding Year'
+      },
+      title_link: {
+        title: 'Title',
+        type: 'html',
+        //valuePrepareFunction:(value) => { return '<a href = "gogole.com">value</a>' }
+      },
+      title:{
+        title: 'Title',
+        type: 'html',
+        //valuePrepareFunction:(value) => { return '<a href = "gogole.com">value</a>' }
+      },
+      csc_name: {
+        title: 'CSC'
+      },
+      csc: {
+        title: 'CSC',
+
+      },
+      subtopics: {
+        title: 'Subtopic(s)'
+      },
+      types: {
+        title: 'Types'
+      },
+      status: {
+        title: 'Status'
+
+      },
+      contains: {
+        title: 'Contains'
+      }
+    },
+    actions: false,
+    hideSubHeader:true,
+    pager:{
+      display:false
+    }
+  };
+
+
+
+//topics_url = ['https://my-beta.usgs.gov/nccwsc/explore-by-topic'];
   topics_url = environment.baseURL + '/explore-by-topic';
+  project_url = environment.baseURL + '/project';
+
 
   subtopics = ['All Subtopics'];
   fiscal_years = ['All Fiscal Years'];
@@ -172,10 +219,43 @@ export class TopicsComponent implements OnInit {
           this.filteredProjectsList.push(this.projectsList[project]);
           this.dataLoading = false;
 
-      }
-      this.current_type = 'Project';
-      this.filterProjectsList();
+          //Prepares data for sortable table
+          for (var project in this.filteredProjectsList) {
 
+             this.projectsList[project].csc_name = this.projectsList[project].csc['name'];
+
+            if (!this.projectsList[ project].fiscal_year ) {
+
+              this.projectsList[ project].fiscal_year="N/A";
+            }
+
+
+            //this.projectsList[project]. = this.projectsList[project].csc['name'];
+
+
+            if (this.projectsList[ project].types == "Project") {
+              //console.log("project");
+              this.projectsList[project].title_link = '<a href = "#/project/' + this.projectsList[project].csc['id'] + '/' + this.projectsList[project].id + '">' + this.projectsList[project].title + '</a>';
+            }
+             else{
+               this.projectsList[project].title_link = '<a href = "#/component/' + this.projectsList[project].id + '">' + this.projectsList[project].title + '</a>';
+
+             }
+
+
+
+
+          }//end for project
+
+
+        }
+console.log(this.filteredProjectsList);
+
+      //On Load filters by projects
+      //this.current_type = 'Project';
+      //this.filterProjectsList();
+
+      //On Load Sorts by year
       this.filteredProjectsList = this.sortByYear(this.filteredProjectsList);
 
     });
