@@ -121,6 +121,7 @@ export class TopicsComponent implements OnInit {
   }
 
     ngOnInit() {
+
     this.sub = this.route.params.subscribe(params => {
       this.topic = params['topic'];
       this.page_title = this.topic_names[this.topic]
@@ -135,6 +136,7 @@ export class TopicsComponent implements OnInit {
     });
     this.localJson.loadTopic(encodeURIComponent(this.topic_names[this.topic])).subscribe(data => {
       this.projectsList = data;
+
         for (var project in this.projectsList) {
           for (var subtopic in this.projectsList[project].topics) {
             if (this.subtopicsFilter != null) {
@@ -161,19 +163,19 @@ export class TopicsComponent implements OnInit {
               this.types.push(this_type)
             }
           } }
-          this.subtopics.sort();
+
+
           this.fiscal_years.sort();
+          this.subtopics.sort();
           this.statuses.sort();
           this.cscs.sort();
           this.filteredProjectsList.push(this.projectsList[project]);
           this.dataLoading = false;
+
       }
       this.current_type = 'Project';
       this.filterProjectsList();
 
     });
-
-
   }
-
 }
