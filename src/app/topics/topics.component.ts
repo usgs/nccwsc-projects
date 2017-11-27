@@ -168,6 +168,12 @@ export class TopicsComponent implements OnInit {
           this.filteredProjectsList.push(this.projectsList[project]);
           this.dataLoading = false;
       }
+      this.current_type = 'Project';
+      this.filterProjectsList();
+
     });
+
+
   }
+
 }
