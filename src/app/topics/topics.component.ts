@@ -176,6 +176,33 @@ export class TopicsComponent implements OnInit {
       this.current_type = 'Project';
       this.filterProjectsList();
 
+      this.filteredProjectsList = this.sortByYear(this.filteredProjectsList);
+
     });
+
   }
+
+  sortByYear(data_array){
+    data_array = data_array.sort(function(a, b) { return b.fiscal_year - a.fiscal_year; });
+    return data_array;
+
+  }
+
+  sortByTitle(data_array){
+    data_array = data_array.sort( function(a, b) {
+      if ( a.title < b.title ){
+        return -1;
+      }else if( a.title > b.title ){
+        return 1;
+      }else{
+        return 0;
+      }
+    });
+
+    return data_array;
+  }
+
 }
+
+
+
