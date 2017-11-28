@@ -78,6 +78,7 @@ export class TopicsComponent implements OnInit {
     pager:{
       display:false
     }
+    //this.source.setSort([{ field: 'id', direction: 'asc' }]);
   };
 
 
