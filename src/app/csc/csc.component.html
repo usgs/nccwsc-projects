@@ -33,65 +33,6 @@
 
 
 
-      <table class = "table table-striped table-bordered hidden-md-down ">
-        <thead>
-          <tr>
-            <th class="fy">Funding Year</th>
-            <th class="title">Title</th>
-            <th class="pi">Principle Investigator(s)</th>
-            <th class="topics">Topic(s)</th>
-            <th class="status">Status</th>
-            <th class="contains">Contains</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor= "let project of filteredCscProjectsList">
-            <td *ngIf="project['fiscal_year']">
-              {{ project.fiscal_year}}
-            </td>
-            <td *ngIf="!project.fiscal_year">
-              Unknown
-            </td>
-            <td>
-              <a [routerLink]="['/project/', sbId, project.id]">
-                {{ project['title']}}
-              </a>
-              <ul *ngIf="project.children?.length > 0">
-                <li *ngFor= "let childProject of project.children">{{ childProject.title }}</li>
-              </ul>
-            </td>
-            <td>
-              <ul *ngFor="let pi of project.contacts.principal_investigators">
-                <li>{{ pi.name }} <em *ngIf="pi.organization">({{ pi.organization }})</em></li>
-              </ul>
-            </td>
-            <td *ngIf="project?.topics">
-              {{ project.topics }}
-            </td>
-            <td *ngIf="!project.topics">
-              Unknown
-            </td>
-            <td *ngIf="project.status">
-              {{ project.status }}
-            </td>
-            <td *ngIf="!project.status">
-              Unknown
-            </td>
-            <td style="text-align:center;">
-          <ul>
-            <li class="icons" *ngIf="project.hasFolders">
-              <i class="icon-products fa fa-folder fa-2x" title="This project has products." aria-hidden="true"></i>
-            </li>
-            <li *ngIf="project.hasMaps">
-              <i class="icon-map fa fa-map fa-2x" title="This project has maps." aria-hidden="true"></i>
-            </li>
-          </ul>            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
   <div class="col-md-12 loading" *ngIf="dataLoading">
     <h4 class="loading">Loading {{ title }} ScienceBase Projects.</h4>
       <img src="{{ approot }}assets/loading.gif" class="loading" alt="Loading Results" title="Loading Results" />
@@ -104,6 +45,7 @@
     <button class="btn btn-outline-secondary btn-small" (click)="showAllProjects()">See All Projects</button>
   </div>
 </div>
+
 
 <!-- ********************< Mobile Cards*****************************************************-->
 
