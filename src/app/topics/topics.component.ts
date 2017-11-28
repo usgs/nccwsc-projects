@@ -34,37 +34,43 @@ export class TopicsComponent implements OnInit {
   settings = {
     columns: {
       fiscal_year: {
-        title: 'Funding Year'
+        title: 'Funding Year',
+        sortDirection:'desc',
+        width:'7%',
       },
       title_link: {
         title: 'Title',
         type: 'html',
+        width:'50%',
         //valuePrepareFunction:(value) => { return '<a href = "gogole.com">value</a>' }
       },
-      title:{
-        title: 'Title',
-        type: 'html',
-        //valuePrepareFunction:(value) => { return '<a href = "gogole.com">value</a>' }
-      },
-      csc_name: {
-        title: 'CSC'
-      },
-      csc: {
+        csc_name: {
         title: 'CSC',
+        width:'10%',
 
       },
-      subtopics: {
-        title: 'Subtopic(s)'
+
+      subtopics_formatted: {
+        title: 'Subtopic(s)',
+        width:'10%',
+        type:'html',
       },
+
       types: {
-        title: 'Types'
+        title: 'Types',
+        width:'8%',
       },
       status: {
-        title: 'Status'
+        title: 'Status',
+        width:'10%',
 
       },
       contains: {
-        title: 'Contains'
+        title: 'Contains',
+        type: 'html',
+        width:'5%',
+
+
       }
     },
     actions: false,
@@ -226,37 +232,57 @@ export class TopicsComponent implements OnInit {
 
             if (!this.projectsList[ project].fiscal_year ) {
 
-              this.projectsList[ project].fiscal_year="N/A";
+              //this.projectsList[ project].fiscal_year="N/A";
+            }
+            if (!this.projectsList[ project].status ) {
+
+              this.projectsList[ project].status="N/A";
+            }
+            if (!this.projectsList[ project].types ) {
+
+              this.projectsList[ project].types="N/A";
+
+            }
+            //Contains
+            this.projectsList[ project].contains = '';
+
+            if (this.projectsList[ project].hasFolders) {
+              this.projectsList[ project].contains +='<span class = "icons"><i  class="icon-products fa fa-folder fa-2x" title="This project has products." aria-hidden="true"></i></span>';
+            }
+            if (this.projectsList[ project].hasMaps ) {
+              this.projectsList[ project].contains +='&nbsp&nbsp<span class = "icons" ><i class="icon-map fa fa-map fa-2x" title="This project has maps." aria-hidden="true"></i></span>';
+
             }
 
-
-            //this.projectsList[project]. = this.projectsList[project].csc['name'];
-
-
             if (this.projectsList[ project].types == "Project") {
-              //console.log("project");
+
               this.projectsList[project].title_link = '<a href = "#/project/' + this.projectsList[project].csc['id'] + '/' + this.projectsList[project].id + '">' + this.projectsList[project].title + '</a>';
             }
              else{
                this.projectsList[project].title_link = '<a href = "#/component/' + this.projectsList[project].id + '">' + this.projectsList[project].title + '</a>';
 
              }
+             //subtopics
+            this.projectsList[ project].subtopics_formatted = '';
+             for (var st of this.projectsList[project].subtopics){
+              if ((this.isOnTopic(st)) && this.projectsList[project].subtopics_formatted.indexOf(st)<0 ){
+                 this.projectsList[project].subtopics_formatted = this.projectsList[project].subtopics_formatted + st + '<br>';
+               }
 
-
-
+             }
 
           }//end for project
-
 
         }
 console.log(this.filteredProjectsList);
 
       //On Load filters by projects
-      //this.current_type = 'Project';
-      //this.filterProjectsList();
+      this.current_type = 'Project';
+      this.filterProjectsList();
 
-      //On Load Sorts by year
-      this.filteredProjectsList = this.sortByYear(this.filteredProjectsList);
+      //On Load Sorts by year or title
+     // this.filteredProjectsList = this.sortByYear(this.filteredProjectsList);
+      this.filteredProjectsList = this.sortByTitle(this.filteredProjectsList);
 
     });
 

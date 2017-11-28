@@ -40,6 +40,7 @@ th{
 table {
     table-layout: fixed;
     word-wrap: break-word;
+    font-size: 16px !important;
 }
 
 div.topic {
@@ -83,7 +84,8 @@ li.icons {
 }
 
 .icon-map,
-.icon-products {
+.icon-products
+{
   color: #CCC !important;
 }
 
@@ -110,8 +112,7 @@ div .card{
     margin-left:0.3em;
     margin-right: 0.3em;
   }
-  
+
 .mobile h4.card-title a {
     font-size: 0.8em;
   }
-  
