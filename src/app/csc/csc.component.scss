@@ -130,9 +130,10 @@ div .card{
 }
 :host /deep/ ng2-smart-table  {
   font-size:18px;
+  border:none;
 }
 :host /deep/ .fa-2x {
   color: #CCC !important;
-  vertival-align:middle !important;
+
 
 }

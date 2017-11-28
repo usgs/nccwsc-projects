@@ -115,17 +115,17 @@ div .card{
 .mobile h4.card-title a {
     font-size: 0.8em;
   }
-th .ng2-smart-th , .table thead th{
-  text-align: center !important;
-  vertical-align: middle !important;
-}
+
 
 :host /deep/ th {
   text-align: center;
+  vertical-align: middle !important;
 
 }
 :host /deep/ ng2-smart-table  {
   font-size:18px;
+  border:none;
+
 }
 :host /deep/ .fa-2x {
   color: #CCC !important;
