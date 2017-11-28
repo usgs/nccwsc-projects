@@ -275,7 +275,7 @@ export class TopicsComponent implements OnInit {
           }//end for project
 
         }
-console.log(this.filteredProjectsList);
+     console.log(this.filteredProjectsList);
 
       //On Load filters by projects
       this.current_type = 'Project';

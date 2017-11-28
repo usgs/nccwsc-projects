@@ -121,3 +121,17 @@ div .card{
   .mobile h4.card-title a {
     font-size: 0.8em;
   }
+
+
+:host /deep/ th {
+  text-align: center;
+
+}
+:host /deep/ ng2-smart-table  {
+  font-size:18px;
+}
+:host /deep/ .fa-2x {
+  color: #CCC !important;
+  vertival-align:middle !important;
+
+}

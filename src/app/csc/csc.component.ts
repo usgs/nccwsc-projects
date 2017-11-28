@@ -50,6 +50,54 @@ export class CscComponent implements OnInit {
     'southwest' : '4f8c6580e4b0546c0c397b4e'
   }
 
+  settings = {
+    columns: {
+      fiscal_year: {
+        title: 'Funding Year',
+        sortDirection:'desc',
+        width:'5%',
+      },
+      title_link: {
+        title: 'Title',
+        type: 'html',
+        width:'40%',
+        //valuePrepareFunction:(value) => { return '<a href = "gogole.com">value</a>' }
+      },
+      investigators_formatted: {
+        title: 'Principal Investigator(s)',
+        type: 'html',
+        width:'25%',
+
+      },
+
+      topics_formatted: {
+        title: 'Topic(s)',
+        width:'10%',
+        type:'html',
+      },
+
+
+      status: {
+        title: 'Status',
+        width:'10%',
+
+      },
+      contains: {
+        title: 'Contains',
+        type: 'html',
+        width:'10%',
+
+
+      }
+    },
+    actions: false,
+    hideSubHeader:true,
+    pager:{
+      display:false
+    }
+    //this.source.setSort([{ field: 'id', direction: 'asc' }]);
+  };
+
 
 
   constructor(private route: ActivatedRoute, private localJson: LocalJsonService, private router: Router) { }
@@ -147,7 +195,55 @@ export class CscComponent implements OnInit {
           this.statuses.sort();
           this.filteredCscProjectsList.push(this.cscProjectsList[project]);
           this.dataLoading = false;
+
+
+          if (!this.cscProjectsList[ project].status ) {
+
+            this.cscProjectsList[ project].status="N/A";
+          }
+
+          //Contains
+         this.cscProjectsList[ project].contains = '';
+
+          if (this.cscProjectsList[ project].hasFolders) {
+            this.cscProjectsList[ project].contains +='<span class = "icons"><i  class="icon-products fa fa-folder fa-2x" title="This project has products." aria-hidden="true"></i></span>';
+          }
+          if (this.cscProjectsList[ project].hasMaps ) {
+            this.cscProjectsList[ project].contains +='&nbsp&nbsp<span class = "icons" ><i class="icon-map fa fa-map fa-2x" title="This project has maps." aria-hidden="true"></i></span>';
+
+          }
+
+          if (this.cscProjectsList[ project].types == "Project") {
+
+            this.cscProjectsList[project].title_link = '<a href = "#/project/' + this.cscProjectsList[project].csc['id'] + '/' + this.cscProjectsList[project].id + '">' + this.cscProjectsList[project].title + '</a>';
+          }
+          else{
+            this.cscProjectsList[project].title_link = '<a href = "#/component/' + this.cscProjectsList[project].id + '">' + this.cscProjectsList[project].title + '</a>';
+
+          }
+
+          //topics
+          this.cscProjectsList[ project].topics_formatted = '';
+          for (var t of this.cscProjectsList[project].topics){
+
+              this.cscProjectsList[project].topics_formatted = this.cscProjectsList[project].topics_formatted + t + '<br>';
+
+          }
+
+          //principal investigators
+          this.cscProjectsList[ project].investigators_formatted = '';
+          for (var pi of this.cscProjectsList[project].contacts.principal_investigators){
+
+            this.cscProjectsList[project].investigators_formatted = this.cscProjectsList[project].investigators_formatted + pi.name + '<i>('+ pi.organization +'</i>)<br>';
+
+          }
+          if ( this.cscProjectsList[ project].title=='The Impacts of Drought on Fish and Wildlife in the Southwestern U.S.'){
+            console.log(this.cscProjectsList[ project]);
+          }
+
       }
+console.log(this.filteredCscProjectsList);
+
     });
   }
 
