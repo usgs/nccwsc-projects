@@ -122,12 +122,12 @@ div .card{
     font-size: 0.8em;
   }
 
-
 :host /deep/ th {
   text-align: center;
-  vertival-align:middle;
+  vertical-align: middle !important;
 
 }
+
 :host /deep/ ng2-smart-table  {
   font-size:18px;
   border:none;

@@ -208,7 +208,7 @@ export class CscComponent implements OnInit {
 
           //principal investigators
           this.cscProjectsList[project].investigators_formatted = '';
-          console.log(this.cscProjectsList[project].contacts.principal_investigators[0].name);
+
           for (var pi of this.cscProjectsList[project].contacts.principal_investigators) {
 
             this.cscProjectsList[project].investigators_formatted = this.cscProjectsList[project].investigators_formatted + pi.name + '<i>(' + pi.organization + '</i>)<br>';
