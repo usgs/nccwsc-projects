@@ -283,7 +283,29 @@ export class TopicsComponent implements OnInit {
 
       //On Load Sorts by year or title
      // this.filteredProjectsList = this.sortByYear(this.filteredProjectsList);
-      this.filteredProjectsList = this.sortByTitle(this.filteredProjectsList);
+      //this.filteredProjectsList = this.sortByTitle(this.filteredProjectsList);
+
+
+      this.filteredProjectsList.sort(function (a, b) {
+        var afiscal_year = a.fiscal_year;
+        var bfiscal_year = b.fiscal_year;
+        var atitle = a.title;
+        var btitle = b.title;
+        //console.log(aLow + " | " + bLow);
+
+        if(afiscal_year == bfiscal_year)
+        {
+          return (atitle < btitle) ? -1 : (atitle > btitle) ? 1 : 0;
+        }
+        else
+        {
+          return (afiscal_year > bfiscal_year) ? -1 : 1;
+        }
+      });
+
+
+
+
 
     });
 
