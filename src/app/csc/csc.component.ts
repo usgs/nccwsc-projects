@@ -54,7 +54,7 @@ export class CscComponent implements OnInit {
     columns: {
       fiscal_year: {
         title: 'Funding Year',
-        sortDirection:'desc',
+        //sortDirection:'desc',
         width:'5%',
       },
       title_link: {
@@ -116,7 +116,7 @@ export class CscComponent implements OnInit {
     });
   }
 
-  setButtonUrl(){
+   setButtonUrl(){
   // sets "Explore Other topics" btn urls
   let buttonUrl = "";
    if (environment.production==false){
@@ -197,6 +197,8 @@ export class CscComponent implements OnInit {
           this.dataLoading = false;
 
 
+
+
           if (!this.cscProjectsList[ project].status ) {
 
             this.cscProjectsList[ project].status="N/A";
@@ -244,7 +246,51 @@ export class CscComponent implements OnInit {
       }
 console.log(this.filteredCscProjectsList);
 
+
+      this.filteredCscProjectsList.sort(function (a, b) {
+        var afiscal_year = a.fiscal_year;
+        var bfiscal_year = b.fiscal_year;
+        var atitle = a.title;
+        var btitle = b.title;
+        //console.log(aLow + " | " + bLow);
+
+        if(afiscal_year == bfiscal_year)
+        {
+          return (atitle < btitle) ? -1 : (atitle > btitle) ? 1 : 0;
+        }
+        else
+        {
+          return (afiscal_year > bfiscal_year) ? -1 : 1;
+        }
+      });
+
+
+      console.log(this.filteredCscProjectsList);
+
     });
   }
+
+
+  sortByYear(data_array){
+    data_array = data_array.sort(function(a, b) { return b.fiscal_year - a.fiscal_year; });
+    return data_array;
+
+  }
+
+  sortByTitle(data_array){
+    data_array = data_array.sort( function(a, b) {
+      if ( a.title < b.title ){
+        return -1;
+      }else if( a.title > b.title ){
+        return 1;
+      }else{
+        return 0;
+      }
+    });
+
+    return data_array;
+  }
+
+
 
 }
