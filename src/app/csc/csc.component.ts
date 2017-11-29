@@ -196,53 +196,51 @@ export class CscComponent implements OnInit {
           this.dataLoading = false;
 
 
-
-
-          if (!this.cscProjectsList[ project].status ) {
-
-            this.cscProjectsList[ project].status="N/A";
-          }
-
-          //Contains
-         this.cscProjectsList[ project].contains = '';
-
-          if (this.cscProjectsList[ project].hasFolders) {
-            this.cscProjectsList[ project].contains +='<span class = "icons"><i  class="icon-products fa fa-folder fa-2x" title="This project has products." aria-hidden="true"></i></span>';
-          }
-          if (this.cscProjectsList[ project].hasMaps ) {
-            this.cscProjectsList[ project].contains +='&nbsp&nbsp<span class = "icons" ><i class="icon-map fa fa-map fa-2x" title="This project has maps." aria-hidden="true"></i></span>';
-
-          }
-
           //title
-          if (this.cscProjectsList[ project].types == "Project") {
+          if (this.cscProjectsList[project].types == "Project") {
 
             this.cscProjectsList[project].title_link = this.cscProjectsList[project].title + '<a href = "#/project/' + this.cscProjectsList[project].csc['id'] + '/' + this.cscProjectsList[project].id + '">(Read More)</a>';
           }
-          else{
-            this.cscProjectsList[project].title_link =  this.cscProjectsList[project].title + '<a href = "#/component/' + this.cscProjectsList[project].id + '">(Read More)</a>';
-
-          }
-
-          //topics
-          this.cscProjectsList[ project].topics_formatted = '';
-          for (var t of this.cscProjectsList[project].topics){
-
-              this.cscProjectsList[project].topics_formatted = this.cscProjectsList[project].topics_formatted + t + '<br>';
+          else {
+            this.cscProjectsList[project].title_link = this.cscProjectsList[project].title + '<a href = "#/component/' + this.cscProjectsList[project].id + '">(Read More)</a>';
 
           }
 
           //principal investigators
-          this.cscProjectsList[ project].investigators_formatted = '';
+          this.cscProjectsList[project].investigators_formatted = '';
           console.log(this.cscProjectsList[project].contacts.principal_investigators[0].name);
-          for (var pi of this.cscProjectsList[project].contacts.principal_investigators){
+          for (var pi of this.cscProjectsList[project].contacts.principal_investigators) {
 
-            this.cscProjectsList[project].investigators_formatted = this.cscProjectsList[project].investigators_formatted + pi.name + '<i>('+ pi.organization +'</i>)<br>';
-
+            this.cscProjectsList[project].investigators_formatted = this.cscProjectsList[project].investigators_formatted + pi.name + '<i>(' + pi.organization + '</i>)<br>';
 
           }
 
-      }
+          //topics
+          this.cscProjectsList[project].topics_formatted = '';
+          for (var t of this.cscProjectsList[project].topics) {
+
+            this.cscProjectsList[project].topics_formatted = this.cscProjectsList[project].topics_formatted + t + '<br>';
+
+          }
+
+          //Contains
+          this.cscProjectsList[project].contains = '';
+
+          if (this.cscProjectsList[project].hasFolders) {
+            this.cscProjectsList[project].contains += '<span class = "icons"><i  class="icon-products fa fa-folder fa-2x" title="This project has products." aria-hidden="true"></i></span>';
+          }
+          if (this.cscProjectsList[project].hasMaps) {
+            this.cscProjectsList[project].contains += '&nbsp&nbsp<span class = "icons" ><i class="icon-map fa fa-map fa-2x" title="This project has maps." aria-hidden="true"></i></span>';
+
+          }
+          //Status
+          if (!this.cscProjectsList[project].status) {
+
+            this.cscProjectsList[project].status = "N/A";
+          }
+
+
+        }
 
 
       this.filteredCscProjectsList.sort(function (a, b) {
@@ -250,17 +248,14 @@ export class CscComponent implements OnInit {
         var bfiscal_year = b.fiscal_year;
         var atitle = a.title;
         var btitle = b.title;
-        //console.log(aLow + " | " + bLow);
 
         //var atitle = a.contacts.principal_investigators[0].name;
         //var btitle = b.contacts.principal_investigators[0].name;
 
-        if(afiscal_year == bfiscal_year)
-        {
+        if (afiscal_year == bfiscal_year) {
           return (atitle < btitle) ? -1 : (atitle > btitle) ? 1 : 0;
         }
-        else
-        {
+        else {
           return (afiscal_year > bfiscal_year) ? -1 : 1;
         }
       });

@@ -227,52 +227,59 @@ export class TopicsComponent implements OnInit {
           this.dataLoading = false;
 
           //Prepares data for sortable table
+
+          //Title
+
+          if (this.projectsList[project].types == "Project") {
+
+            this.projectsList[project].title_link = this.projectsList[project].title + '<a href = "#/project/' + this.projectsList[project].csc['id'] + '/' + this.projectsList[project].id + '">&nbsp(Read More)</a>';
+          }
+          else {
+            this.projectsList[project].title_link = this.projectsList[project].title + '<a href = "#/component/' + this.projectsList[project].id + '">&nbsp(Read More)</a>';
+
+          }
+
+          //Cscs and year
           for (var project in this.filteredProjectsList) {
 
-             this.projectsList[project].csc_name = this.projectsList[project].csc['name'];
+            this.projectsList[project].csc_name = this.projectsList[project].csc['name'];
 
-            if (!this.projectsList[ project].fiscal_year ) {
+            if (!this.projectsList[project].fiscal_year) {
 
               //this.projectsList[ project].fiscal_year="N/A";
             }
-            if (!this.projectsList[ project].status ) {
 
-              this.projectsList[ project].status="N/A";
+            //subtopics
+            this.projectsList[project].subtopics_formatted = '';
+            for (var st of this.projectsList[project].subtopics) {
+              if ((this.isOnTopic(st)) && this.projectsList[project].subtopics_formatted.indexOf(st) < 0) {
+                this.projectsList[project].subtopics_formatted = this.projectsList[project].subtopics_formatted + st + '<br>';
+              }
+
             }
-            if (!this.projectsList[ project].types ) {
 
-              this.projectsList[ project].types="N/A";
+            //status
+            if (!this.projectsList[project].status) {
+
+              this.projectsList[project].status = "N/A";
+            }
+            //type
+            if (!this.projectsList[project].types) {
+
+              this.projectsList[project].types = "N/A";
 
             }
             //Contains
-            this.projectsList[ project].contains = '';
+            this.projectsList[project].contains = '';
 
-            if (this.projectsList[ project].hasFolders) {
-              this.projectsList[ project].contains +='<span class = "icons"><i  class="icon-products fa fa-folder fa-2x" title="This project has products." aria-hidden="true"></i></span>';
+            if (this.projectsList[project].hasFolders) {
+              this.projectsList[project].contains += '<span class = "icons"><i  class="icon-products fa fa-folder fa-2x" title="This project has products." aria-hidden="true"></i></span>';
             }
-            if (this.projectsList[ project].hasMaps ) {
-              this.projectsList[ project].contains +='&nbsp&nbsp<span class = "icons" ><i class="icon-map fa fa-map fa-2x" title="This project has maps." aria-hidden="true"></i></span>';
+            if (this.projectsList[project].hasMaps) {
+              this.projectsList[project].contains += '&nbsp&nbsp<span class = "icons" ><i class="icon-map fa fa-map fa-2x" title="This project has maps." aria-hidden="true"></i></span>';
 
             }
 
-            //Title
-
-            if (this.projectsList[ project].types == "Project") {
-
-              this.projectsList[project].title_link = this.projectsList[project].title +'<a href = "#/project/' + this.projectsList[project].csc['id'] + '/' + this.projectsList[project].id + '">&nbsp(Read More)</a>';
-            }
-             else{
-               this.projectsList[project].title_link = this.projectsList[project].title +'<a href = "#/component/' + this.projectsList[project].id + '">&nbsp(Read More)</a>';
-
-             }
-             //subtopics
-            this.projectsList[ project].subtopics_formatted = '';
-             for (var st of this.projectsList[project].subtopics){
-              if ((this.isOnTopic(st)) && this.projectsList[project].subtopics_formatted.indexOf(st)<0 ){
-                 this.projectsList[project].subtopics_formatted = this.projectsList[project].subtopics_formatted + st + '<br>';
-               }
-
-             }
 
           }//end for project
 
