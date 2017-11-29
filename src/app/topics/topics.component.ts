@@ -35,14 +35,13 @@ export class TopicsComponent implements OnInit {
     columns: {
       fiscal_year: {
         title: 'Funding Year',
-        sortDirection:'desc',
+        //sortDirection:'desc',
         width:'7%',
       },
       title_link: {
         title: 'Title',
         type: 'html',
         width:'50%',
-        //valuePrepareFunction:(value) => { return '<a href = "gogole.com">value</a>' }
       },
         csc_name: {
         title: 'CSC',
@@ -227,50 +226,59 @@ export class TopicsComponent implements OnInit {
           this.dataLoading = false;
 
           //Prepares data for sortable table
+
+          //Title
+
+          if (this.projectsList[project].types == "Project") {
+
+            this.projectsList[project].title_link = this.projectsList[project].title + '<a href = "#/project/' + this.projectsList[project].csc['id'] + '/' + this.projectsList[project].id + '">&nbsp(Read More)</a>';
+          }
+          else {
+            this.projectsList[project].title_link = this.projectsList[project].title + '<a href = "#/component/' + this.projectsList[project].id + '">&nbsp(Read More)</a>';
+
+          }
+
+          //Cscs and year
           for (var project in this.filteredProjectsList) {
 
-             this.projectsList[project].csc_name = this.projectsList[project].csc['name'];
+            this.projectsList[project].csc_name = this.projectsList[project].csc['name'];
 
-            if (!this.projectsList[ project].fiscal_year ) {
+            if (!this.projectsList[project].fiscal_year) {
 
               //this.projectsList[ project].fiscal_year="N/A";
             }
-            if (!this.projectsList[ project].status ) {
 
-              this.projectsList[ project].status="N/A";
+            //subtopics
+            this.projectsList[project].subtopics_formatted = '';
+            for (var st of this.projectsList[project].subtopics) {
+              if ((this.isOnTopic(st)) && this.projectsList[project].subtopics_formatted.indexOf(st) < 0) {
+                this.projectsList[project].subtopics_formatted = this.projectsList[project].subtopics_formatted + st + '<br>';
+              }
+
             }
-            if (!this.projectsList[ project].types ) {
 
-              this.projectsList[ project].types="N/A";
+            //status
+            if (!this.projectsList[project].status) {
+
+              this.projectsList[project].status = "N/A";
+            }
+            //type
+            if (!this.projectsList[project].types) {
+
+              this.projectsList[project].types = "N/A";
 
             }
             //Contains
-            this.projectsList[ project].contains = '';
+            this.projectsList[project].contains = '';
 
-            if (this.projectsList[ project].hasFolders) {
-              this.projectsList[ project].contains +='<span class = "icons"><i  class="icon-products fa fa-folder fa-2x" title="This project has products." aria-hidden="true"></i></span>';
+            if (this.projectsList[project].hasFolders) {
+              this.projectsList[project].contains += '<span class = "icons"><i  class="icon-products fa fa-folder fa-2x" title="This project has products." aria-hidden="true"></i></span>';
             }
-            if (this.projectsList[ project].hasMaps ) {
-              this.projectsList[ project].contains +='&nbsp&nbsp<span class = "icons" ><i class="icon-map fa fa-map fa-2x" title="This project has maps." aria-hidden="true"></i></span>';
+            if (this.projectsList[project].hasMaps) {
+              this.projectsList[project].contains += '&nbsp&nbsp<span class = "icons" ><i class="icon-map fa fa-map fa-2x" title="This project has maps." aria-hidden="true"></i></span>';
 
             }
 
-            if (this.projectsList[ project].types == "Project") {
-
-              this.projectsList[project].title_link = '<a href = "#/project/' + this.projectsList[project].csc['id'] + '/' + this.projectsList[project].id + '">' + this.projectsList[project].title + '</a>';
-            }
-             else{
-               this.projectsList[project].title_link = '<a href = "#/component/' + this.projectsList[project].id + '">' + this.projectsList[project].title + '</a>';
-
-             }
-             //subtopics
-            this.projectsList[ project].subtopics_formatted = '';
-             for (var st of this.projectsList[project].subtopics){
-              if ((this.isOnTopic(st)) && this.projectsList[project].subtopics_formatted.indexOf(st)<0 ){
-                 this.projectsList[project].subtopics_formatted = this.projectsList[project].subtopics_formatted + st + '<br>';
-               }
-
-             }
 
           }//end for project
 
@@ -281,32 +289,29 @@ export class TopicsComponent implements OnInit {
       this.current_type = 'Project';
       this.filterProjectsList();
 
-      //On Load Sorts by year or title
-     // this.filteredProjectsList = this.sortByYear(this.filteredProjectsList);
-      this.filteredProjectsList = this.sortByTitle(this.filteredProjectsList);
+      //On load sorts projects by year, then by title
+      this.filteredProjectsList.sort(function (a, b) {
+        var afiscal_year = a.fiscal_year;
+        var bfiscal_year = b.fiscal_year;
+        var atitle = a.title;
+        var btitle = b.title;
+
+        if(afiscal_year == bfiscal_year)
+        {
+          return (atitle < btitle) ? -1 : (atitle > btitle) ? 1 : 0;
+        }
+        else
+        {
+          return (afiscal_year > bfiscal_year) ? -1 : 1;
+        }
+      });
+
+
+
+
 
     });
 
-  }
-
-  sortByYear(data_array){
-    data_array = data_array.sort(function(a, b) { return b.fiscal_year - a.fiscal_year; });
-    return data_array;
-
-  }
-
-  sortByTitle(data_array){
-    data_array = data_array.sort( function(a, b) {
-      if ( a.title < b.title ){
-        return -1;
-      }else if( a.title > b.title ){
-        return 1;
-      }else{
-        return 0;
-      }
-    });
-
-    return data_array;
   }
 
 }
