@@ -54,15 +54,15 @@ export class CscComponent implements OnInit {
     columns: {
       fiscal_year: {
         title: 'Funding Year',
-        //sortDirection:'desc',
+        sortDirection:'desc',
         width:'5%',
       },
       title_link: {
         title: 'Title',
         type: 'html',
         width:'40%',
-        //valuePrepareFunction:(value) => { return '<a href = "gogole.com">value</a>' }
       },
+
       investigators_formatted: {
         title: 'Principal Investigator(s)',
         type: 'html',
@@ -98,8 +98,7 @@ export class CscComponent implements OnInit {
     //this.source.setSort([{ field: 'id', direction: 'asc' }]);
   };
 
-
-
+ß
   constructor(private route: ActivatedRoute, private localJson: LocalJsonService, private router: Router) { }
 
   showAllProjects() {
@@ -215,12 +214,13 @@ export class CscComponent implements OnInit {
 
           }
 
+          //title
           if (this.cscProjectsList[ project].types == "Project") {
 
-            this.cscProjectsList[project].title_link = '<a href = "#/project/' + this.cscProjectsList[project].csc['id'] + '/' + this.cscProjectsList[project].id + '">' + this.cscProjectsList[project].title + '</a>';
+            this.cscProjectsList[project].title_link = this.cscProjectsList[project].title + '<a href = "#/project/' + this.cscProjectsList[project].csc['id'] + '/' + this.cscProjectsList[project].id + '">(Read More)</a>';
           }
           else{
-            this.cscProjectsList[project].title_link = '<a href = "#/component/' + this.cscProjectsList[project].id + '">' + this.cscProjectsList[project].title + '</a>';
+            this.cscProjectsList[project].title_link =  this.cscProjectsList[project].title + '<a href = "#/component/' + this.cscProjectsList[project].id + '">(Read More)</a>';
 
           }
 
@@ -234,17 +234,15 @@ export class CscComponent implements OnInit {
 
           //principal investigators
           this.cscProjectsList[ project].investigators_formatted = '';
+          console.log(this.cscProjectsList[project].contacts.principal_investigators[0].name);
           for (var pi of this.cscProjectsList[project].contacts.principal_investigators){
 
             this.cscProjectsList[project].investigators_formatted = this.cscProjectsList[project].investigators_formatted + pi.name + '<i>('+ pi.organization +'</i>)<br>';
 
-          }
-          if ( this.cscProjectsList[ project].title=='The Impacts of Drought on Fish and Wildlife in the Southwestern U.S.'){
-            console.log(this.cscProjectsList[ project]);
+
           }
 
       }
-console.log(this.filteredCscProjectsList);
 
 
       this.filteredCscProjectsList.sort(function (a, b) {
@@ -253,6 +251,9 @@ console.log(this.filteredCscProjectsList);
         var atitle = a.title;
         var btitle = b.title;
         //console.log(aLow + " | " + bLow);
+
+        //var atitle = a.contacts.principal_investigators[0].name;
+        //var btitle = b.contacts.principal_investigators[0].name;
 
         if(afiscal_year == bfiscal_year)
         {
@@ -265,30 +266,9 @@ console.log(this.filteredCscProjectsList);
       });
 
 
-      console.log(this.filteredCscProjectsList);
+      //console.log(this.filteredCscProjectsList);
 
     });
-  }
-
-
-  sortByYear(data_array){
-    data_array = data_array.sort(function(a, b) { return b.fiscal_year - a.fiscal_year; });
-    return data_array;
-
-  }
-
-  sortByTitle(data_array){
-    data_array = data_array.sort( function(a, b) {
-      if ( a.title < b.title ){
-        return -1;
-      }else if( a.title > b.title ){
-        return 1;
-      }else{
-        return 0;
-      }
-    });
-
-    return data_array;
   }
 
 

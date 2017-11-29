@@ -255,12 +255,14 @@ export class TopicsComponent implements OnInit {
 
             }
 
+            //Title
+
             if (this.projectsList[ project].types == "Project") {
 
-              this.projectsList[project].title_link = '<a href = "#/project/' + this.projectsList[project].csc['id'] + '/' + this.projectsList[project].id + '">' + this.projectsList[project].title + '</a>';
+              this.projectsList[project].title_link = this.projectsList[project].title +'<a href = "#/project/' + this.projectsList[project].csc['id'] + '/' + this.projectsList[project].id + '">&nbsp(Read More)</a>';
             }
              else{
-               this.projectsList[project].title_link = '<a href = "#/component/' + this.projectsList[project].id + '">' + this.projectsList[project].title + '</a>';
+               this.projectsList[project].title_link = this.projectsList[project].title +'<a href = "#/component/' + this.projectsList[project].id + '">&nbsp(Read More)</a>';
 
              }
              //subtopics
@@ -281,17 +283,12 @@ export class TopicsComponent implements OnInit {
       this.current_type = 'Project';
       this.filterProjectsList();
 
-      //On Load Sorts by year or title
-     // this.filteredProjectsList = this.sortByYear(this.filteredProjectsList);
-      //this.filteredProjectsList = this.sortByTitle(this.filteredProjectsList);
-
-
+      //On load sorts projects by year, then by title
       this.filteredProjectsList.sort(function (a, b) {
         var afiscal_year = a.fiscal_year;
         var bfiscal_year = b.fiscal_year;
         var atitle = a.title;
         var btitle = b.title;
-        //console.log(aLow + " | " + bLow);
 
         if(afiscal_year == bfiscal_year)
         {
@@ -309,26 +306,6 @@ export class TopicsComponent implements OnInit {
 
     });
 
-  }
-
-  sortByYear(data_array){
-    data_array = data_array.sort(function(a, b) { return b.fiscal_year - a.fiscal_year; });
-    return data_array;
-
-  }
-
-  sortByTitle(data_array){
-    data_array = data_array.sort( function(a, b) {
-      if ( a.title < b.title ){
-        return -1;
-      }else if( a.title > b.title ){
-        return 1;
-      }else{
-        return 0;
-      }
-    });
-
-    return data_array;
   }
 
 }
