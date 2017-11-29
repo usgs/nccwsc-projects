@@ -35,14 +35,13 @@ export class TopicsComponent implements OnInit {
     columns: {
       fiscal_year: {
         title: 'Funding Year',
-        sortDirection:'desc',
+        //sortDirection:'desc',
         width:'7%',
       },
       title_link: {
         title: 'Title',
         type: 'html',
         width:'50%',
-        //valuePrepareFunction:(value) => { return '<a href = "gogole.com">value</a>' }
       },
         csc_name: {
         title: 'CSC',

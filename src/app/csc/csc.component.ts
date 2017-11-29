@@ -54,7 +54,7 @@ export class CscComponent implements OnInit {
     columns: {
       fiscal_year: {
         title: 'Funding Year',
-        sortDirection:'desc',
+        //sortDirection:'desc',
         width:'5%',
       },
       title_link: {
@@ -246,11 +246,11 @@ export class CscComponent implements OnInit {
       this.filteredCscProjectsList.sort(function (a, b) {
         var afiscal_year = a.fiscal_year;
         var bfiscal_year = b.fiscal_year;
-        var atitle = a.title;
-        var btitle = b.title;
+       // var atitle = a.title;
+       // var btitle = b.title;
 
-        //var atitle = a.contacts.principal_investigators[0].name;
-        //var btitle = b.contacts.principal_investigators[0].name;
+        var atitle = a.contacts.principal_investigators[0].name;
+        var btitle = b.contacts.principal_investigators[0].name;
 
         if (afiscal_year == bfiscal_year) {
           return (atitle < btitle) ? -1 : (atitle > btitle) ? 1 : 0;
