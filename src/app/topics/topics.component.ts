@@ -293,21 +293,27 @@ export class TopicsComponent implements OnInit {
       this.filteredProjectsList.sort(function (a, b) {
         var afiscal_year = a.fiscal_year;
         var bfiscal_year = b.fiscal_year;
-        //var atitle = a.title;
-        //var btitle = b.title;
+        var atitle = a.title;
+        var btitle = b.title;
 
-        var atitle = a.csc_name;
-        var btitle = b.csc_name;
+        var acsc = a.csc_name;
+        var bcsc = b.csc_name;
 
-
-        if(afiscal_year == bfiscal_year)
+        if (acsc==bcsc)
         {
           return (atitle < btitle) ? -1 : (atitle > btitle) ? 1 : 0;
         }
+
+        if(afiscal_year == bfiscal_year)
+        {
+          return (acsc < bcsc) ? -1 : (acsc > bcsc) ? 1 : 0;
+        }
+
         else
         {
           return (afiscal_year > bfiscal_year) ? -1 : 1;
         }
+
       });
 
 
