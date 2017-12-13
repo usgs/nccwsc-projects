@@ -296,17 +296,19 @@ export class TopicsComponent implements OnInit {
         var atitle = a.title;
         var btitle = b.title;
 
-        var acsc = a.csc_name;
-        var bcsc = b.csc_name;
+        // Sort by CSC name is not required.
+        //var acsc = a.csc_name;
+        //var bcsc = b.csc_name;
 
-        if (acsc==bcsc)
-        {
-          return (atitle < btitle) ? -1 : (atitle > btitle) ? 1 : 0;
-        }
+        //if (acsc==bcsc)
+        //{
+        //  return (atitle < btitle) ? -1 : (atitle > btitle) ? 1 : 0;
+        //}
 
         if(afiscal_year == bfiscal_year)
         {
-          return (acsc < bcsc) ? -1 : (acsc > bcsc) ? 1 : 0;
+          //return (acsc < bcsc) ? -1 : (acsc > bcsc) ? 1 : 0;
+          return (atitle < btitle) ? -1 : (atitle > btitle) ? 1 : 0;
         }
 
         else
