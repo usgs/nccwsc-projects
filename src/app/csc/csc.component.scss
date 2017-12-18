@@ -110,7 +110,7 @@ div.filter-bar {
 }
 
 select {
-  color: #a9a9a9;
+
 }
 
 div .card{
@@ -121,4 +121,19 @@ div .card{
   .mobile h4.card-title a {
     font-size: 0.8em;
   }
-  
+
+:host /deep/ th {
+  text-align: center;
+  vertical-align: middle !important;
+
+}
+
+:host /deep/ ng2-smart-table  {
+  font-size:18px;
+  border:none;
+}
+:host /deep/ .fa-2x {
+  color: #CCC !important;
+
+
+}

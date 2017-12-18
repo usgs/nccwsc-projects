@@ -40,6 +40,7 @@ th{
 table {
     table-layout: fixed;
     word-wrap: break-word;
+    font-size: 16px !important;
 }
 
 div.topic {
@@ -83,7 +84,7 @@ li.icons {
 }
 
 .icon-map,
-.icon-products {
+.icon-products{
   color: #CCC !important;
 }
 
@@ -110,8 +111,23 @@ div .card{
     margin-left:0.3em;
     margin-right: 0.3em;
   }
-  
+
 .mobile h4.card-title a {
     font-size: 0.8em;
   }
-  
+
+
+:host /deep/ th {
+  text-align: center;
+  vertical-align: middle !important;
+
+}
+:host /deep/ ng2-smart-table  {
+  font-size:18px;
+  border:none;
+
+}
+:host /deep/ .fa-2x {
+  color: #CCC !important;
+
+}

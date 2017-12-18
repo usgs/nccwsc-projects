@@ -45,6 +45,7 @@ export class SearchNavComponent implements OnInit {
     this.selectedOrgs = []
     this.searchQuery = null
     this.searchService.wipeQuery()
+    this.subtopics = null
   }
 
   onQueryChange(query) {

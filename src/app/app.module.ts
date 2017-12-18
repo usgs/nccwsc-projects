@@ -25,6 +25,7 @@ import { SearchService } from './search.service';
 import { NccwscDrupalService } from './nccwsc-drupal.service'
 import { CscComponent } from './csc/csc.component'
 import { ProjectResourceComponent } from './project-resource/project-resource.component'
+import { Ng2SmartTableModule } from 'ng2-smart-table'
 
 @NgModule({
   declarations: [
@@ -37,8 +38,8 @@ import { ProjectResourceComponent } from './project-resource/project-resource.co
     CscsComponent,
     TopicsComponent,
     MapComponent,
-    SearchNavComponent, 
-    CscComponent, 
+    SearchNavComponent,
+    CscComponent,
     ProjectResourceComponent
   ],
   imports: [
@@ -48,6 +49,7 @@ import { ProjectResourceComponent } from './project-resource/project-resource.co
     HttpModule,
     routing,
     SelectModule,
+    Ng2SmartTableModule,
     NgbDropdownModule.forRoot(),
     NgbModule.forRoot(),
   ],

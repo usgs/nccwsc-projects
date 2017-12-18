@@ -51,14 +51,14 @@ img#previewImage {
   width: 100%;
   margin: 0;
   padding: 0;
-  position:absolute; 
-  top: 105px; 
-  left: 0px; 
+  position:absolute;
+  top: 105px;
+  left: 0px;
 }
 
 div.row.project_content {
     position: relative;
-    
+
     background: rgba(255,255,255, .9) !important;
     color: black;
     margin-left: 10%;
@@ -76,7 +76,7 @@ img.preview-image {
 #imageModal {
   width: 90% !important;
   margin-left: auto;
-  margin-right: auto; 
+  margin-right: auto;
 }
 
 .dark-modal {
@@ -90,7 +90,7 @@ img.preview-image {
   color: white;
 }
 .dark-modal .close {
-  color: white;   
+  color: white;
 }
 
 div.map {
@@ -144,7 +144,7 @@ img.modal-image {
 
 div.image_container {
     position: absolute;
-    overflow: hidden; 
+    overflow: hidden;
     vertical-align: middle;
     margin: 0;
     padding: 0;
@@ -181,3 +181,4 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', end
 .pubTitle {
   font-weight:bold;
 }
+

@@ -31,8 +31,61 @@ export class TopicsComponent implements OnInit {
     'wildlife-plants': 'Wildlife and Plants'
   }
 
-  //topics_url = ['https://my-beta.usgs.gov/nccwsc/explore-by-topic'];
+  settings = {
+    columns: {
+      fiscal_year: {
+        title: 'Funding Year',
+        //sortDirection:'desc',
+        width:'7%',
+      },
+      title_link: {
+        title: 'Title',
+        type: 'html',
+        width:'50%',
+      },
+        csc_name: {
+        title: 'CSC',
+        width:'10%',
+
+      },
+
+      subtopics_formatted: {
+        title: 'Subtopic(s)',
+        width:'10%',
+        type:'html',
+      },
+
+      types: {
+        title: 'Types',
+        width:'8%',
+      },
+      status: {
+        title: 'Status',
+        width:'10%',
+
+      },
+      contains: {
+        title: 'Contains',
+        type: 'html',
+        width:'5%',
+
+
+      }
+    },
+    actions: false,
+    hideSubHeader:true,
+    pager:{
+      display:false
+    }
+    //this.source.setSort([{ field: 'id', direction: 'asc' }]);
+  };
+
+
+
+//topics_url = ['https://my-beta.usgs.gov/nccwsc/explore-by-topic'];
   topics_url = environment.baseURL + '/explore-by-topic';
+  project_url = environment.baseURL + '/project';
+
 
   subtopics = ['All Subtopics'];
   fiscal_years = ['All Fiscal Years'];
@@ -121,6 +174,7 @@ export class TopicsComponent implements OnInit {
   }
 
     ngOnInit() {
+
     this.sub = this.route.params.subscribe(params => {
       this.topic = params['topic'];
       this.page_title = this.topic_names[this.topic]
@@ -135,6 +189,7 @@ export class TopicsComponent implements OnInit {
     });
     this.localJson.loadTopic(encodeURIComponent(this.topic_names[this.topic])).subscribe(data => {
       this.projectsList = data;
+
         for (var project in this.projectsList) {
           for (var subtopic in this.projectsList[project].topics) {
             if (this.subtopicsFilter != null) {
@@ -161,13 +216,117 @@ export class TopicsComponent implements OnInit {
               this.types.push(this_type)
             }
           } }
-          this.subtopics.sort();
+
+
           this.fiscal_years.sort();
+          this.subtopics.sort();
           this.statuses.sort();
           this.cscs.sort();
           this.filteredProjectsList.push(this.projectsList[project]);
           this.dataLoading = false;
-      }
+
+          //Prepares data for sortable table
+
+          //Title
+
+          if (this.projectsList[project].types == "Project") {
+
+            this.projectsList[project].title_link = this.projectsList[project].title + '<a href = "#/project/' + this.projectsList[project].csc['id'] + '/' + this.projectsList[project].id + '">&nbsp(Read More)</a>';
+          }
+          else {
+            this.projectsList[project].title_link = this.projectsList[project].title + '<a href = "#/component/' + this.projectsList[project].id + '">&nbsp(Read More)</a>';
+
+          }
+
+          //Cscs and year
+          for (var project in this.filteredProjectsList) {
+
+            this.projectsList[project].csc_name = this.projectsList[project].csc['name'];
+
+            if (!this.projectsList[project].fiscal_year) {
+
+              //this.projectsList[ project].fiscal_year="N/A";
+            }
+
+            //subtopics
+            this.projectsList[project].subtopics_formatted = '';
+            for (var st of this.projectsList[project].subtopics) {
+              if ((this.isOnTopic(st)) && this.projectsList[project].subtopics_formatted.indexOf(st) < 0) {
+                this.projectsList[project].subtopics_formatted = this.projectsList[project].subtopics_formatted + st + '<br>';
+              }
+
+            }
+
+            //status
+            if (!this.projectsList[project].status) {
+
+              this.projectsList[project].status = "N/A";
+            }
+            //type
+            if (!this.projectsList[project].types) {
+
+              this.projectsList[project].types = "N/A";
+
+            }
+            //Contains
+            this.projectsList[project].contains = '';
+
+            if (this.projectsList[project].hasFolders) {
+              this.projectsList[project].contains += '<span class = "icons"><i  class="icon-products fa fa-folder fa-2x" title="This project has products." aria-hidden="true"></i></span>';
+            }
+            if (this.projectsList[project].hasMaps) {
+              this.projectsList[project].contains += '&nbsp&nbsp<span class = "icons" ><i class="icon-map fa fa-map fa-2x" title="This project has maps." aria-hidden="true"></i></span>';
+
+            }
+
+
+          }//end for project
+
+        }
+     console.log(this.filteredProjectsList);
+
+      //On Load filters by projects
+      this.current_type = 'Project';
+      this.filterProjectsList();
+
+      //On load sorts projects by year, then by title
+      this.filteredProjectsList.sort(function (a, b) {
+        var afiscal_year = a.fiscal_year;
+        var bfiscal_year = b.fiscal_year;
+        var atitle = a.title;
+        var btitle = b.title;
+
+        // Sort by CSC name is not required.
+        //var acsc = a.csc_name;
+        //var bcsc = b.csc_name;
+
+        //if (acsc==bcsc)
+        //{
+        //  return (atitle < btitle) ? -1 : (atitle > btitle) ? 1 : 0;
+        //}
+
+        if(afiscal_year == bfiscal_year)
+        {
+          //return (acsc < bcsc) ? -1 : (acsc > bcsc) ? 1 : 0;
+          return (atitle < btitle) ? -1 : (atitle > btitle) ? 1 : 0;
+        }
+
+        else
+        {
+          return (afiscal_year > bfiscal_year) ? -1 : 1;
+        }
+
+      });
+
+
+
+
+
     });
+
   }
+
 }
+
+
+
