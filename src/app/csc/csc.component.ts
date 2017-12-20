@@ -1,7 +1,8 @@
-import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
+import {Component, Input, OnInit, Pipe, PipeTransform} from '@angular/core';
 import { LocalJsonService } from '../local-json.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { environment } from '../../environments/environment';
+import {TitleLinkComponent} from '../title-link/title-link.component';
 
 @Component({
   selector: 'app-csc',
@@ -57,11 +58,12 @@ export class CscComponent implements OnInit {
         //sortDirection:'desc',
         width:'5%',
       },
-      title_link: {
+        title: {
         title: 'Title',
-        type: 'html',
-        width:'40%',
-      },
+        type: 'custom',
+        renderComponent: TitleLinkComponent,
+                  },
+
 
       investigators_formatted: {
         title: 'Principal Investigator(s)',
@@ -95,6 +97,8 @@ export class CscComponent implements OnInit {
     pager:{
       display:false
     }
+
+
     //this.source.setSort([{ field: 'id', direction: 'asc' }]);
   };
 
@@ -165,6 +169,30 @@ export class CscComponent implements OnInit {
     console.log(this.filteredCscProjectsList)
   }
 
+  sortByYear(a, b) {
+     if(a.fiscal_year == b.fiscal_year) {
+       return this.sortByPI(a, b);
+     }
+     return (a.fiscal_year < b.fiscal_year) ? -1 : 1;
+  }
+
+  sortByPI(a, b) {
+    let api = a.contacts.principal_investigators[0].name;
+    let bpi = b.contacts.principal_investigators[0].name;
+
+    if(api == bpi) {
+      return this.sortByTitle(a, b);
+    }
+    return (api < bpi) ? -1 : 1;
+  }
+
+  sortByTitle(a, b) {
+     if(a.title == b.title) {
+       return 0;
+     }
+    return (a.title < b.title) ? -1 : 1;
+  }
+
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
@@ -195,16 +223,6 @@ export class CscComponent implements OnInit {
           this.filteredCscProjectsList.push(this.cscProjectsList[project]);
           this.dataLoading = false;
 
-
-          //title
-          if (this.cscProjectsList[project].types == "Project") {
-
-            this.cscProjectsList[project].title_link = this.cscProjectsList[project].title + '<a href = "#/project/' + this.cscProjectsList[project].csc['id'] + '/' + this.cscProjectsList[project].id + '">(Read More)</a>';
-          }
-          else {
-            this.cscProjectsList[project].title_link = this.cscProjectsList[project].title + '<a href = "#/component/' + this.cscProjectsList[project].id + '">(Read More)</a>';
-
-          }
 
           //principal investigators
           this.cscProjectsList[project].investigators_formatted = '';
@@ -246,28 +264,31 @@ export class CscComponent implements OnInit {
       this.filteredCscProjectsList.sort(function (a, b) {
         var afiscal_year = a.fiscal_year;
         var bfiscal_year = b.fiscal_year;
-        //var atitle = a.title;
-        //var btitle = b.title;
+        var atitle = a.title;
+        var btitle = b.title;
 
         var api = a.contacts.principal_investigators[0].name;
         var bpi = b.contacts.principal_investigators[0].name;
 
-        if (api==bpi)
-        {
-          //return (atitle < btitle) ? -1 : (atitle > btitle) ? 1 : 0;
-        }
-        if (afiscal_year == bfiscal_year) {
-          return (api < bpi) ? -1 : (api > bpi) ? 1 : 0;
-        }
-        else {
-          return (afiscal_year > bfiscal_year) ? -1 : 1;
-        }
+        //return this.sortByYear(a, b);
+
+
+         if (api==bpi)
+         {
+           //return (atitle < btitle) ? -1 : (atitle > btitle) ? 1 : 0;
+         }
+         if (afiscal_year == bfiscal_year) {
+           return (api < bpi) ? -1 : (api > bpi) ? 1 : 0;
+         }
+         else {
+           return (afiscal_year > bfiscal_year) ? -1 : 1;
+         }
       });
+
 
 
     });
   }
-
 
 
 }

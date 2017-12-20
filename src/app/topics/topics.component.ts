@@ -3,6 +3,7 @@ import { LocalJsonService } from '../local-json.service';
 import { SearchService } from '../search.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { environment } from '../../environments/environment';
+import {TitleLinkComponent} from '../title-link/title-link.component';
 
 @Component({
   selector: 'app-topics',
@@ -38,10 +39,10 @@ export class TopicsComponent implements OnInit {
         //sortDirection:'desc',
         width:'7%',
       },
-      title_link: {
+      title: {
         title: 'Title',
-        type: 'html',
-        width:'50%',
+        type: 'custom',
+        renderComponent: TitleLinkComponent,
       },
         csc_name: {
         title: 'CSC',
@@ -226,17 +227,6 @@ export class TopicsComponent implements OnInit {
           this.dataLoading = false;
 
           //Prepares data for sortable table
-
-          //Title
-
-          if (this.projectsList[project].types == "Project") {
-
-            this.projectsList[project].title_link = this.projectsList[project].title + '<a href = "#/project/' + this.projectsList[project].csc['id'] + '/' + this.projectsList[project].id + '">&nbsp(Read More)</a>';
-          }
-          else {
-            this.projectsList[project].title_link = this.projectsList[project].title + '<a href = "#/component/' + this.projectsList[project].id + '">&nbsp(Read More)</a>';
-
-          }
 
           //Cscs and year
           for (var project in this.filteredProjectsList) {
