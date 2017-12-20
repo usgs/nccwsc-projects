@@ -246,15 +246,15 @@ export class CscComponent implements OnInit {
       this.filteredCscProjectsList.sort(function (a, b) {
         var afiscal_year = a.fiscal_year;
         var bfiscal_year = b.fiscal_year;
-        var atitle = a.title;
-        var btitle = b.title;
+        //var atitle = a.title;
+        //var btitle = b.title;
 
         var api = a.contacts.principal_investigators[0].name;
         var bpi = b.contacts.principal_investigators[0].name;
 
         if (api==bpi)
         {
-          return (atitle < btitle) ? -1 : (atitle > btitle) ? 1 : 0;
+          //return (atitle < btitle) ? -1 : (atitle > btitle) ? 1 : 0;
         }
         if (afiscal_year == bfiscal_year) {
           return (api < bpi) ? -1 : (api > bpi) ? 1 : 0;
