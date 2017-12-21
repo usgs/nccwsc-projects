@@ -37,7 +37,6 @@ import { TitleLinkComponent } from './title-link/title-link.component'
     ProjectsComponent,
     SearchComponent,
     CscsComponent,
-    TitleLinkComponent,
     TopicsComponent,
     MapComponent,
     SearchNavComponent,
