@@ -273,41 +273,34 @@ export class TopicsComponent implements OnInit {
           }//end for project
 
         }
-     console.log(this.filteredProjectsList);
-
-      //On Load filters by projects
+           //On Load filters by projects
       this.current_type = 'Project';
       this.filterProjectsList();
 
-      //On load sorts projects by year, then by title
-      this.filteredProjectsList.sort(function (a, b) {
-        var afiscal_year = a.fiscal_year;
-        var bfiscal_year = b.fiscal_year;
-        var atitle = a.title;
-        var btitle = b.title;
+      //On load sorts projects by year, then by CSC, then by title
+        this.filteredProjectsList.sort((a, b) => {
+        function sortByCsc(a, b) {
+          let acsc = a.csc_name;
+          let bcsc = b.csc_name;
 
-        // Sort by CSC name is not required.
-        //var acsc = a.csc_name;
-        //var bcsc = b.csc_name;
-
-        //if (acsc==bcsc)
-        //{
-        //  return (atitle < btitle) ? -1 : (atitle > btitle) ? 1 : 0;
-        //}
-
-        if(afiscal_year == bfiscal_year)
-        {
-          //return (acsc < bcsc) ? -1 : (acsc > bcsc) ? 1 : 0;
-          return (atitle < btitle) ? -1 : (atitle > btitle) ? 1 : 0;
+          if(acsc == bcsc) {
+            return sortByTitle(a, b);
+          }
+          return (acsc < bcsc) ? -1 : (acsc > bcsc) ? 1 : 0;
         }
 
-        else
-        {
-          return (afiscal_year > bfiscal_year) ? -1 : 1;
+        function sortByTitle(a, b) {
+          if (a.title == b.title) {
+            return 0;
+          }
+          return (a.title < b.title) ? -1 : 1;
         }
 
+        if (a.fiscal_year == b.fiscal_year) {
+          return sortByCsc (a, b);
+        }
+        return (a.fiscal_year > b.fiscal_year) ? -1 : 1;
       });
-
 
 
 
