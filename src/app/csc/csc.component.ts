@@ -1,7 +1,8 @@
-import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
+import {Component, Input, OnInit, Pipe, PipeTransform} from '@angular/core';
 import { LocalJsonService } from '../local-json.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { environment } from '../../environments/environment';
+import {TitleLinkComponent} from '../title-link/title-link.component';
 
 @Component({
   selector: 'app-csc',
@@ -16,8 +17,8 @@ export class CscComponent implements OnInit {
   cscProjectsList = [];
   filteredCscProjectsList = [];
 //  csc_url = ['https://my-beta.usgs.gov/nccwsc/csc-list'];
-   //csc_url = this.setButtonUrl();
-   csc_url=environment.baseURL + '/csc-list';
+  //csc_url = this.setButtonUrl();
+  csc_url = environment.baseURL + '/csc-list';
   topics = ['All Topics'];
   fiscal_years = ['All Fiscal Years'];
   statuses = ['All Statuses'];
@@ -27,27 +28,27 @@ export class CscComponent implements OnInit {
   title = null;
   dataLoading = true;
   csc_ids = {
-    '5050cb0ee4b0be20bb30eac0' : 'NCCWSC',
-    '4f831626e4b0e84f6086809b' : 'Alaska CSC',
-    '4f83509de4b0e84f60868124' : 'North Central CSC',
-    '4f8c648de4b0546c0c397b43' : 'Northeast CSC',
-    '4f8c64d2e4b0546c0c397b46' : 'Northwest CSC',
-    '4f8c650ae4b0546c0c397b48' : 'Pacific Islands CSC',
-    '4f8c652fe4b0546c0c397b4a' : 'South Central CSC',
-    '4f8c6557e4b0546c0c397b4c' : 'Southeast CSC',
-    '4f8c6580e4b0546c0c397b4e' : 'Southwest CSC'
+    '5050cb0ee4b0be20bb30eac0': 'NCCWSC',
+    '4f831626e4b0e84f6086809b': 'Alaska CSC',
+    '4f83509de4b0e84f60868124': 'North Central CSC',
+    '4f8c648de4b0546c0c397b43': 'Northeast CSC',
+    '4f8c64d2e4b0546c0c397b46': 'Northwest CSC',
+    '4f8c650ae4b0546c0c397b48': 'Pacific Islands CSC',
+    '4f8c652fe4b0546c0c397b4a': 'South Central CSC',
+    '4f8c6557e4b0546c0c397b4c': 'Southeast CSC',
+    '4f8c6580e4b0546c0c397b4e': 'Southwest CSC'
   }
 
   csc_english_ids = {
-    'nccwsc' : '5050cb0ee4b0be20bb30eac0',
-    'alaska' : '4f831626e4b0e84f6086809b',
-    'north-central' : '4f83509de4b0e84f60868124',
-    'northeast' : '4f8c648de4b0546c0c397b43',
-    'northwest' : '4f8c64d2e4b0546c0c397b46',
+    'nccwsc': '5050cb0ee4b0be20bb30eac0',
+    'alaska': '4f831626e4b0e84f6086809b',
+    'north-central': '4f83509de4b0e84f60868124',
+    'northeast': '4f8c648de4b0546c0c397b43',
+    'northwest': '4f8c64d2e4b0546c0c397b46',
     'pacific-islands': '4f8c650ae4b0546c0c397b48',
-    'south-central' : '4f8c652fe4b0546c0c397b4a',
-    'southeast' : '4f8c6557e4b0546c0c397b4c',
-    'southwest' : '4f8c6580e4b0546c0c397b4e'
+    'south-central': '4f8c652fe4b0546c0c397b4a',
+    'southeast': '4f8c6557e4b0546c0c397b4c',
+    'southwest': '4f8c6580e4b0546c0c397b4e'
   }
 
   settings = {
@@ -55,51 +56,56 @@ export class CscComponent implements OnInit {
       fiscal_year: {
         title: 'Funding Year',
         //sortDirection:'desc',
-        width:'5%',
+        width: '5%',
       },
-      title_link: {
+      title: {
         title: 'Title',
-        type: 'html',
-        width:'40%',
+        type: 'custom',
+        renderComponent: TitleLinkComponent,
       },
+
 
       investigators_formatted: {
         title: 'Principal Investigator(s)',
         type: 'html',
-        width:'25%',
+        width: '25%',
 
       },
 
       topics_formatted: {
         title: 'Topic(s)',
-        width:'10%',
-        type:'html',
+        width: '10%',
+        type: 'html',
       },
 
 
       status: {
         title: 'Status',
-        width:'10%',
+        width: '10%',
 
       },
       contains: {
         title: 'Contains',
         type: 'html',
-        width:'10%',
+        width: '10%',
 
 
       }
     },
     actions: false,
-    hideSubHeader:true,
-    pager:{
-      display:false
+    hideSubHeader: true,
+    pager: {
+      display: false
     }
+
+
     //this.source.setSort([{ field: 'id', direction: 'asc' }]);
   };
 
-ß
-  constructor(private route: ActivatedRoute, private localJson: LocalJsonService, private router: Router) { }
+  ß
+
+  constructor(private route: ActivatedRoute, private localJson: LocalJsonService, private router: Router) {
+  }
 
   showAllProjects() {
     this.filteredCscProjectsList = [];
@@ -109,23 +115,24 @@ export class CscComponent implements OnInit {
   }
 
   sortProjectsByKey(array, key) {
-    return array.sort(function(a, b) {
-        var x = a[key]; var y = b[key];
-        return ((x > y) ? -1 : ((x < y) ? 1 : 0));
+    return array.sort(function (a, b) {
+      var x = a[key];
+      var y = b[key];
+      return ((x > y) ? -1 : ((x < y) ? 1 : 0));
     });
   }
 
-   setButtonUrl(){
-  // sets "Explore Other topics" btn urls
-  let buttonUrl = "";
-   if (environment.production==false){
-          buttonUrl = "https://my-beta.usgs.gov/nccwsc/csc-list";
-       }
-   else{
+  setButtonUrl() {
+    // sets "Explore Other topics" btn urls
+    let buttonUrl = "";
+    if (environment.production == false) {
+      buttonUrl = "https://my-beta.usgs.gov/nccwsc/csc-list";
+    }
+    else {
       buttonUrl = "https://nccwsc.usgs.gov/csc-list";
-   }
+    }
 
-  return buttonUrl;
+    return buttonUrl;
   }
 
   filterProjectsList(event) {
@@ -135,11 +142,11 @@ export class CscComponent implements OnInit {
       if (this.current_topic != 'All Topics') {
         for (var topic in this.cscProjectsList[project].topics) {
           var matched_topic = true;
-          if (this.cscProjectsList[project].topics[topic].replace(/,/g, "").trim() !== this.current_topic.replace (/,/g, "").trim()) {
-             matched_topic = false;
+          if (this.cscProjectsList[project].topics[topic].replace(/,/g, "").trim() !== this.current_topic.replace(/,/g, "").trim()) {
+            matched_topic = false;
           } else {
-             // Found our topic, let's check year and status.
-             break
+            // Found our topic, let's check year and status.
+            break
           }
 
         }
@@ -164,6 +171,7 @@ export class CscComponent implements OnInit {
     }
     console.log(this.filteredCscProjectsList)
   }
+
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
@@ -195,16 +203,6 @@ export class CscComponent implements OnInit {
           this.filteredCscProjectsList.push(this.cscProjectsList[project]);
           this.dataLoading = false;
 
-
-          //title
-          if (this.cscProjectsList[project].types == "Project") {
-
-            this.cscProjectsList[project].title_link = this.cscProjectsList[project].title + '<a href = "#/project/' + this.cscProjectsList[project].csc['id'] + '/' + this.cscProjectsList[project].id + '">(Read More)</a>';
-          }
-          else {
-            this.cscProjectsList[project].title_link = this.cscProjectsList[project].title + '<a href = "#/component/' + this.cscProjectsList[project].id + '">(Read More)</a>';
-
-          }
 
           //principal investigators
           this.cscProjectsList[project].investigators_formatted = '';
@@ -238,36 +236,34 @@ export class CscComponent implements OnInit {
 
             this.cscProjectsList[project].status = "N/A";
           }
-
-
         }
 
+      this.filteredCscProjectsList.sort((a, b) => {
+        function sortByPI(a, b) {
+          let api = a.contacts.principal_investigators[0].name;
+          let bpi = b.contacts.principal_investigators[0].name;
 
-      this.filteredCscProjectsList.sort(function (a, b) {
-        var afiscal_year = a.fiscal_year;
-        var bfiscal_year = b.fiscal_year;
-        var atitle = a.title;
-        var btitle = b.title;
-
-        var api = a.contacts.principal_investigators[0].name;
-        var bpi = b.contacts.principal_investigators[0].name;
-
-        if (api==bpi)
-        {
-          return (atitle < btitle) ? -1 : (atitle > btitle) ? 1 : 0;
-        }
-        if (afiscal_year == bfiscal_year) {
+          if(api == bpi) {
+            return sortByTitle(a, b);
+          }
           return (api < bpi) ? -1 : (api > bpi) ? 1 : 0;
         }
-        else {
-          return (afiscal_year > bfiscal_year) ? -1 : 1;
-        }
-      });
 
+        function sortByTitle(a, b) {
+          if (a.title == b.title) {
+            return 0;
+          }
+          return (a.title < b.title) ? -1 : 1;
+        }
+
+        if (a.fiscal_year == b.fiscal_year) {
+          return sortByPI(a, b);
+        }
+        return (a.fiscal_year > b.fiscal_year) ? -1 : 1;
+      });
 
     });
   }
-
 
 
 }
