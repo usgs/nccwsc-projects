@@ -25,7 +25,8 @@ import { SearchService } from './search.service';
 import { NccwscDrupalService } from './nccwsc-drupal.service'
 import { CscComponent } from './csc/csc.component'
 import { ProjectResourceComponent } from './project-resource/project-resource.component'
-import { Ng2SmartTableModule } from 'ng2-smart-table'
+import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { TitleLinkComponent } from './title-link/title-link.component'
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { Ng2SmartTableModule } from 'ng2-smart-table'
     MapComponent,
     SearchNavComponent,
     CscComponent,
-    ProjectResourceComponent
+    ProjectResourceComponent,
+    TitleLinkComponent
   ],
   imports: [
     LeafletModule,
@@ -52,6 +54,9 @@ import { Ng2SmartTableModule } from 'ng2-smart-table'
     Ng2SmartTableModule,
     NgbDropdownModule.forRoot(),
     NgbModule.forRoot(),
+  ],
+  entryComponents: [
+    TitleLinkComponent
   ],
   providers: [LocalJsonService, SciencebaseService, NccwscDrupalService, SearchService, {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
