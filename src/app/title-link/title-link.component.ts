@@ -17,7 +17,7 @@ export class TitleLinkComponent implements ViewCell, OnInit {
   ngOnInit() {
 
 
-    if (this.rowData.types == "Project") {
+    if (this.rowData.types.includes("Project")) {
       this.href = '#/project/' + this.rowData.csc['id'] + '/' + this.rowData.id;}
 
     else {
