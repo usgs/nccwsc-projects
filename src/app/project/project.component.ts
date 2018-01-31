@@ -43,6 +43,7 @@ export class ProjectComponent implements OnInit {
     try {
       switch(value.split('-').length) {
         case 2:
+          /* the '-01' is a fix but the reason for why it's needed is unclear. */
           return new DatePipe('en-US').transform(value + '-01', 'MM/yyyy');
         case 3:
           return new DatePipe('en-US').transform(value, 'MM/dd/yyyy');
