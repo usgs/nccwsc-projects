@@ -87,23 +87,13 @@
 
 <span *ngIf="projectJson.dates.start_date">  
   <p class="single"><strong>Start Date:</strong>
-  <span *ngIf="projectJson.dates.start_date.length > 4; else no_start_date_format">
-      {{ projectJson.dates.start_date | date :  "MM-dd-yyyy" }}
-  </span>
-  <ng-template #no_start_date_format>
-      {{ projectJson.dates.start_date }}
-  </ng-template>
+    {{ projectJson.dates.start_date }}  
   </p>
 </span>
 
 <span *ngIf="projectJson.dates.end_date">
-  <p class="single"><strong>End Date:</strong>
-    <span *ngIf="projectJson.dates.end_date.length > 4; else no_end_date_format">
-        {{ projectJson.dates.end_date | date :  "MM-dd-yyyy" }}
-    </span>
-    <ng-template #no_end_date_format>
-        {{ projectJson.dates.end_date }}
-    </ng-template>
+  <p class="single"><strong>End Date:</strong>    
+    {{ projectJson.dates.end_date }}
   </p>
 </span>
 
