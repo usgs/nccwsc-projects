@@ -75,24 +75,26 @@
   </ul>
 </span>
 
-<span *ngIf="projectJson.contacts.partners && projectJson.contacts.partners.length > 0">
+<span *ngIf="projectJson.contacts.cooperator_partner && projectJson.contacts.cooperator_partner.length > 0">
   <strong>Partner(s):</strong>
   <ul class="contacts">
-    <li *ngFor = "let partner of projectJson.contacts.partners">
-      {{ partner.name }}
-      <em *ngIf="partner.organization">({{ partner.organization }})</em>
+    <li *ngFor = "let co_partner of projectJson.contacts.cooperator_partner">
+      {{ co_partner.name }}
+      <em *ngIf="co_partner.organization">({{ co_partner.organization }})</em>
     </li>
   </ul>
 </span>
 
-<span *ngIf="projectJson.dates.start_date">
+<span *ngIf="projectJson.dates.start_date">  
   <p class="single"><strong>Start Date:</strong>
-  {{ projectJson.dates.start_date}}</p>
+    {{ projectJson.dates.start_date }}  
+  </p>
 </span>
 
 <span *ngIf="projectJson.dates.end_date">
-  <p class="single"><strong>End Date:</strong>
-  {{ projectJson.dates.end_date}}</p>
+  <p class="single"><strong>End Date:</strong>    
+    {{ projectJson.dates.end_date }}
+  </p>
 </span>
 
 <span *ngIf="projectJson.status">
