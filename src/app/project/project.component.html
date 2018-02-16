@@ -76,7 +76,7 @@
 </span>
 
 <span *ngIf="projectJson.contacts.cooperator_partner && projectJson.contacts.cooperator_partner.length > 0">
-  <strong>Partner(s):</strong>
+  <strong>Cooperator/Partner(s):</strong>
   <ul class="contacts">
     <li *ngFor = "let co_partner of projectJson.contacts.cooperator_partner">
       {{ co_partner.name }}
