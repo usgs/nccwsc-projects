@@ -205,7 +205,8 @@
       <div *ngIf="data.files?.length <= 0">
         <div *ngIf="data.webLinks?.length <= 0">
         <ul>
-         <li><a href = "https://www.sciencebase.gov/catalog/file/get/{{data.id}}">Download</a></li>
+         <li *ngIf="data.downloadLinkUri != null"><a href = "https://www.sciencebase.gov/catalog/file/get/{{data.id}}">Download</a></li>
+         <!-- <li *ngIf="data.downloadLinkUri != null"><a href = "{{data.downloadLinkUri}}">Download</a></li> -->
         </ul>
        </div>
       </div>
