@@ -140,10 +140,10 @@
           </li>
         </ul>
       </li>
-      <li class="list-group-item" *ngIf="nonProjectItem.contacts?.partners && nonProjectItem.contacts.partners.length > 0">
-        <strong>Partner(s):</strong>
+      <li class="list-group-item" *ngIf="nonProjectItem.contacts?.cooperator_partner && nonProjectItem.contacts.cooperator_partner.length > 0">
+        <strong>Cooperator/Partner(s):</strong>
         <ul class="contacts">
-          <li *ngFor = "let partner of nonProjectItem.contacts.partners">
+          <li *ngFor = "let partner of nonProjectItem.contacts.cooperator_partner">
             {{ partner.name }}
             <em *ngIf="partner.organization">({{ partner.organization }})</em>
           </li>
