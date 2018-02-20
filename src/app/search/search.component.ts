@@ -64,7 +64,7 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     this.filteredResultsSubscription = this.searchService.filteredResults$.subscribe(filteredResults=>
-    {      
+    {
       this.results = filteredResults;
       for (let result of this.results) {
         if (result.dates.start_date) {
