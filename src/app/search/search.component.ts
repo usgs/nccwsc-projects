@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../search.service';
 import {Subscription} from 'rxjs/Subscription';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-search',
@@ -40,10 +41,42 @@ export class SearchComponent implements OnInit {
     return false;
   }
 
+  /*
+  Takes a string of 'yyyy', 'yyyy-MM', or 'yyyy-MM-dd' and returns a formatted date, only using the values present:
+    1981 -> 1981
+  */
+  static niceDate(value) {
+    try {
+      switch(value.split('-').length) {
+        case 2:
+          /* the '-01' is a fix but the reason for why it's needed is unclear. */
+          return new DatePipe('en-US').transform(value + '-01', 'MM/yyyy');
+        case 3:
+          return new DatePipe('en-US').transform(value, 'MM/dd/yyyy');
+        case 1: default:
+          return value;
+      }
+    } catch (error) {
+      console.log(`Could not parse value: ${value}`)
+      return value
+    }
+  }
+
   ngOnInit() {
     this.filteredResultsSubscription = this.searchService.filteredResults$.subscribe(filteredResults=>
     {
       this.results = filteredResults;
+      for (let result of this.results) {
+        if (result.dates.start_date) {
+          result.dates.start_date = SearchComponent.niceDate(result.dates.start_date);
+        }
+        if (result.dates.end_date) {
+          result.dates.end_date = SearchComponent.niceDate(result.dates.end_date);
+        }
+        if (result.dates.publication_date) {
+          result.dates.publication_date = SearchComponent.niceDate(result.dates.publication_date);
+        }
+      }
     });
     this.filteredResultsCountSubscription = this.searchService.filteredResultsCount$.subscribe(filteredResultsCount=>
     {
