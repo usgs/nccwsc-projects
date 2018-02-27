@@ -18,25 +18,25 @@
     </h4>
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item" *ngIf="result.contacts?.principal_investigators"><strong>Lead Contacts:</strong>
+    <li class="list-group-item" *ngIf="result.contacts?.principal_investigators"><strong>Lead Contact(s):</strong>
       <ul class="taglist"> 
         <li *ngFor="let pi of result.contacts.principal_investigators">{{ pi.name }}</li>
       </ul>
     </li>
     <li class="list-group-item" *ngIf="result.csc?.name"><strong>CSC/NCCWSC:</strong> {{ result.csc.name }}</li>
     <li class="list-group-item" *ngIf="result.status"><strong>Status:</strong> {{ result.status }}</li>
-    <li class="list-group-item" *ngIf="result.topics?.length > 0"><strong>Science Topics:</strong>
+    <li class="list-group-item" *ngIf="result.topics?.length > 0"><strong>Science Topic(s):</strong>
       <ul class="taglist"> 
         <li *ngFor="let topic of result.topics">{{ topic }}</li>
       </ul>
     </li>
     <li class="list-group-item" *ngIf="result.subtopics?.length > 0">
-      <strong>Science Subtopics:</strong>
+      <strong>Science Subtopic(s):</strong>
       <ul class="taglist"> 
         <li *ngFor="let subtopic of result.subtopics">{{ subtopic }}</li>
       </ul>
     </li>   
-    <li class="list-group-item" *ngIf="result.keywords?.length > 0"><strong>Keywords:</strong>
+    <li class="list-group-item" *ngIf="result.keywords?.length > 0"><strong>Keyword(s):</strong>
       <ul class="taglist"> 
         <li *ngFor="let keyword of result.keywords">{{ keyword }}</li>
       </ul>
@@ -102,7 +102,7 @@
   </div>
   <div class="modal-body">
     <ul class="list-group list-group-flush">
-      <li class="list-group-item" *ngIf="nonProjectItem.contacts?.principal_investigators.length > 0"><strong>Lead Contacts:</strong>
+      <li class="list-group-item" *ngIf="nonProjectItem.contacts?.principal_investigators.length > 0"><strong>Lead Contact(s):</strong>
         <ul class="taglist"> 
           <li *ngFor="let pi of nonProjectItem.contacts.principal_investigators">{{ pi.name }}</li>
         </ul>
@@ -150,19 +150,19 @@
         </ul>
       </li>
       <li class="list-group-item" *ngIf="nonProjectItem.topics?.length > 0">
-        <strong>Science Topics:</strong>
+        <strong>Science Topic(s):</strong>
         <ul class="taglist"> 
           <li *ngFor="let topic of nonProjectItem.topics">{{ topic }}</li>
         </ul>
       </li>
       <li class="list-group-item" *ngIf="nonProjectItem.subtopics?.length > 0">
-        <strong>Science Subtopics:</strong>
+        <strong>Science Subtopic(s):</strong>
         <ul class="taglist"> 
           <li *ngFor="let subtopic of nonProjectItem.subtopics">{{ subtopic }}</li>
         </ul>
       </li>
       <li class="list-group-item" *ngIf="nonProjectItem.keywords?.length > 0">
-        <strong>Keywords:</strong>
+        <strong>Keyword(s):</strong>
         <ul class="taglist"> 
           <li *ngFor="let keyword of nonProjectItem.keywords">{{ keyword }}</li>
         </ul>
