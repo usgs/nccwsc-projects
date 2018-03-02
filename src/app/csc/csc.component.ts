@@ -124,13 +124,13 @@ export class CscComponent implements OnInit {
 
   setButtonUrl() {
     // sets "Explore Other topics" btn urls
-    let buttonUrl = "";
-    if (environment.production == false) {
-      buttonUrl = "https://my-beta.usgs.gov/nccwsc/csc-list";
-    }
-    else {
-      buttonUrl = "https://nccwsc.usgs.gov/csc-list";
-    }
+    let buttonUrl = environment.baseURL + "/csc-list";
+    // if (environment.production == false) {
+    //   buttonUrl = "https://my-beta.usgs.gov/nccwsc/csc-list";
+    // }
+    // else {
+    //   buttonUrl = "https://nccwsc.usgs.gov/csc-list";
+    // }
 
     return buttonUrl;
   }
