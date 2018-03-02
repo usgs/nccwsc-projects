@@ -214,16 +214,27 @@
     <div *ngIf="data.children">
       <ul *ngFor="let child of data.children">
         <li>{{ child.title }}
+          <div *ngIf="child.downloadLinkUri" class="project_files">
+            <ul>
+              <li><a href="{{ child.downloadLinkUri }}" target="_blank">Download Files (zip)</a>
+                <ul *ngFor="let file of child.downloadLinkFiles">
+                  <li>{{ file.name }} </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+
           <div *ngIf="child.webLinks">
             <ul *ngFor="let webLink of child.webLinks">
               <li>{{ webLink.title }} <a href="{{ webLink.uri }}" target="_blank">(External URL)</a></li>
-          </ul>
-        </div>
-        <div *ngIf="child.files">
-          <ul *ngFor="let file of child.files">
-            <li>{{ file.name }} (<a href="{{ file.url }}" target="_blank">Download</a>)</li>
-          </ul>
-        </div>
+            </ul>
+          </div>
+          <!-- <div *ngIf="child.files">
+            <ul *ngFor="let file of child.files">
+              <li>{{ file.name }} (<a href="{{ file.url }}" target="_blank">Download</a>)</li>
+            </ul>
+          </div> -->
+          
         <!--This prints download link if its not provided in the object-->
           <div *ngIf="child.files?.length <= 0">
             <div *ngIf="child.webLinks?.length <= 0">
