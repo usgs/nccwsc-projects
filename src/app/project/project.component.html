@@ -145,6 +145,13 @@
 </li>
 </ul>
 </div>
+<div class="col-md-12" *ngIf="projectJson.main_project">
+  <h2>Main Project</h2><hr/>
+  <ul>
+    <li><a [routerLink]="['/project', projectJson.csc.id, projectJson.main_project.relatedId]">{{ projectJson.main_project.relatedTitle }}</a></li>
+  </ul>
+</div>
+
 <div class="col-md-12" *ngIf="projectJson.relationships && projectJson.relationships.length > 0">
 <h2>Sub-Projects</h2><hr/>
 <ul *ngFor="let relationship of projectJson.relationships">
