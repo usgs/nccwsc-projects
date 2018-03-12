@@ -171,6 +171,7 @@ export class CscComponent implements OnInit {
     this.updateUrl()
   }
 
+  //TODO: put this code in a utility function/service
   updateUrl() {
     let params: any = { };
     if (this.current_topic != 'All Topics') {

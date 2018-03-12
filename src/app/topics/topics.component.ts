@@ -6,7 +6,6 @@ import { environment } from '../../environments/environment';
 import { TitleLinkComponent } from '../title-link/title-link.component';
 import { Location } from '@angular/common';
 
-
 @Component({
   selector: 'app-topics',
   templateUrl: './topics.component.html',
@@ -170,6 +169,7 @@ export class TopicsComponent implements OnInit {
     return false;
   }
 
+  //TODO: put this code in a utility function/service
   updateUrl() {
     let params: any = { };
     if (this.current_subtopic != 'All Subtopics') {
