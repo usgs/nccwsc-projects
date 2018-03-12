@@ -1,8 +1,9 @@
-import {Component, Input, OnInit, Pipe, PipeTransform} from '@angular/core';
+import { Component, Input, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { LocalJsonService } from '../local-json.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { environment } from '../../environments/environment';
-import {TitleLinkComponent} from '../title-link/title-link.component';
+import { TitleLinkComponent } from '../title-link/title-link.component';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-csc',
@@ -104,7 +105,7 @@ export class CscComponent implements OnInit {
 
   ß
 
-  constructor(private route: ActivatedRoute, private localJson: LocalJsonService, private router: Router) {
+  constructor(private route: ActivatedRoute, private localJson: LocalJsonService, private router: Router, private location: Location, private aroute: ActivatedRoute) {
   }
 
   showAllProjects() {
@@ -135,7 +136,7 @@ export class CscComponent implements OnInit {
     return buttonUrl;
   }
 
-  filterProjectsList(event) {
+  filterProjectsList(event:any = null) {
     this.filteredCscProjectsList = [];
     for (var project in this.cscProjectsList) {
       var display = true;
@@ -153,14 +154,12 @@ export class CscComponent implements OnInit {
         if (matched_topic == false) {
           continue;
         }
-      }
-      console.log(this.current_fy)
+      }      
       if (this.current_fy != 'All Fiscal Years') {
         if (this.cscProjectsList[project].fiscal_year !== this.current_fy) {
           continue;
         }
-      }
-      console.log(this.current_status)
+      }      
       if (this.current_status != 'All Statuses') {
         if (this.cscProjectsList[project].status !== this.current_status) {
           continue;
@@ -169,13 +168,42 @@ export class CscComponent implements OnInit {
 
       this.filteredCscProjectsList.push(this.cscProjectsList[project]);
     }
-    console.log(this.filteredCscProjectsList)
+    this.updateUrl()
+  }
+
+  updateUrl() {
+    let params: any = { };
+    if (this.current_topic != 'All Topics') {
+      params['topic'] = this.current_topic
+    }
+    if (this.current_fy != 'All Fiscal Years') {
+      params['year'] = this.current_fy
+    }
+    if (this.current_status != 'All Statuses') {
+      params['status'] = this.current_status
+    }
+    
+    const url = this
+        .router
+        .createUrlTree([params], {relativeTo: this.aroute})
+        .toString();
+    
+    this.location.replaceState(url);    
   }
 
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
+      if (params['topic']) {
+        this.current_topic = params['topic'];
+      }
+      if (params['year']) {
+        this.current_fy = params['year'];
+      }
+      if (params['status']) {
+        this.current_status = params['status'];
+      }
     });
     if (this.id.length != 24) {
       this.sbId = this.csc_english_ids[this.id];
@@ -237,6 +265,8 @@ export class CscComponent implements OnInit {
             this.cscProjectsList[project].status = "N/A";
           }
         }
+
+      this.filterProjectsList();  
 
       this.filteredCscProjectsList.sort((a, b) => {
         function sortByPI(a, b) {
