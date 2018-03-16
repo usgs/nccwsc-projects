@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../search.service';
-import {Subscription} from 'rxjs/Subscription';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { Subscription } from 'rxjs/Subscription';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -9,12 +9,12 @@ import { DatePipe } from '@angular/common';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent implements OnInit {
-  query = ''
+export class SearchComponent implements OnInit {    
   results = []
   total_results: number
   filteredResultsCount: number
   closeResult: string
+  noResult: string
   filteredResultsSubscription: Subscription
   filteredResultsCountSubscription: Subscription
   totalResultsSubscription: Subscription 
@@ -85,7 +85,14 @@ export class SearchComponent implements OnInit {
     this.totalResultsSubscription = this.searchService.totalItem$.subscribe(totalItems=>
     {
       this.total_results = totalItems;
+
+      if (!this.noResult) {
+        this.noResult = 'Use the search controls to create and filter your query.'
+      } else {
+        this.noResult = "No results. Enter (or modify) the search term(s) above and select 'Apply' to search."
+      }
     });
+    
   }
 
   private getDismissReason(reason: any): string {

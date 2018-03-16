@@ -11,6 +11,10 @@ div .card {
   }
 }
 
+h4 {
+  margin-bottom: .7em !important;
+}
+
 div.results {
   margin-top: 2em !important;
 }
@@ -47,7 +51,6 @@ li.list-group-item i {
   padding: 0 1em 0 1em;
 }
 
-
 div.modal-body .list-group-flush .list-group-item {
   padding: 0 0 .25em 0;
 }
@@ -60,8 +63,7 @@ h4.card-title a {
   background-color: #56abb6;
   padding: 6px;
   width: 100%;
-  line-height: 45px !important;
-    
+  line-height: 45px !important;    
 }
 
 h4.card-title a.nonProject {
@@ -71,11 +73,6 @@ h4.card-title a.nonProject {
   background-color: white;
   line-height: 35px !important;
   padding: 0px;
-
-}
-
-h4.card-title a.nonProject:hover {
- 
 }
 
 strong {
@@ -114,8 +111,13 @@ div.loading {
   p {
     display: block;
     width: 95%;
-    border: 1px #333 solid;
+    border: 1px #ddd solid;
     text-align: center;
     padding: 1em;
+    font-style: italic;
   }
+}
+
+.row {
+  font-family: Arial;
 }

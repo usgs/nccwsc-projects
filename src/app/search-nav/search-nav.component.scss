@@ -6,6 +6,7 @@ div.row {
 
 h4 {
   margin-left: .5em;
+  font-family: Arial;
 }
 
 form {
@@ -13,18 +14,31 @@ form {
   margin-right: 0;
 }
 
+input {
+  padding: 3px 10px;
+  border: solid 1px #dddddd !important;
+}
+
 div.field {
   width: 100%;
-  margin-bottom: 1em;
-  color: #000000;
+  margin-bottom: .8em;  
+  color: #000000;  
 }
 
 div.filters {
   width: 100%;
-  margin: 0 0 0 .5em;
+  margin: 15px 0 0 .5em !important;
   h4 {
     margin-left: 0;
   }
+  div.field {
+    margin-bottom: 0 !important;
+  }
+}
+
+div.search-nav {
+  width: 100% !important;
+  margin-top: 10px;
 }
 
 label {
@@ -36,36 +50,37 @@ input#queryTerms {
   width: 100%;
 }
 
-.btn-primary,
-button {
+.btn {
+  margin-bottom: 1em;
   margin-top: 1em !important;
 }
 
-div.buttons {
-  margin-bottom: 1em;
-}
-
-div.search-nav {
-  width: 100% !important;
-}
-
-div.info {
-  margin: .5em .25em .5em .25em;
-  background-color: #F5F5F5;
-  border: solid 1px #E0E0E0;
-  padding: .25em;
-  p {
-    margin: 0;
-    padding: 0;
+.buttons {
+  .btn {
+    margin-top: .4em !important;  
   }
 }
 
 .btn-success {
   background-color: rgb(86,171,182) !important;
   border-color: rgb(86,171,182) !important;
-  font-weight: bold;
+  font-weight: bold;  
 }
 
 .btn-success:focus {
   box-shadow: 0 0 0 2px rgba(86,171,182,.5);
+}
+
+div.info {
+  margin: .5em 0 1.5em .5em;
+  background-color: #F5F5F5;
+  border: solid 1px #E0E0E0;
+  padding: .25em;
+  p {
+    margin: 0;
+    padding: 0;
+    font-style: italic;
+    font-size: smaller;
+    text-align: center;
+  }
 }
