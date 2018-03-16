@@ -131,8 +131,7 @@ export class SearchNavComponent implements OnInit {
     if (this.searchQuery && this.searchQuery.length > 0) {
       query = query + encodeURIComponent(this.searchQuery);
     }
-    queryString = query + topic + subtopics + organizations;  
-    console.log(queryString)
+    queryString = query + topic + subtopics + organizations;      
     this.searchService.searchProjects(queryString).subscribe(results => {      
       this.updateFilters();
     });    

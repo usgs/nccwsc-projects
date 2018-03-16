@@ -9,12 +9,12 @@ import { DatePipe } from '@angular/common';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent implements OnInit {  
-  noDataMessage = ''
+export class SearchComponent implements OnInit {    
   results = []
   total_results: number
   filteredResultsCount: number
   closeResult: string
+  noResult: string
   filteredResultsSubscription: Subscription
   filteredResultsCountSubscription: Subscription
   totalResultsSubscription: Subscription 
@@ -85,10 +85,11 @@ export class SearchComponent implements OnInit {
     this.totalResultsSubscription = this.searchService.totalItem$.subscribe(totalItems=>
     {      
       this.total_results = totalItems;
-      if (!this.noDataMessage) {
-        this.noDataMessage = 'Use the search controls to create and filter your query.'
+
+      if (!this.noResult) {
+        this.noResult = 'Use the search controls to create and filter your query.'
       } else {
-        this.noDataMessage = "No results. Enter (or modify) the search term(s) above and select 'Apply' to search."
+        this.noResult = "No results. Enter (or modify) the search term(s) above and select 'Apply' to search."
       }
     });
     
