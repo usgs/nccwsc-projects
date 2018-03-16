@@ -83,7 +83,7 @@ export class SearchComponent implements OnInit {
       this.filteredResultsCount = filteredResultsCount;
     });
     this.totalResultsSubscription = this.searchService.totalItem$.subscribe(totalItems=>
-    {      
+    {
       this.total_results = totalItems;
 
       if (!this.noResult) {
