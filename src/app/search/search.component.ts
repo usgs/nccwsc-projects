@@ -83,7 +83,9 @@ export class SearchComponent implements OnInit {
       this.filteredResultsCount = filteredResultsCount;
     });
     this.totalResultsSubscription = this.searchService.totalItem$.subscribe(totalItems=>
-    {      
+    {     
+      // If no results are returned, totalItems returns a -1, then 0
+      // This code checks to see if a -1 has been returned, then it modifies the noResult message
       if (this.total_results < 0) {        
         this.noResult = "No results found. Enter (or modify) the search term(s) and select 'Search' to search."
       } else {
