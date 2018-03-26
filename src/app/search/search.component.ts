@@ -65,7 +65,7 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
     this.filteredResultsSubscription = this.searchService.filteredResults$.subscribe(filteredResults=>
     {
-      this.results = filteredResults;
+      this.results = filteredResults;      
       for (let result of this.results) {
         if (result.dates.start_date) {
           result.dates.start_date = SearchComponent.niceDate(result.dates.start_date);
@@ -83,14 +83,13 @@ export class SearchComponent implements OnInit {
       this.filteredResultsCount = filteredResultsCount;
     });
     this.totalResultsSubscription = this.searchService.totalItem$.subscribe(totalItems=>
-    {
-      this.total_results = totalItems;
-
-      if (!this.noResult) {
-        this.noResult = 'Use the search controls to create and filter your query.'
+    {      
+      if (this.total_results < 0) {        
+        this.noResult = "No results found. Enter (or modify) the search term(s) and select 'Search' to search."
       } else {
-        this.noResult = "No results. Enter (or modify) the search term(s) above and select 'Apply' to search."
+        this.noResult = 'Use the search controls to create and filter your query.'
       }
+      this.total_results = totalItems;      
     });
     
   }
