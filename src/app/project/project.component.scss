@@ -15,8 +15,11 @@ sb-map {
 ul {
     list-style:  none;
 }
-.date p{
-
+.project_files {
+  margin-bottom: 10px;
+  ul ul {    
+    margin: 0 35px;
+  }
 }
 
 p {

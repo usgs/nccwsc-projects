@@ -150,6 +150,9 @@ export class SearchService {
 
 
   filterItems() {
+    // This appears to be decrimenting the result count by 1
+    // so if it starts at 0 it will be -1 after this call
+    // don't remove this behavior as it is being used in search.component.ts ngOnInit
     this.updateFilteredResultsCount(-1);
     this.filteredResults = [];
     var tempOrgs = [];
@@ -311,6 +314,7 @@ export class SearchService {
     this.updateTotalResults(-1)
     this.clearFilters()
     var searchUrl = this.serviceURL + '/search' + queryString;
+    console.log(queryString);
     this.results = [];
     this.filteredResults = [];
     return this.http.get(searchUrl).map((res:Response) => {

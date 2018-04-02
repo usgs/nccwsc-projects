@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../search.service';
-import {Subscription} from 'rxjs/Subscription';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { Subscription } from 'rxjs/Subscription';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -9,12 +9,12 @@ import { DatePipe } from '@angular/common';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent implements OnInit {
-  query = ''
+export class SearchComponent implements OnInit {    
   results = []
   total_results: number
   filteredResultsCount: number
   closeResult: string
+  noResult: string
   filteredResultsSubscription: Subscription
   filteredResultsCountSubscription: Subscription
   totalResultsSubscription: Subscription 
@@ -65,7 +65,7 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
     this.filteredResultsSubscription = this.searchService.filteredResults$.subscribe(filteredResults=>
     {
-      this.results = filteredResults;
+      this.results = filteredResults;      
       for (let result of this.results) {
         if (result.dates.start_date) {
           result.dates.start_date = SearchComponent.niceDate(result.dates.start_date);
@@ -83,9 +83,17 @@ export class SearchComponent implements OnInit {
       this.filteredResultsCount = filteredResultsCount;
     });
     this.totalResultsSubscription = this.searchService.totalItem$.subscribe(totalItems=>
-    {
-      this.total_results = totalItems;
+    {     
+      // If no results are returned, totalItems returns a -1, then 0
+      // This code checks to see if a -1 has been returned, then it modifies the noResult message
+      if (this.total_results < 0) {        
+        this.noResult = "No results found. Enter (or modify) the search term(s) and select 'Search' to search."
+      } else {
+        this.noResult = 'Use the search controls to create and filter your query.'
+      }
+      this.total_results = totalItems;      
     });
+    
   }
 
   private getDismissReason(reason: any): string {

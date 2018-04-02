@@ -6,8 +6,8 @@
 export const environment = {
   version: '4.1.2-dev',
   production: false,
-  baseURL: 'https://my-beta.usgs.gov/nccwsc',
-  serviceURL: 'https://my-beta.usgs.gov/nccwsc-service/',
+  baseURL: 'https://ede.cr.usgs.gov/nccwsc',
+  serviceURL: 'https://ede.cr.usgs.gov/nccwsc-service',
   projectsPath: '/projects/#',
   urlPrefix: "/nccwsc/"
 };

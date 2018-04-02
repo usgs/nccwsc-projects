@@ -145,6 +145,13 @@
 </li>
 </ul>
 </div>
+<div class="col-md-12" *ngIf="projectJson.main_project">
+  <h2>Main Project</h2><hr/>
+  <ul>
+  <a [routerLink]="['/project', projectJson.csc.id, projectJson.main_project.relatedId]">{{ projectJson.main_project.relatedTitle }}</a>  
+  </ul>
+</div>
+
 <div class="col-md-12" *ngIf="projectJson.relationships && projectJson.relationships.length > 0">
 <h2>Sub-Projects</h2><hr/>
 <ul *ngFor="let relationship of projectJson.relationships">
@@ -191,6 +198,15 @@
 <h2>Data</h2><hr/>
 <ul *ngFor="let data of projectJson.approved_data">
   <li><div class="pubTitle">{{ data.title }}</div>
+    <div *ngIf="data.downloadLinkUri" class="project_files">
+      <ul>
+        <li><a href="{{ data.downloadLinkUri }}" target="_blank">Download Files (zip)</a>
+          <ul *ngFor="let file of data.downloadLinkFiles">
+            <li>{{ file.name }} </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
     <div *ngIf="data.webLinks">
       <ul *ngFor="let webLink of data.webLinks">
         <li>{{ webLink.title }} <a href="{{ webLink.uri }}" target="_blank">(External URL)</a></li>
@@ -204,26 +220,39 @@
     <!--This prints download link if its not provided in the object-->
       <div *ngIf="data.files?.length <= 0">
         <div *ngIf="data.webLinks?.length <= 0">
-        <ul>
-         <li *ngIf="data.downloadLinkUri != null"><a href = "https://www.sciencebase.gov/catalog/file/get/{{data.id}}">Download</a></li>
-         <!-- <li *ngIf="data.downloadLinkUri != null"><a href = "{{data.downloadLinkUri}}">Download</a></li> -->
-        </ul>
+          <div *ngIf="data.downloadLinkFiles?.length <= 0">
+            <ul>
+              <li *ngIf="data.downloadLinkUri != null"><a href = "https://www.sciencebase.gov/catalog/file/get/{{data.id}}">Download</a></li>
+              <!-- <li *ngIf="data.downloadLinkUri != null"><a href = "{{data.downloadLinkUri}}">Download</a></li> -->
+            </ul>
+          </div>  
        </div>
       </div>
 
     <div *ngIf="data.children">
       <ul *ngFor="let child of data.children">
         <li>{{ child.title }}
+          <div *ngIf="child.downloadLinkUri" class="project_files">
+            <ul>
+              <li><a href="{{ child.downloadLinkUri }}" target="_blank">Download Files (zip)</a>
+                <ul *ngFor="let file of child.downloadLinkFiles">
+                  <li>{{ file.name }} </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+
           <div *ngIf="child.webLinks">
             <ul *ngFor="let webLink of child.webLinks">
               <li>{{ webLink.title }} <a href="{{ webLink.uri }}" target="_blank">(External URL)</a></li>
-          </ul>
-        </div>
-        <div *ngIf="child.files">
-          <ul *ngFor="let file of child.files">
-            <li>{{ file.name }} (<a href="{{ file.url }}" target="_blank">Download</a>)</li>
-          </ul>
-        </div>
+            </ul>
+          </div>
+          <!-- <div *ngIf="child.files">
+            <ul *ngFor="let file of child.files">
+              <li>{{ file.name }} (<a href="{{ file.url }}" target="_blank">Download</a>)</li>
+            </ul>
+          </div> -->
+          
         <!--This prints download link if its not provided in the object-->
           <div *ngIf="child.files?.length <= 0">
             <div *ngIf="child.webLinks?.length <= 0">
@@ -239,10 +268,10 @@
   </li>
 </ul>
 </div>
-<div class="col-md-12" *ngIf="projectJson.other_approved && projectJson.other_approved.length > 0">
+<!--<div class="col-md-12" *ngIf="projectJson.other_approved && projectJson.other_approved.length > 0">
 <h2>Other Products</h2><hr/>
 
-</div>
+</div>-->
 <div class="col-md-12" *ngIf="projectJson.other && projectJson.other > 0">
 <h2>Other Stuff</h2><hr/>
 <ul *ngFor="let other of projectJson.other">
