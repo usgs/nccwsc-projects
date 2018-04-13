@@ -170,7 +170,7 @@ export class TopicsComponent implements OnInit {
   }
 
   //TODO: put this code in a utility function/service
-  updateUrl() {
+  ngOnInit() {
     let params: any = { };
     if (this.current_subtopic != 'All Subtopics') {
       params['subtopic'] = this.current_subtopic
