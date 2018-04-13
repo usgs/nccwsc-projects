@@ -148,7 +148,7 @@ export class TopicsComponent implements OnInit {
       }
       this.filteredProjectsList.push(this.projectsList[project]);      
     }
-    this.updateUrl()
+    //this.updateUrl()
   }
 
   showAllProjects() {
