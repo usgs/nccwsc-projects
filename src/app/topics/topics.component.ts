@@ -148,7 +148,7 @@ export class TopicsComponent implements OnInit {
       }
       this.filteredProjectsList.push(this.projectsList[project]);      
     }
-    //this.updateUrl()
+    this.updateUrl()
   }
 
   showAllProjects() {
@@ -170,7 +170,7 @@ export class TopicsComponent implements OnInit {
   }
 
   //TODO: put this code in a utility function/service
-  ngOnInit() {
+  updateUrl() {
     let params: any = { };
     if (this.current_subtopic != 'All Subtopics') {
       params['subtopic'] = this.current_subtopic
