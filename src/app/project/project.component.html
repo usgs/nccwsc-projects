@@ -172,7 +172,7 @@
     </div>
     <div *ngIf="product.files">
       <ul *ngFor="let file of product.files">
-        <li *ngIf="!file.name.indexOf('metadata')>=0">{{ file.name }} (<a href="{{ file.url }}" target="_blank">Download</a>)</li>
+        <li *ngIf="!file.name.includes('metadata')">{{ file.name }} (<a href="{{ file.url }}" target="_blank">Download</a>)</li>
       </ul>
     </div>
   </li>
