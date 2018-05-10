@@ -4,6 +4,7 @@ import { LocalJsonService } from '../local-json.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { DomSanitizer, SafeResourceUrl, SafeUrl} from '@angular/platform-browser';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-project',
@@ -20,6 +21,8 @@ export class ProjectComponent implements OnInit {
   modal_image: any;
   closeResult: string;
   trustedDashboardUrl : SafeUrl;
+  sbURL = environment.sbmainURL;
+
   constructor(private route: ActivatedRoute, private localJson: LocalJsonService, private router: Router, private sanitizer: DomSanitizer, private modalService: NgbModal) { }
 
   openImage(imageModal, image) {
@@ -64,11 +67,11 @@ export class ProjectComponent implements OnInit {
       console.log(this.cscId)
       this.localJson.loadProject(this.cscId, this.projectId).subscribe(data => {
         this.projectJson = data;
-        console.log(this.projectJson);
         this.projectJson.dates.start_date = ProjectComponent.niceDate(this.projectJson.dates.start_date);
         this.projectJson.dates.end_date = ProjectComponent.niceDate(this.projectJson.dates.end_date);
         if (this.projectJson.images) {
           for (var image in this.projectJson.images) {
+            console.log(this.projectJson.images[image])
             if (this.projectJson.images[image]['useForPreview']) {
               this.previewImage = this.projectJson.images[image];
               this.trustedDashboardUrl = this.sanitizer.bypassSecurityTrustUrl(this.projectJson.images[image]['url']);

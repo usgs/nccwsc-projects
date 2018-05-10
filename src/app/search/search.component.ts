@@ -3,6 +3,7 @@ import { SearchService } from '../search.service';
 import { Subscription } from 'rxjs/Subscription';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe } from '@angular/common';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-search',
@@ -20,6 +21,7 @@ export class SearchComponent implements OnInit {
   totalResultsSubscription: Subscription 
   nonProjectItem: any
   loadingResults = false
+  sbURL = environment.sbmainURL
 
   constructor(private searchService: SearchService, private modalService: NgbModal) { }
 

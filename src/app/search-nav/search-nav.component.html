@@ -24,7 +24,7 @@
         </ng-select>
       </div>
       <div class="field" *ngIf="orgsLoaded">
-        <ng-select placeholder="NCCWSC/CSCs" [multiple]="true" [(ngModel)]="selectedOrgs" [options]="orgs" (selected)="onOrgsChange($event.value)" [ngModelOptions]="{standalone: true}"></ng-select>
+        <ng-select placeholder="CASCs" [multiple]="true" [(ngModel)]="selectedOrgs" [options]="orgs" (selected)="onOrgsChange($event.value)" [ngModelOptions]="{standalone: true}"></ng-select>
       </div>
       <div class="float-right buttons">
       	<button (click)="onSubmit()" class="btn btn-sm btn-success">Search</button>
