@@ -38,7 +38,7 @@
     "zone.js": "0.8.17"
   },
   "devDependencies": {
-    "@angular/cli": "latest",
+    "@angular/cli": "1.7.3",
     "@types/jasmine": "2.5.54",
     "@types/leaflet": "^1.0.66",
     "codelyzer": "^3.1.2",
@@ -54,7 +54,7 @@
     "retyped-xml2js-tsd-ambient": "0.0.0-0",
     "ts-node": "3.3.0",
     "tslint": "^5.5.0",
-    "typescript": "~2.4.2",
-    "webpack": "^3.11.0"
+    "typescript": ">=2.4.2 <2.5.0",
+    "webpack": "3.11.0"
   }
 }
