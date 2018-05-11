@@ -1,8 +1,8 @@
 export const environment = {
   version: '4.1.2',
   production: true,
-  baseURL: 'https://nccwsc.usgs.gov',
-  serviceURL: 'https://nccwsc.usgs.gov/nccwsc-service',
+  baseURL: 'https://casc.usgs.gov',
+  serviceURL: 'https://casc.usgs.gov/casc-service',
   projectsPath: '/projects/#',
   urlPrefix: "/"
 };
