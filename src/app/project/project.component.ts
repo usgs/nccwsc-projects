@@ -62,16 +62,13 @@ export class ProjectComponent implements OnInit {
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.projectId = params['id'];
-      this.cscId = params['csc'];    
-      console.log(this.projectId)
-      console.log(this.cscId)
+      this.cscId = params['csc'];
       this.localJson.loadProject(this.cscId, this.projectId).subscribe(data => {
         this.projectJson = data;
         this.projectJson.dates.start_date = ProjectComponent.niceDate(this.projectJson.dates.start_date);
         this.projectJson.dates.end_date = ProjectComponent.niceDate(this.projectJson.dates.end_date);
         if (this.projectJson.images) {
           for (var image in this.projectJson.images) {
-            console.log(this.projectJson.images[image])
             if (this.projectJson.images[image]['useForPreview']) {
               this.previewImage = this.projectJson.images[image];
               this.trustedDashboardUrl = this.sanitizer.bypassSecurityTrustUrl(this.projectJson.images[image]['url']);
