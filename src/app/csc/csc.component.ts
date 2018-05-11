@@ -19,7 +19,7 @@ export class CscComponent implements OnInit {
   filteredCscProjectsList = [];
 //  csc_url = ['https://my-beta.usgs.gov/nccwsc/csc-list'];
   //csc_url = this.setButtonUrl();
-  _url = environment.baseURL + '/casc-list';
+  csc_url = environment.baseURL + '/casc-list';
   topics = ['All Topics'];
   fiscal_years = ['All Fiscal Years'];
   statuses = ['All Statuses'];
