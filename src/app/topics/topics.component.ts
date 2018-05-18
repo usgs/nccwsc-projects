@@ -46,17 +46,14 @@ export class TopicsComponent implements OnInit {
         renderComponent: TitleLinkComponent,
       },
         csc_name: {
-        title: 'CSC',
+        title: 'CASC',
         width:'10%',
-
       },
-
       subtopics_formatted: {
         title: 'Subtopic(s)',
         width:'10%',
         type:'html',
       },
-
       types: {
         title: 'Types',
         width:'8%',
@@ -185,7 +182,7 @@ export class TopicsComponent implements OnInit {
       params['type'] = this.current_type
     }
     if (this.current_csc != 'All CASCs') {
-      params['csc'] = this.current_csc
+      params['casc'] = this.current_csc
     }
 
     const url = this
