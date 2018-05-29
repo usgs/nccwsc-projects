@@ -11,8 +11,7 @@ export const environment = {
   baseURL: 'https://casc.usgs.gov',
   serviceURL: 'https://casc.usgs.gov/casc-service',
   // serviceURL: 'http://localhost:8000',
-  //sbURL: 'https://www.sciencebase.gov/',
-  sbmainURL: 'https://beta.sciencebase.gov',
+  sbmainURL: 'https://www.sciencebase.gov',
   projectsPath: '/projects/#',
   urlPrefix: "/nccwsc/"
 };

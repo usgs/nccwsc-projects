@@ -3,7 +3,7 @@ export const environment = {
   production: true,
   baseURL: 'https://casc.usgs.gov',
   serviceURL: 'https://casc.usgs.gov/casc-service',
-  sbmainURL: 'https://beta.sciencebase.gov',
+  sbmainURL: 'https://www.sciencebase.gov',
   projectsPath: '/projects/#',
   urlPrefix: "/"
 };
