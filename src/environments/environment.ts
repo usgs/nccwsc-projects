@@ -4,7 +4,7 @@
 // The list of which env maps to which file can be found in `angular-cli.json`.
 
 export const environment = {
-  version: '4.1.2-dev',
+  version: '4.2.0-dev',
   production: false,
   // baseURL: 'https://ede.cr.usgs.gov/nccwsc',
   // serviceURL: 'https://ede.cr.usgs.gov/nccwsc-service',
