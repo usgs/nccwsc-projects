@@ -13,5 +13,5 @@ export const environment = {
   // serviceURL: 'http://localhost:8000',
   sbmainURL: 'https://www.sciencebase.gov',
   projectsPath: '/projects/#',
-  urlPrefix: "/nccwsc/"
+  urlPrefix: '/casc/'
 };

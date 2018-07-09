@@ -4,5 +4,6 @@ export const environment = {
   baseURL: 'https://casc.usgs.gov',
   serviceURL: 'https://casc.usgs.gov/casc-service',
   sbmainURL: 'https://www.sciencebase.gov',
+  projectsPath: '/projects/#',
   urlPrefix: '/casc/'
 };
