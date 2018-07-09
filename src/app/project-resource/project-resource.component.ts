@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SciencebaseService } from '../sciencebase.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-project-resource',
@@ -15,6 +16,7 @@ export class ProjectResourceComponent implements OnInit {
   resourceOrgs: string
   resourceContacts:any = {}
   resourceDates: any = {}
+  sbURL = environment.sbmainURL
 
   constructor(public route: ActivatedRoute, private sbService: SciencebaseService) { }
 

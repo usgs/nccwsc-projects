@@ -23,7 +23,7 @@
                   <li *ngFor="let pi of result.contacts.principal_investigators">{{ pi.name }}</li>
                 </ul>
               </li>
-              <li class="list-group-item" *ngIf="result.csc?.name"><strong>CSC/NCCWSC:</strong> {{ result.csc.name }}</li>
+              <li class="list-group-item" *ngIf="result.csc?.name"><strong>CASC:</strong> {{ result.csc.name }}</li>
               <li class="list-group-item" *ngIf="result.status"><strong>Status:</strong> {{ result.status }}</li>
               <li class="list-group-item" *ngIf="result.topics?.length > 0"><strong>Science Topic(s):</strong>
                 <ul class="taglist"> 
@@ -106,7 +106,7 @@
             </ul>
           </li>
           <li class="list-group-item" *ngIf="nonProjectItem.csc?.name">
-            <strong>CSC/NCCWSC:</strong> {{ nonProjectItem.csc.name }}
+            <strong>CASC:</strong> {{ nonProjectItem.csc.name }}
           </li>
           <li class="list-group-item" *ngIf="nonProjectItem.status">
             <strong>Status:</strong> {{ nonProjectItem.status }}
@@ -188,7 +188,7 @@
             </ul>
           </li>  
           <li class="list-group-item">
-            <strong>ScienceBase:</strong> <a href="https://www.sciencebase.gov/catalog/item/{{ nonProjectItem.id }}" target="_blank">https://www.sciencebase.gov/catalog/item/{{ nonProjectItem.id }}</a>
+            <strong>ScienceBase:</strong> <a href="{{sbURL}}/catalog/item/{{ nonProjectItem.id }}" target="_blank">{{sbURL}}/catalog/item/{{ nonProjectItem.id }}</a>
           </li>
         </ul>
         <p>{{ nonProjectItem.body }}</p>
