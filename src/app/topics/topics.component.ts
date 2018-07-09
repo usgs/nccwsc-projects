@@ -46,17 +46,14 @@ export class TopicsComponent implements OnInit {
         renderComponent: TitleLinkComponent,
       },
         csc_name: {
-        title: 'CSC',
+        title: 'CASC',
         width:'10%',
-
       },
-
       subtopics_formatted: {
         title: 'Subtopic(s)',
         width:'10%',
         type:'html',
       },
-
       types: {
         title: 'Types',
         width:'8%',
@@ -86,13 +83,13 @@ export class TopicsComponent implements OnInit {
   subtopics = ['All Subtopics'];
   fiscal_years = ['All Fiscal Years'];
   statuses = ['All Statuses'];
-  cscs=['All CSCs'];
+  cscs=['All CASCs'];
   types=['All Types'];
   current_subtopic = 'All Subtopics';
   current_type = 'All Types';
   current_fy = 'All Fiscal Years';
   current_status = 'All Statuses';
-  current_csc = 'All CSCs';
+  current_csc = 'All CASCs';
   topicKeys;
   projectsList = [];
   filteredProjectsList = [];
@@ -141,7 +138,7 @@ export class TopicsComponent implements OnInit {
           continue;
         }
       }
-      if (this.current_csc != 'All CSCs') {
+      if (this.current_csc != 'All CASCs') {
         if (this.projectsList[project].csc['name'] !== this.current_csc) {
           continue;
         }
@@ -157,7 +154,7 @@ export class TopicsComponent implements OnInit {
     this.current_fy = 'All Fiscal Years';
     this.current_status = 'All Statuses';
     this.current_type = 'All Types';
-    this.current_csc = 'All CSCs';
+    this.current_csc = 'All CASCs';
   }
 
   isOnTopic(subtopic) {
@@ -184,8 +181,8 @@ export class TopicsComponent implements OnInit {
     if (this.current_type != 'All Types') {
       params['type'] = this.current_type
     }
-    if (this.current_csc != 'All CSCs') {
-      params['csc'] = this.current_csc
+    if (this.current_csc != 'All CASCs') {
+      params['casc'] = this.current_csc
     }
 
     const url = this

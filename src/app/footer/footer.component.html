@@ -1,38 +1,21 @@
-<nav class="navbar navbar-inverse navbar-toggleable-md bg-inverse footer-menu">
-<div class="collapse navbar" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="https://www2.usgs.gov/laws/accessibility.html" title="Accessibilty and the U.S. Geological Survey">Accessibility</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="https://www2.usgs.gov/foia/" title="U.S. Geological Survey Freedom of Information Act">
-          FOIA
-        </a>      
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="https://www2.usgs.gov/laws/policies_notices.html" title="USGS Policies and Important Notices">
-          Policies & Notices
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="https://www2.usgs.gov/laws/privacy.html" title="USGS Privacy Policies">Privacy</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [ngbPopover]="legalContent" title="Legal Information">Legal</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="https://nccwsc.usgs.gov/staffPage">Contact Us</a>
-      </li>
-    </ul>
-  </div></nav>
+
+
+<div class="footer-menu row">
+  <div class="col-xs-12 col-md-2"><a href="https://www2.usgs.gov/laws/accessibility.html" title="Accessibilty and the U.S. Geological Survey" target="_blank">Accessibility</a></div>
+  <div class="col-xs-12 col-md-2"><a href="https://www2.usgs.gov/foia/" title="U.S. Geological Survey Freedom of Information Act" target="_blank">FOIA</a></div>
+  <div class="col-xs-12 col-md-2"><a href="https://www2.usgs.gov/laws/policies_notices.html" title="USGS Policies and Important Notices" target="_blank">Policies & Notices</a></div>
+  <div class="col-xs-12 col-md-2"><a href="https://www2.usgs.gov/laws/privacy.html" title="USGS Privacy Policies" target="_blank">Privacy</a></div>
+  <div class="col-xs-12 col-md-2 legal"><a [ngbPopover]="legalContent" title="Legal Information">Legal</a></div>
+  <div class="col-xs-12 col-md-2"><a href="https://casc.usgs.gov/staffPage">Contact Us</a></div>	
+</div>
 
 <ng-template #legalContent>
-        <ul class="legal_info">
-        <li><a href="http://www.doi.gov/" title="United States Department of Interior">U.S. Department of the Interior</a></li>
-        <li><a href="http://www.usgs.gov/" title="United States Geological Survey">U.S. Geological Survey</a></li>
-        <li><a href="http://www.doioig.gov/" title="Department of Interior Inspector General's Office">DOI Inspector General</a></li>
-        <li><strong>URL:</strong> <a href="/" title="Natural Values Resource Center">{{ currentPage }}</a></li>
-        <li><strong>Last Modified:</strong> Wednesday, June 15, 2016</li>
-        <li><strong>Version: </strong>{{ currentVersion }}</li>
-      </ul>
+  <ul class="legal_info">
+    <li><a href="http://www.doi.gov/" title="United States Department of Interior">U.S. Department of the Interior</a></li>
+    <li><a href="http://www.usgs.gov/" title="United States Geological Survey">U.S. Geological Survey</a></li>
+    <li><a href="http://www.doioig.gov/" title="Department of Interior Inspector General's Office">DOI Inspector General</a></li>
+    <li><strong>URL:</strong> <a href="/" title="Natural Values Resource Center">{{ currentPage }}</a></li>
+    <li><strong>Last Modified:</strong> Wednesday, June 15, 2016</li>
+    <li><strong>Version: </strong>{{ currentVersion }}</li>
+  </ul>
 </ng-template>

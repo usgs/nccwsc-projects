@@ -4,6 +4,7 @@ import { LocalJsonService } from '../local-json.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { DomSanitizer, SafeResourceUrl, SafeUrl} from '@angular/platform-browser';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-project',
@@ -20,6 +21,8 @@ export class ProjectComponent implements OnInit {
   modal_image: any;
   closeResult: string;
   trustedDashboardUrl : SafeUrl;
+  sbURL = environment.sbmainURL;
+
   constructor(private route: ActivatedRoute, private localJson: LocalJsonService, private router: Router, private sanitizer: DomSanitizer, private modalService: NgbModal) { }
 
   openImage(imageModal, image) {
@@ -59,12 +62,9 @@ export class ProjectComponent implements OnInit {
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.projectId = params['id'];
-      this.cscId = params['csc'];    
-      console.log(this.projectId)
-      console.log(this.cscId)
+      this.cscId = params['csc'];
       this.localJson.loadProject(this.cscId, this.projectId).subscribe(data => {
         this.projectJson = data;
-        console.log(this.projectJson);
         this.projectJson.dates.start_date = ProjectComponent.niceDate(this.projectJson.dates.start_date);
         this.projectJson.dates.end_date = ProjectComponent.niceDate(this.projectJson.dates.end_date);
         if (this.projectJson.images) {

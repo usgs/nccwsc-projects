@@ -4,11 +4,14 @@
 // The list of which env maps to which file can be found in `angular-cli.json`.
 
 export const environment = {
-  version: '4.1.3-dev',
+  version: '4.2.0-dev',
   production: false,
-  baseURL: 'https://ede.cr.usgs.gov/nccwsc',
-  //serviceURL: 'https://ede.cr.usgs.gov/nccwsc-service',
-  serviceURL: 'https://ede.cr.usgs.gov/dev-nccwsc-service',
+  // baseURL: 'https://ede.cr.usgs.gov/nccwsc',
+  // serviceURL: 'https://ede.cr.usgs.gov/nccwsc-service',
+  baseURL: 'https://casc.usgs.gov',
+  serviceURL: 'https://casc.usgs.gov/casc-service',
+  // serviceURL: 'http://localhost:8000',
+  sbmainURL: 'https://www.sciencebase.gov',
   projectsPath: '/projects/#',
   urlPrefix: "/nccwsc/"
 };

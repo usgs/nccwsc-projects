@@ -8,15 +8,15 @@ import { Component, OnInit } from '@angular/core';
 export class CscsComponent implements OnInit {
 
   csc_ids = [
-    {'id': 'nccwsc', 'name' : 'NCCWSC'},
-    {'id': 'alaska', 'name' : 'Alaska CSC'},
-    {'id': 'north-central', 'name' : 'North Central CSC'},
-    {'id': 'northeast', 'name' : 'Northeast CSC'},
-    {'id': 'northwest', 'name' : 'Northwest CSC'},
-    {'id': 'pacific-islands', 'name' : 'Pacific Islands CSC'},
-    {'id': 'south-central', 'name' : 'South Central CSC'},
-    {'id': 'southeast', 'name' : 'Southeast CSC'},
-    {'id': 'southwest', 'name' : 'Southwest CSC'}
+    {'id': 'national-casc', 'name' : 'National CASC'},
+    {'id': 'alaska', 'name' : 'Alaska CASC'},
+    {'id': 'north-central', 'name' : 'North Central CASC'},
+    {'id': 'northeast', 'name' : 'Northeast CASC'},
+    {'id': 'northwest', 'name' : 'Northwest CASC'},
+    {'id': 'pacific-islands', 'name' : 'Pacific Islands CASC'},
+    {'id': 'south-central', 'name' : 'South Central CASC'},
+    {'id': 'southeast', 'name' : 'Southeast CASC'},
+    {'id': 'southwest', 'name' : 'Southwest CASC'}
   ]
 
   topic_ids = [

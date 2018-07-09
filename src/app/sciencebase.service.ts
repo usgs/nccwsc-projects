@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http'
+import { Headers, Http } from '@angular/http';
+import { environment } from 'environments/environment';
 
 @Injectable()
 export class SciencebaseService {
@@ -8,7 +9,7 @@ export class SciencebaseService {
 
   getSciencebaseRecord(sbId) {
     console.log('Getting SB record: ' + sbId)
-    var sbURL = 'https://www.sciencebase.gov/catalog/item/' + sbId  + '?format=json'
+    var sbURL = environment.sbmainURL + '/catalog/item/' + sbId  + '?format=json'
     return this.http.get(sbURL)
       .map(response=>{
         return response.json()

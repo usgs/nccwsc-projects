@@ -19,7 +19,7 @@ export class CscComponent implements OnInit {
   filteredCscProjectsList = [];
 //  csc_url = ['https://my-beta.usgs.gov/nccwsc/csc-list'];
   //csc_url = this.setButtonUrl();
-  csc_url = environment.baseURL + '/csc-list';
+  csc_url = environment.baseURL + '/casc-list';
   topics = ['All Topics'];
   fiscal_years = ['All Fiscal Years'];
   statuses = ['All Statuses'];
@@ -29,19 +29,19 @@ export class CscComponent implements OnInit {
   title = null;
   dataLoading = true;
   csc_ids = {
-    '5050cb0ee4b0be20bb30eac0': 'NCCWSC',
-    '4f831626e4b0e84f6086809b': 'Alaska CSC',
-    '4f83509de4b0e84f60868124': 'North Central CSC',
-    '4f8c648de4b0546c0c397b43': 'Northeast CSC',
-    '4f8c64d2e4b0546c0c397b46': 'Northwest CSC',
-    '4f8c650ae4b0546c0c397b48': 'Pacific Islands CSC',
-    '4f8c652fe4b0546c0c397b4a': 'South Central CSC',
-    '4f8c6557e4b0546c0c397b4c': 'Southeast CSC',
-    '4f8c6580e4b0546c0c397b4e': 'Southwest CSC'
+    '5050cb0ee4b0be20bb30eac0': 'National CASC',
+    '4f831626e4b0e84f6086809b': 'Alaska CASC',
+    '4f83509de4b0e84f60868124': 'North Central CASC',
+    '4f8c648de4b0546c0c397b43': 'Northeast CASC',
+    '4f8c64d2e4b0546c0c397b46': 'Northwest CASC',
+    '4f8c650ae4b0546c0c397b48': 'Pacific Islands CASC',
+    '4f8c652fe4b0546c0c397b4a': 'South Central CASC',
+    '4f8c6557e4b0546c0c397b4c': 'Southeast CASC',
+    '4f8c6580e4b0546c0c397b4e': 'Southwest CASC'
   }
 
   csc_english_ids = {
-    'nccwsc': '5050cb0ee4b0be20bb30eac0',
+    'national-casc': '5050cb0ee4b0be20bb30eac0',
     'alaska': '4f831626e4b0e84f6086809b',
     'north-central': '4f83509de4b0e84f60868124',
     'northeast': '4f8c648de4b0546c0c397b43',
@@ -125,7 +125,7 @@ export class CscComponent implements OnInit {
 
   setButtonUrl() {
     // sets "Explore Other topics" btn urls
-    let buttonUrl = environment.baseURL + "/csc-list";
+    let buttonUrl = environment.baseURL + "/casc-list";
     // if (environment.production == false) {
     //   buttonUrl = "https://my-beta.usgs.gov/nccwsc/csc-list";
     // }

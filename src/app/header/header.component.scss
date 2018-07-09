@@ -6,48 +6,45 @@
     height: 55px;
     border-radius: 0px;
     border-color: black;
+    z-index: 10;
 }
 
-.navbarsExampleDefault{
+.navbarsExampleDefault {
   width: 1001px !important;
 }
 
 div.branding {
     background: black !important;
     width: 100%;
-    margin-right: 0px;
-    margin-left: 0px;
-    line-height: 0.5rem !important;
+    margin: 0px;
 }
 
 .col-xs-12 {
     padding: 0px !important;
 }
 #usgs_logo {
-
-    display: block;
-    margin: 6px 0 2px 15px;
+    margin-right: 15px;
     width: 120px;
     float: left;
+    padding: 10px 0;
 }
 #top-site-name {
-    font-size: 25px;
+    font-size: 32px;
     color: white;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    line-height: 25px;
-    margin-top: 20px;
-    display: block;
+    font-weight: 400;
+    line-height: 2em;
 }
 
 .dropdown-menu {
     background: #333 !important;
     min-width: 18rem;
     border-radius: 0.2rem;
-  }
+}
 
 .dropdown-menu a {
     font-size: 18px !important;
-    }
+}
 
 .top-menu {
     background-color: #333;
@@ -80,38 +77,38 @@ nav li a{
     padding-bottom: 18px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 18px;
-    padding-right: 15px;
+    padding-right: 16px;
     padding-left: 16px;
     cursor: pointer;
     text-decoration: none;
 }
-nav li a:hover{
- color: rgba(255, 255, 255, .5) !important;
+nav li a:hover {
+    color: rgba(255, 255, 255, .5) !important;
 }
 
 
-.dropdown-toggle::after,.dropdown-toggle::before{
-height: 4px !important;
-width: 4px !important;
-border-top: 4px solid;
-border-right: 4px solid transparent;
-border-left: 4px solid transparent;
+.dropdown-toggle::after,.dropdown-toggle::before {
+    height: 4px !important;
+    width: 4px !important;
+    border-top: 4px solid;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
 }
 .navbar-brand {
-  white-space: normal;
+    white-space: normal;
 }
 
 .container {
-  margin-left: 0px;
-  margin-right: 0px;
-  padding-left: 0px;
-  padding-right: 0px;
-  width: 100%;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    width: 100%;
 }
 
 .navbar-brand{
-  padding-top: 0px !important;
-  padding-bottom: 0px !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
 }
 
 @media (max-width: 1199px) {
