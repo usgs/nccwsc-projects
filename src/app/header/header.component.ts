@@ -11,20 +11,19 @@ import { environment } from '../../environments/environment';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  
   nccwscMenu;
-  isNavbarCollapsed:boolean = true;
+  isNavbarCollapsed = true;
   isCollapsed = true
   baseURL: string
   constructor(private nccwscDrupal: NccwscDrupalService) { }
 
   fixLink(link) {
-    if (link == environment.baseURL) {
+    if (link === environment.baseURL) {
       return link
     }
-    let url_prefix = "";
-    if (link.substr(0, environment.baseURL.length) == environment.baseURL) {
-      if (link.substr(0, environment.baseURL.length + environment.projectsPath.length) == environment.baseURL + environment.projectsPath) {
+    const url_prefix = '';
+    if (link.substr(0, environment.baseURL.length) === environment.baseURL) {
+      if (link.substr(0, environment.baseURL.length + environment.projectsPath.length) === environment.baseURL + environment.projectsPath) {
         return link
       } else {
         return link.replace(environment.baseURL + '/', '/')
@@ -36,7 +35,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
      this.nccwscDrupal.loadMenu().subscribe(data => {
-       data[0].url = environment.baseURL     
+       data[0].url = environment.baseURL
        this.nccwscMenu = data;
      });
      this.baseURL = environment.baseURL
