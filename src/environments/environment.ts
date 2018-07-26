@@ -6,10 +6,8 @@
 export const environment = {
   version: '4.2.0-dev',
   production: false,
-  // baseURL: 'https://ede.cr.usgs.gov/nccwsc',
-  // serviceURL: 'https://ede.cr.usgs.gov/nccwsc-service',
-  baseURL: 'https://casc.usgs.gov',
-  serviceURL: 'https://casc.usgs.gov/casc-service',
+  baseURL: 'https://my-beta.usgs.gov/casc',
+  serviceURL: 'https://my-beta.usgs.gov/casc-service',
   // serviceURL: 'http://localhost:8000',
   sbmainURL: 'https://www.sciencebase.gov',
   projectsPath: '/projects/#',
