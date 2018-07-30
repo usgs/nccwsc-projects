@@ -13,7 +13,7 @@ import { Location } from '@angular/common';
 })
 export class TopicsComponent implements OnInit {
   sub = null;
-  topic = null;  
+  topic = null;
   page_title = null;
 
   topics = {
@@ -21,7 +21,7 @@ export class TopicsComponent implements OnInit {
     'education-modeling-tools': '588247c7e4b0b3d9add243a5',
     'landscapes': '5882456be4b0b3d9add24395',
     'native-communities': '588246dae4b0b3d9add243a1',
-    'water-ice': '5882464ce4b0b3d9add2439a',
+    'water-coasts-ice': '5882464ce4b0b3d9add2439a',
     'wildlife-plants': '58824220e4b0b3d9add2438b'
   }
   topic_names = {
@@ -29,7 +29,7 @@ export class TopicsComponent implements OnInit {
     'education-modeling-tools': 'Education, Modeling and Tools',
     'landscapes': 'Landscapes',
     'native-communities': 'Native Communities',
-    'water-ice': 'Water and Ice',
+    'water-coasts-ice': 'Water, Coasts and Ice',
     'wildlife-plants': 'Wildlife and Plants'
   }
 
