@@ -9,8 +9,8 @@ export const environment = {
   baseURL: 'https://my-beta.usgs.gov/casc',
   serviceURL: 'https://my-beta.usgs.gov/casc-service',
   // serviceURL: 'http://localhost:8000',
-  // sbmainURL: 'https://www.sciencebase.gov',
-  sbmainURL: 'https://beta.sciencebase.gov/',
+  sbmainURL: 'https://www.sciencebase.gov',
+  // sbmainURL: 'https://beta.sciencebase.gov/',
   projectsPath: '/projects/#',
   urlPrefix: '/casc/'
 };
