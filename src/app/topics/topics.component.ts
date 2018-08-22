@@ -13,23 +13,23 @@ import { Location } from '@angular/common';
 })
 export class TopicsComponent implements OnInit {
   sub = null;
-  topic = null;  
+  topic = null;
   page_title = null;
 
   topics = {
     'drought-fire-extremes': '588244b0e4b0b3d9add24391',
-    'education-modeling-tools': '588247c7e4b0b3d9add243a5',
+    'science-tools': '5b6212e7e4b03f4cf7599b82',
     'landscapes': '5882456be4b0b3d9add24395',
     'native-communities': '588246dae4b0b3d9add243a1',
-    'water-ice': '5882464ce4b0b3d9add2439a',
+    'water-coasts-ice': '5882464ce4b0b3d9add2439a',
     'wildlife-plants': '58824220e4b0b3d9add2438b'
   }
   topic_names = {
     'drought-fire-extremes': 'Drought, Fire and Extreme Weather',
-    'education-modeling-tools': 'Education, Modeling and Tools',
+    'science-tools': 'Science Tools for Managers',
     'landscapes': 'Landscapes',
     'native-communities': 'Native Communities',
-    'water-ice': 'Water and Ice',
+    'water-coasts-ice': 'Water, Coasts and Ice',
     'wildlife-plants': 'Wildlife and Plants'
   }
 

@@ -6,11 +6,12 @@
         <input type="text" id="queryTerms" [(ngModel)]="searchQuery" value="searchQuery" placeholder="Search terms ..." name="queryTerms">
       </div>
       <div class="field" *ngIf="topicsLoaded">
-        <ng-select placeholder="Topic"
+        <ng-select 
           [options]="topics"
           (selected)="onTopicsChange($event.value)"
           [(ngModel)]="selectedTopic"
-          [ngModelOptions]="{standalone: true}">
+          [ngModelOptions]="{standalone: true}"
+          placeholder="Topic">
         </ng-select>
       </div>
       <div class="field">
@@ -20,11 +21,18 @@
           (selected)="onSubtopicsChange($event.value)"
           [(ngModel)] = "selectedSubtopics"
           [ngModelOptions]="{standalone: true}"
-          placeholder="Subtopics" >
+          placeholder="Subtopics">
         </ng-select>
       </div>
       <div class="field" *ngIf="orgsLoaded">
-        <ng-select placeholder="CASCs" [multiple]="true" [(ngModel)]="selectedOrgs" [options]="orgs" (selected)="onOrgsChange($event.value)" [ngModelOptions]="{standalone: true}"></ng-select>
+        <ng-select
+          [multiple]="true"
+          [options]="orgs"
+          (selected)="onOrgsChange($event.value)"
+          [(ngModel)]="selectedOrgs"
+          [ngModelOptions]="{standalone: true}"
+          placeholder="CASCs  ">
+        </ng-select>
       </div>
       <div class="float-right buttons">
       	<button (click)="onSubmit()" class="btn btn-sm btn-success">Search</button>

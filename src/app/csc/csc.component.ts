@@ -17,8 +17,6 @@ export class CscComponent implements OnInit {
   sbId: any;
   cscProjectsList = [];
   filteredCscProjectsList = [];
-//  csc_url = ['https://my-beta.usgs.gov/nccwsc/csc-list'];
-  //csc_url = this.setButtonUrl();
   csc_url = environment.baseURL + '/casc-list';
   topics = ['All Topics'];
   fiscal_years = ['All Fiscal Years'];
@@ -100,7 +98,7 @@ export class CscComponent implements OnInit {
     }
 
 
-    //this.source.setSort([{ field: 'id', direction: 'asc' }]);
+    // this.source.setSort([{ field: 'id', direction: 'asc' }]);
   };
 
   ß
@@ -136,8 +134,9 @@ export class CscComponent implements OnInit {
     return buttonUrl;
   }
 
-  filterProjectsList(event:any = null) {
+  filterProjectsList(event: any = null) {
     this.filteredCscProjectsList = [];
+    // tslint:disable-next-line:forin
     for (var project in this.cscProjectsList) {
       var display = true;
       if (this.current_topic != 'All Topics') {
@@ -183,13 +182,11 @@ export class CscComponent implements OnInit {
     if (this.current_status != 'All Statuses') {
       params['status'] = this.current_status
     }
-    
     const url = this
         .router
         .createUrlTree([params], {relativeTo: this.aroute})
         .toString();
-    
-    this.location.replaceState(url);    
+    this.location.replaceState(url);
   }
 
 
@@ -214,6 +211,7 @@ export class CscComponent implements OnInit {
     this.title = this.csc_ids[this.sbId];
     this.localJson.loadCscProjects(this.sbId).subscribe(data => {
       this.cscProjectsList = data;
+        // tslint:disable-next-line:forin
         for (var project in this.cscProjectsList) {
           for (var topic in this.cscProjectsList[project].topics) {
             if (this.topics.indexOf(this.cscProjectsList[project].topics[topic]) < 0) {
@@ -233,7 +231,7 @@ export class CscComponent implements OnInit {
           this.dataLoading = false;
 
 
-          //principal investigators
+          // principal investigators
           this.cscProjectsList[project].investigators_formatted = '';
 
           for (var pi of this.cscProjectsList[project].contacts.principal_investigators) {
@@ -242,7 +240,7 @@ export class CscComponent implements OnInit {
 
           }
 
-          //topics
+          // topics
           this.cscProjectsList[project].topics_formatted = '';
           for (var t of this.cscProjectsList[project].topics) {
 
@@ -250,7 +248,7 @@ export class CscComponent implements OnInit {
 
           }
 
-          //Contains
+          // contains
           this.cscProjectsList[project].contains = '';
 
           if (this.cscProjectsList[project].hasFolders) {
@@ -260,25 +258,24 @@ export class CscComponent implements OnInit {
             this.cscProjectsList[project].contains += '&nbsp&nbsp<span class = "icons" ><i class="icon-map fa fa-map fa-2x" title="This project has maps." aria-hidden="true"></i></span>';
 
           }
-          //Status
+          // status
           if (!this.cscProjectsList[project].status) {
-
             this.cscProjectsList[project].status = "N/A";
           }
         }
 
-      this.filterProjectsList();  
+      this.filterProjectsList();
 
       this.filteredCscProjectsList.sort((a, b) => {
-        function sortByPI(a, b) {
-          let api = a.contacts.principal_investigators[0].name;
-          let bpi = b.contacts.principal_investigators[0].name;
+        // function sortByPI(a, b) {
+        //   let api = a.contacts.principal_investigators[0].name;
+        //   let bpi = b.contacts.principal_investigators[0].name;
 
-          if(api == bpi) {
-            return sortByTitle(a, b);
-          }
-          return (api < bpi) ? -1 : (api > bpi) ? 1 : 0;
-        }
+        //   if(api == bpi) {
+        //     return sortByTitle(a, b);
+        //   }
+        //   return (api < bpi) ? -1 : (api > bpi) ? 1 : 0;
+        // }
 
         function sortByTitle(a, b) {
           if (a.title == b.title) {
@@ -287,8 +284,11 @@ export class CscComponent implements OnInit {
           return (a.title < b.title) ? -1 : 1;
         }
 
+        // if (a.fiscal_year == b.fiscal_year) {
+        //   return sortByPI(a, b);
+        // }
         if (a.fiscal_year == b.fiscal_year) {
-          return sortByPI(a, b);
+          return sortByTitle(a, b);
         }
         return (a.fiscal_year > b.fiscal_year) ? -1 : 1;
       });

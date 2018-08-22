@@ -120,10 +120,8 @@ export class SearchNavComponent implements OnInit {
       topic = topic + encodeURIComponent(this.topics[this.selectedTopic]['label']);
     }
     var organizations = '&organizations=';
-    if (this.selectedOrgs.length > 0) {
-      console.log('Got an org')
+    if ((this.selectedOrgs.length > 0) && (this.selectedOrgs[0] != null)) {
       for (var org of this.selectedOrgs) {
-        console.log(org)
         organizations = organizations + encodeURIComponent(this.orgs[org]['label']) + ',';
       }
       organizations = organizations.substring(0, organizations.length - 1)
@@ -131,11 +129,10 @@ export class SearchNavComponent implements OnInit {
     if (this.searchQuery && this.searchQuery.length > 0) {
       query = query + encodeURIComponent(this.searchQuery);
     }
-    queryString = query + topic + subtopics + organizations;      
-    this.searchService.searchProjects(queryString).subscribe(results => {      
+    queryString = query + topic + subtopics + organizations;
+    this.searchService.searchProjects(queryString).subscribe(results => {
       this.updateFilters();
-    });    
-    
+    });
   }
 
   ngOnInit() {
