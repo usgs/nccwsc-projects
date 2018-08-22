@@ -1,5 +1,5 @@
 export const environment = {
-  version: '4.2.0',
+  version: '4.3.0',
   production: true,
   baseURL: 'https://casc.usgs.gov',
   serviceURL: 'https://casc.usgs.gov/casc-service',
