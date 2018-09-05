@@ -155,6 +155,7 @@ export class CscComponent implements OnInit {
       this.filteredCscProjectsList.push(this.cscProjectsList[project]);
     }
     this.updateUrl()
+    this.sortList()
   }
 
   //TODO: put this code in a utility function/service
@@ -176,6 +177,34 @@ export class CscComponent implements OnInit {
     this.location.replaceState(url);
   }
 
+  sortList () {
+    this.filteredCscProjectsList.sort((a, b) => {
+      // function sortByPI(a, b) {
+      //   let api = a.contacts.principal_investigators[0].name;
+      //   let bpi = b.contacts.principal_investigators[0].name;
+
+      //   if(api == bpi) {
+      //     return sortByTitle(a, b);
+      //   }
+      //   return (api < bpi) ? -1 : (api > bpi) ? 1 : 0;
+      // }
+
+      function sortByTitle(a, b) {
+        if (a.title == b.title) {
+          return 0;
+        }
+        return (a.title < b.title) ? -1 : 1;
+      }
+
+      // if (a.fiscal_year == b.fiscal_year) {
+      //   return sortByPI(a, b);
+      // }
+      if (a.fiscal_year == b.fiscal_year) {
+        return sortByTitle(a, b);
+      }
+      return (a.fiscal_year > b.fiscal_year) ? -1 : 1;
+    });
+  }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
@@ -247,34 +276,8 @@ export class CscComponent implements OnInit {
           }
         }
 
-      this.filterProjectsList();
-
-      this.filteredCscProjectsList.sort((a, b) => {
-        // function sortByPI(a, b) {
-        //   let api = a.contacts.principal_investigators[0].name;
-        //   let bpi = b.contacts.principal_investigators[0].name;
-
-        //   if(api == bpi) {
-        //     return sortByTitle(a, b);
-        //   }
-        //   return (api < bpi) ? -1 : (api > bpi) ? 1 : 0;
-        // }
-
-        function sortByTitle(a, b) {
-          if (a.title == b.title) {
-            return 0;
-          }
-          return (a.title < b.title) ? -1 : 1;
-        }
-
-        // if (a.fiscal_year == b.fiscal_year) {
-        //   return sortByPI(a, b);
-        // }
-        if (a.fiscal_year == b.fiscal_year) {
-          return sortByTitle(a, b);
-        }
-        return (a.fiscal_year > b.fiscal_year) ? -1 : 1;
-      });
+      this.filterProjectsList()
+      this.sortList()
 
     });
   }
