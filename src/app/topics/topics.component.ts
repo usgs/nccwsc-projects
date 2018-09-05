@@ -37,8 +37,8 @@ export class TopicsComponent implements OnInit {
     columns: {
       fiscal_year: {
         title: 'Funding Year',
-        //sortDirection:'desc',
-        width:'7%',
+        // sortDirection:'desc',
+        width: '8%',
       },
       title: {
         title: 'Title',
@@ -47,25 +47,25 @@ export class TopicsComponent implements OnInit {
       },
         csc_name: {
         title: 'CASC',
-        width:'10%',
+        width: '10%',
       },
       subtopics_formatted: {
         title: 'Subtopic(s)',
-        width:'10%',
-        type:'html',
+        width: '10%',
+        type: 'html',
       },
       types: {
         title: 'Types',
-        width:'8%',
+        width: '7%',
       },
       status: {
         title: 'Status',
-        width:'10%',
+        width: '7%',
       },
       contains: {
         title: 'Contains',
         type: 'html',
-        width:'5%',
+        width: '7%',
       }
     },
     actions: false,
@@ -73,7 +73,7 @@ export class TopicsComponent implements OnInit {
     pager:{
       display:false
     }
-    //this.source.setSort([{ field: 'id', direction: 'asc' }]);
+    // this.source.setSort([{ field: 'id', direction: 'asc' }]);
   };
 
 
@@ -265,10 +265,9 @@ export class TopicsComponent implements OnInit {
           for (var project in this.filteredProjectsList) {
             this.projectsList[project].csc_name = this.projectsList[project].csc['name'];
 
-            if (!this.projectsList[project].fiscal_year) {
-
-              //this.projectsList[ project].fiscal_year="N/A";
-            }
+            // if (!this.projectsList[project].fiscal_year) {
+            //   this.projectsList[ project].fiscal_year="N/A";
+            // }
 
             //subtopics
             this.projectsList[project].subtopics_formatted = '';
@@ -288,17 +287,16 @@ export class TopicsComponent implements OnInit {
 
             }
             //Contains
-            this.projectsList[project].contains = '';
+            this.projectsList[project].contains = '<div align="center">';
 
             if (this.projectsList[project].hasFolders) {
-              this.projectsList[project].contains += '<span class = "icons"><i  class="icon-products fa fa-folder fa-2x" title="This project has products." aria-hidden="true"></i></span>';
+              this.projectsList[project].contains += '<i class="fa fa-folder fa-lg" title="This project has products." aria-hidden="true"></i>';
             }
             if (this.projectsList[project].hasMaps) {
-              this.projectsList[project].contains += '&nbsp&nbsp<span class = "icons" ><i class="icon-map fa fa-map fa-2x" title="This project has maps." aria-hidden="true"></i></span>';
-
+              this.projectsList[project].contains += '&nbsp&nbsp<i class="fa fa-map fa-lg" title="This project has maps." aria-hidden="true"></i>';
             }
 
-
+            this.projectsList[project].contains += '</div>';
           }//end for project
 
         }
