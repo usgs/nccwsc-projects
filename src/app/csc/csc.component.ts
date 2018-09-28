@@ -54,41 +54,32 @@ export class CscComponent implements OnInit {
     columns: {
       fiscal_year: {
         title: 'Funding Year',
-        //sortDirection:'desc',
-        width: '5%',
+        // sortDirection:'desc',
+        width: '8%',
       },
       title: {
         title: 'Title',
         type: 'custom',
         renderComponent: TitleLinkComponent,
       },
-
-
       investigators_formatted: {
         title: 'Principal Investigator(s)',
         type: 'html',
         width: '25%',
-
       },
-
       topics_formatted: {
         title: 'Topic(s)',
         width: '10%',
         type: 'html',
       },
-
-
       status: {
         title: 'Status',
-        width: '10%',
-
+        width: '7%',
       },
       contains: {
         title: 'Contains',
         type: 'html',
-        width: '10%',
-
-
+        width: '7%',
       }
     },
     actions: false,
@@ -96,12 +87,8 @@ export class CscComponent implements OnInit {
     pager: {
       display: false
     }
-
-
     // this.source.setSort([{ field: 'id', direction: 'asc' }]);
   };
-
-  ß
 
   constructor(private route: ActivatedRoute, private localJson: LocalJsonService, private router: Router, private location: Location, private aroute: ActivatedRoute) {
   }
@@ -168,6 +155,7 @@ export class CscComponent implements OnInit {
       this.filteredCscProjectsList.push(this.cscProjectsList[project]);
     }
     this.updateUrl()
+    this.sortList()
   }
 
   //TODO: put this code in a utility function/service
@@ -189,6 +177,34 @@ export class CscComponent implements OnInit {
     this.location.replaceState(url);
   }
 
+  sortList () {
+    this.filteredCscProjectsList.sort((a, b) => {
+      // function sortByPI(a, b) {
+      //   let api = a.contacts.principal_investigators[0].name;
+      //   let bpi = b.contacts.principal_investigators[0].name;
+
+      //   if(api == bpi) {
+      //     return sortByTitle(a, b);
+      //   }
+      //   return (api < bpi) ? -1 : (api > bpi) ? 1 : 0;
+      // }
+
+      function sortByTitle(a, b) {
+        if (a.title == b.title) {
+          return 0;
+        }
+        return (a.title < b.title) ? -1 : 1;
+      }
+
+      // if (a.fiscal_year == b.fiscal_year) {
+      //   return sortByPI(a, b);
+      // }
+      if (a.fiscal_year == b.fiscal_year) {
+        return sortByTitle(a, b);
+      }
+      return (a.fiscal_year > b.fiscal_year) ? -1 : 1;
+    });
+  }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
@@ -235,63 +251,33 @@ export class CscComponent implements OnInit {
           this.cscProjectsList[project].investigators_formatted = '';
 
           for (var pi of this.cscProjectsList[project].contacts.principal_investigators) {
-
             this.cscProjectsList[project].investigators_formatted = this.cscProjectsList[project].investigators_formatted + pi.name + '<i>(' + pi.organization + '</i>)<br>';
-
           }
 
           // topics
           this.cscProjectsList[project].topics_formatted = '';
           for (var t of this.cscProjectsList[project].topics) {
-
             this.cscProjectsList[project].topics_formatted = this.cscProjectsList[project].topics_formatted + t + '<br>';
-
           }
 
           // contains
-          this.cscProjectsList[project].contains = '';
+          this.cscProjectsList[project].contains = '<div align="center">';
 
           if (this.cscProjectsList[project].hasFolders) {
-            this.cscProjectsList[project].contains += '<span class = "icons"><i  class="icon-products fa fa-folder fa-2x" title="This project has products." aria-hidden="true"></i></span>';
+            this.cscProjectsList[project].contains += '<i class="fa fa-folder fa-lg" title="This project has products." aria-hidden="true"></i>';
           }
           if (this.cscProjectsList[project].hasMaps) {
-            this.cscProjectsList[project].contains += '&nbsp&nbsp<span class = "icons" ><i class="icon-map fa fa-map fa-2x" title="This project has maps." aria-hidden="true"></i></span>';
-
+            this.cscProjectsList[project].contains += '&nbsp&nbsp<i class="fa fa-map fa-lg" title="This project has maps." aria-hidden="true"></i>';
           }
+          this.cscProjectsList[project].contains += '</div>'
           // status
           if (!this.cscProjectsList[project].status) {
-            this.cscProjectsList[project].status = "N/A";
+            this.cscProjectsList[project].status = 'N/A';
           }
         }
 
-      this.filterProjectsList();
-
-      this.filteredCscProjectsList.sort((a, b) => {
-        // function sortByPI(a, b) {
-        //   let api = a.contacts.principal_investigators[0].name;
-        //   let bpi = b.contacts.principal_investigators[0].name;
-
-        //   if(api == bpi) {
-        //     return sortByTitle(a, b);
-        //   }
-        //   return (api < bpi) ? -1 : (api > bpi) ? 1 : 0;
-        // }
-
-        function sortByTitle(a, b) {
-          if (a.title == b.title) {
-            return 0;
-          }
-          return (a.title < b.title) ? -1 : 1;
-        }
-
-        // if (a.fiscal_year == b.fiscal_year) {
-        //   return sortByPI(a, b);
-        // }
-        if (a.fiscal_year == b.fiscal_year) {
-          return sortByTitle(a, b);
-        }
-        return (a.fiscal_year > b.fiscal_year) ? -1 : 1;
-      });
+      this.filterProjectsList()
+      this.sortList()
 
     });
   }

@@ -116,11 +116,9 @@
 			<!--Contains-->
 			<div class="card-text">
 				<b>Contains:</b>
-				<span> <span class="icons" *ngIf="project.hasFolders"> <i class="icon-products fa fa-folder fa-2x" title="This project has products." aria-hidden="true"></i> </span> <span *ngIf="project.hasMaps"> <i class="icon-map fa fa-map fa-2x" title="This project has maps." aria-hidden="true"></i> </span> </span>
-<span class="icons" *ngIf="!project.hasFolders&&!project.hasMaps"> N/A </span>
-
-
-
+        <span class="icons" *ngIf="project.hasFolders"> <i class="fa fa-folder fa-lg" title="This project has products." aria-hidden="true"></i></span>
+        <span *ngIf="project.hasMaps"> <i class="fa fa-map fa-lg" title="This project has maps." aria-hidden="true"></i></span>
+        <span class="icons" *ngIf="!project.hasFolders&&!project.hasMaps"> N/A </span>
 			</div>
 
 		</div>

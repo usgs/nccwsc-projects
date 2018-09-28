@@ -54,18 +54,17 @@ li.icons {
   margin-right: auto !important;
 }
 
-.icon-map,
-.icon-products {
-  color: #CCC !important;
-}
-
 th{
+  text-align: center;
+}
+td {
   text-align: center;
 }
 
 table {
   table-layout: fixed;
   word-wrap: break-word;
+
 }
 
 select {
@@ -109,10 +108,6 @@ div.filter-bar {
   }
 }
 
-select {
-
-}
-
 div .card{
     margin-bottom: 1em !important;
     margin-left:0.3em;
@@ -125,15 +120,11 @@ div .card{
 :host /deep/ th {
   text-align: center;
   vertical-align: middle !important;
-
 }
-
 :host /deep/ ng2-smart-table  {
   font-size:18px;
   border:none;
 }
-:host /deep/ .fa-2x {
-  color: #CCC !important;
-
-
+:host /deep/ .fa-lg {
+  color: #666 !important;
 }

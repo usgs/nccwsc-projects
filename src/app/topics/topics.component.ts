@@ -37,8 +37,8 @@ export class TopicsComponent implements OnInit {
     columns: {
       fiscal_year: {
         title: 'Funding Year',
-        //sortDirection:'desc',
-        width:'7%',
+        // sortDirection:'desc',
+        width: '8%',
       },
       title: {
         title: 'Title',
@@ -47,25 +47,25 @@ export class TopicsComponent implements OnInit {
       },
         csc_name: {
         title: 'CASC',
-        width:'10%',
+        width: '10%',
       },
       subtopics_formatted: {
         title: 'Subtopic(s)',
-        width:'10%',
-        type:'html',
+        width: '10%',
+        type: 'html',
       },
       types: {
         title: 'Types',
-        width:'8%',
+        width: '7%',
       },
       status: {
         title: 'Status',
-        width:'10%',
+        width: '7%',
       },
       contains: {
         title: 'Contains',
         type: 'html',
-        width:'5%',
+        width: '7%',
       }
     },
     actions: false,
@@ -73,7 +73,7 @@ export class TopicsComponent implements OnInit {
     pager:{
       display:false
     }
-    //this.source.setSort([{ field: 'id', direction: 'asc' }]);
+    // this.source.setSort([{ field: 'id', direction: 'asc' }]);
   };
 
 
@@ -146,6 +146,7 @@ export class TopicsComponent implements OnInit {
       this.filteredProjectsList.push(this.projectsList[project]);      
     }
     this.updateUrl()
+    this.sortList()
   }
 
   showAllProjects() {
@@ -190,7 +191,34 @@ export class TopicsComponent implements OnInit {
         .createUrlTree([params], {relativeTo: this.aroute})
         .toString();
     
-    this.location.replaceState(url);    
+    this.location.replaceState(url);
+  }
+
+  sortList() {
+    // First sorts projects by year, then by title
+    this.filteredProjectsList.sort((a, b) => {
+      // function sortByCsc(a, b) {
+      //   let acsc = a.csc_name;
+      //   let bcsc = b.csc_name;
+
+      //   if(acsc == bcsc) {
+      //     return sortByTitle(a, b);
+      //   }
+      //   return (acsc < bcsc) ? -1 : (acsc > bcsc) ? 1 : 0;
+      // }
+
+      function sortByTitle(a, b) {
+        if (a.title == b.title) {
+          return 0;
+        }
+        return (a.title < b.title) ? -1 : 1;
+      }
+
+      if (a.fiscal_year == b.fiscal_year) {
+        return sortByTitle (a, b);
+      }
+      return (a.fiscal_year > b.fiscal_year) ? -1 : 1;
+    });
   }
 
   ngOnInit() {
@@ -259,18 +287,17 @@ export class TopicsComponent implements OnInit {
           this.filteredProjectsList.push(this.projectsList[project]);
           this.dataLoading = false;
 
-          //Prepares data for sortable table
+          // Prepares data for sortable table
 
-          //Cscs and year
+          // cscs and year
           for (var project in this.filteredProjectsList) {
             this.projectsList[project].csc_name = this.projectsList[project].csc['name'];
 
-            if (!this.projectsList[project].fiscal_year) {
+            // if (!this.projectsList[project].fiscal_year) {
+            //   this.projectsList[ project].fiscal_year="N/A";
+            // }
 
-              //this.projectsList[ project].fiscal_year="N/A";
-            }
-
-            //subtopics
+            // subtopics
             this.projectsList[project].subtopics_formatted = '';
             for (var st of this.projectsList[project].subtopics) {
               if ((this.isOnTopic(st)) && this.projectsList[project].subtopics_formatted.indexOf(st) < 0) {
@@ -278,58 +305,34 @@ export class TopicsComponent implements OnInit {
               }
             }
 
-            //status
+            // status
             if (!this.projectsList[project].status) {
               this.projectsList[project].status = "N/A";
             }
-            //type
+            //t ype
             if (!this.projectsList[project].types) {
               this.projectsList[project].types = "N/A";
 
             }
-            //Contains
-            this.projectsList[project].contains = '';
+            // contains
+            this.projectsList[project].contains = '<div align="center">';
 
             if (this.projectsList[project].hasFolders) {
-              this.projectsList[project].contains += '<span class = "icons"><i  class="icon-products fa fa-folder fa-2x" title="This project has products." aria-hidden="true"></i></span>';
+              this.projectsList[project].contains += '<i class="fa fa-folder fa-lg" title="This project has products." aria-hidden="true"></i>';
             }
             if (this.projectsList[project].hasMaps) {
-              this.projectsList[project].contains += '&nbsp&nbsp<span class = "icons" ><i class="icon-map fa fa-map fa-2x" title="This project has maps." aria-hidden="true"></i></span>';
-
+              this.projectsList[project].contains += '&nbsp&nbsp<i class="fa fa-map fa-lg" title="This project has maps." aria-hidden="true"></i>';
             }
 
-
+            this.projectsList[project].contains += '</div>';
           }//end for project
 
         }
-           //On Load filters by projects
-      this.current_type = 'Project';
-      this.filterProjectsList();
-
-      //On load sorts projects by year, then by CSC, then by title
-        this.filteredProjectsList.sort((a, b) => {
-        function sortByCsc(a, b) {
-          let acsc = a.csc_name;
-          let bcsc = b.csc_name;
-
-          if(acsc == bcsc) {
-            return sortByTitle(a, b);
-          }
-          return (acsc < bcsc) ? -1 : (acsc > bcsc) ? 1 : 0;
-        }
-
-        function sortByTitle(a, b) {
-          if (a.title == b.title) {
-            return 0;
-          }
-          return (a.title < b.title) ? -1 : 1;
-        }
-
-        if (a.fiscal_year == b.fiscal_year) {
-          return sortByCsc (a, b);
-        }
-        return (a.fiscal_year > b.fiscal_year) ? -1 : 1;
-      });
+    
+      this.current_type = 'Project'
+      this.filterProjectsList()
+      this.sortList()
+      
     });
   }
 }
