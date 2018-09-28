@@ -4,7 +4,7 @@
 // The list of which env maps to which file can be found in `angular-cli.json`.
 
 export const environment = {
-  version: '4.3.0-dev',
+  version: '4.3.1-dev',
   production: false,
   baseURL: 'https://my-beta.usgs.gov/casc',
   serviceURL: 'https://my-beta.usgs.gov/casc-service',
