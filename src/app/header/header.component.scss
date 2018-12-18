@@ -1,4 +1,10 @@
+.usgs-vis-header {
+    background: #00264C;
+    .brandContainer{
+        height:100px
+    }
 
+}
 .navbar {
     margin-bottom: 0px !important;
     //background-color: black;
@@ -9,6 +15,14 @@
     z-index: 10;
 }
 
+.site-name-wrapper-mobile {
+    font-size: 21px;
+    align-self:center;
+    margin-left: 5px;
+    padding-left:15px;
+    display:none;
+}
+
 .navbarsExampleDefault {
   width: 1001px !important;
 }
@@ -16,17 +30,20 @@
 div.branding {
     background: black !important;
     width: 100%;
-    margin: 0px;
+    
 }
 
 .col-xs-12 {
     padding: 0px !important;
 }
 #usgs_logo {
-    margin-right: 15px;
-    width: 120px;
+    /* margin-right: 15px; */
+    /* width: 120px; */
+    margin: 18px 0 0 18px;
     float: left;
-    padding: 10px 0;
+    /* padding: 10px 0; */
+    min-height:50px;
+    height: 65px
 }
 #top-site-name {
     font-size: 32px;
@@ -68,8 +85,9 @@ div.branding {
     background: transparent !important;
     background-color: #333 !important;
 }
-nav li{
-  margin-bottom: 0.3em;
+nav li {
+    margin-top: 0.2em;
+    margin-bottom: 0.2em;
 }
 nav li a{
     color: rgba(255, 255, 255, .9) !important;
@@ -98,13 +116,13 @@ nav li a:hover {
     white-space: normal;
 }
 
-.container {
+/* .container {
     margin-left: 0px;
     margin-right: 0px;
     padding-left: 0px;
     padding-right: 0px;
     width: 100%;
-}
+} */
 
 .navbar-brand{
     padding-top: 0px !important;
@@ -128,8 +146,9 @@ nav li a:hover {
     }
     .navbar {
       height: auto !important;
+      padding: 0 1rem;
     }
-
+    
     .bg-inverse {
       background-color:#333!important;
       height: 49px;
@@ -138,12 +157,21 @@ nav li a:hover {
     }
 
     .navbar-toggler-right {
-     top: -40px;
+     top: -50px;
+    }
+    .site-name-wrapper-mobile {
+        display: inline-block;
+    }
+    .site-name-wrapper {
+        display:none;
+    }
+    div.branding {
+        display:none;
     }
 
-    .branding {
+    /* .branding {
     height: 119px;
-      }
+      } */
 }
 
 @media (max-width: 767px) {
