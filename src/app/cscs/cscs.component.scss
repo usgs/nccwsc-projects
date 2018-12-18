@@ -1,16 +1,32 @@
-.btn.btn-success {
-  width: 20em !important;
+.btn { 
+  width: 80% !important;
+  /* margin-left: 10%; */
   margin-bottom: 1em;
+  border: none;
+  width: 280px;
+}
+.btn.btn-success {
+  /* width: 20em !important; */
+  background-color: #71A100
 }
 
 .btn.btn-primary {
-  width: 80% !important;
-  margin-left: 10%;
-  margin-bottom: 1em;
+  background-color: #00264C
 }
 
 .btn.btn-info {
-  width: 80% !important;
-  margin-left: 10%;
-  margin-bottom: 1em;  
+  background-color: #71A100
+}
+.button-group {
+  padding: 10px 0;
+}
+.container {
+  padding: 8px 0;
+}
+
+@media (max-width: 1200px) {
+  .btn {
+    height: 60px;
+    white-space: normal;
+  }
 }
