@@ -1,22 +1,28 @@
-<div class="row container">
-  <div class="col-md-12">
-    <h2>Advanced Search</h2>
-    <button class="btn btn-success nav-link" [routerLink]="['/search']">Advanced Search</button>
+<div class="container">
+  <div class="button-group row">
+    <div class="col-md-12">
+      <h2>Advanced Search</h2>
+    </div>
+    <div class="col-md-4">
+      <button class="btn btn-success nav-link" [routerLink]="['/search']">Advanced Search</button>
+    </div>
   </div>
 
-  <div class="col-md-12">
-    <h2>CASC Landing Pages</h2>
-  </div>
-  <div class="col-md-4" *ngFor="let csc of csc_ids">
-    <button class="btn btn-primary nav-link" [routerLink]="['/casc/', csc.id]">{{ csc.name}}</button>  
-  </div>
-
-
-  <div class="col-md-12">
-    <h2>Science Topic Landing Pages</h2>
-  </div>
-  <div class="col-md-6" *ngFor="let topic of topic_ids">
-    <button class="btn btn-info nav-link" [routerLink]="['/topics/', topic.id]">{{ topic.name }}</button>  
+  <div class="button-group row">
+    <div class="col-md-12">
+      <h2>CASC Landing Pages</h2>
+    </div>
+    <div class="col-md-4" *ngFor="let csc of csc_ids">
+      <button class="btn btn-primary nav-link" [routerLink]="['/casc/', csc.id]">{{ csc.name}}</button>  
+    </div>
   </div>
 
+  <div class="button-group row">
+    <div class="col-md-12">
+      <h2>Science Topic Landing Pages</h2>
+    </div>
+    <div class="col-md-4" *ngFor="let topic of topic_ids">
+      <button class="btn btn-info nav-link" [routerLink]="['/topics/', topic.id]">{{ topic.name }}</button>  
+    </div>
+  </div>
 </div>
