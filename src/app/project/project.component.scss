@@ -152,9 +152,12 @@ div.image_container {
     margin: 0;
     padding: 0;
     width: 100%;
-    top: 105px;
+    top: 218px;
     z-index: 0;
 }
+@media(max-width:1319px) { div.image_container {top: 197px; } }
+@media(max-width:1090px) { div.image_container {top: 100px; } }
+
 
 img.project_image {
     max-width: 100%;

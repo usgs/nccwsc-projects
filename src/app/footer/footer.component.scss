@@ -28,6 +28,10 @@ ul.legal_info {
 
 
 .footer {
+  .hf-container .row {
+    margin-left:10 !important;
+    
+  }
   .nav-row {
     padding-top:10px;
   }
@@ -67,7 +71,7 @@ ul.legal_info {
   .footer-line{
     display:none;
   }
-  .container{
+  .hf-container{
     display:flex;
     flex-direction: row;
     justify-content: space-around;

@@ -31,6 +31,10 @@ div.branding {
     background: black !important;
     width: 100%;
     
+    z-index: 10;
+    position: relative;
+    
+      
 }
 
 .col-xs-12 {
@@ -135,7 +139,9 @@ nav li a:hover {
 	}
 }
 
-
+.navbar-toggler-right {
+    //right: auto;
+}
 @media (max-width: 991px) {
     #top-site-name {
       font-size: 18px;
@@ -194,7 +200,11 @@ nav li a:hover {
     margin-top: 0;
   }
 }
-
+@media (max-width: 565px) {
+    .site-name-wrapper-mobile {
+        display:none;
+    }
+}
 /*Custom media query for Small viewport (below 415)*/
 @media (max-width: 415px) {
   #top-site-name {
