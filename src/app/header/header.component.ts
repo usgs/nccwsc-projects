@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NccwscDrupalService } from '../nccwsc-drupal.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { environment } from '../../environments/environment';
@@ -15,7 +14,7 @@ export class HeaderComponent implements OnInit {
   isNavbarCollapsed = true;
   isCollapsed = true
   baseURL: string
-  constructor(private nccwscDrupal: NccwscDrupalService) { }
+  constructor() { }
 
   fixLink(link) {
     if (link === environment.baseURL) {
@@ -34,10 +33,6 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-     this.nccwscDrupal.loadMenu().subscribe(data => {
-       data[0].url = environment.baseURL
-       this.nccwscMenu = data;
-     });
      this.baseURL = environment.baseURL
   }
 }
