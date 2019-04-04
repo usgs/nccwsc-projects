@@ -1,3 +1,8 @@
+h2 {
+    font-size: 1.5em;
+    font-family: 'Raleway';
+}
+
 .btn { 
   width: 80% !important;
   /* margin-left: 10%; */
@@ -5,19 +10,21 @@
   border: none;
   width: 280px;
   cursor: pointer;
+    font-family: 'Roboto Condensed';
+    letter-spacing: .02em;
   
 }
 .btn.btn-success {
   /* width: 20em !important; */
-  background-color: #71A100
+  background-color: #1E90FF
 }
 
 .btn.btn-primary {
-  background-color: #00264C
+  background-color: #939393
 }
 
 .btn.btn-info {
-  background-color: #71A100
+  background-color: #1E90FF
 }
 .button-group {
   padding: 10px 0;
@@ -30,5 +37,6 @@
   .btn {
     height: 60px;
     white-space: normal;
+      font-size: 1.25em;
   }
 }

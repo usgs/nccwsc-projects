@@ -1,143 +1,39 @@
-.usgs-vis-header {
-    background: #00264C;
-    .brandContainer{
-        height:100px
+
+.brandContainer{
+    background: url(../../assets/images/atmosphere.jpg);
+background-repeat: no-repeat;
+    height:325px;
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    -webkit-box-shadow: 0px 3px 6px 0px rgba(179,182,189,1);
+-moz-box-shadow: 0px 3px 6px 0px rgba(179,182,189,1);
+box-shadow: 0px 3px 6px 0px rgba(179,182,189,1);
+
+        h1, h2 {
+            color: #fff;
+            font-family: 'Raleway', sans-serif;
+            
+        }
+    
+    h1   {
+        font-size: 4em;
+    }
+        
     }
 
-}
-.navbar {
-    margin: 0px auto !important;
-    //background-color: black;
-    background-color: #333 !important;
-    height: 55px;
-    border-radius: 0px;
-    border-color: black;
-    z-index: 10;
-    width:100%;
-    
-}
-
-.site-name-wrapper-mobile {
-    font-size: 21px;
-    align-self:center;
-    margin-left: 5px;
-    padding-left:15px;
-    display:none;
-}
-
-.navbarsExampleDefault {
-  width: 1001px !important;
-}
-
-div.branding {
-    background: black !important;
-    width: 100%;
-    
-    z-index: 10;
-    position: relative;
-    
-      
-}
-
-nav .hf-container {
-    width:1140px;
-}
-
-.col-xs-12 {
-    padding: 0px !important;
-}
-#usgs_logo {
-    /* margin-right: 15px; */
-    /* width: 120px; */
-    margin: 18px 0 0 18px;
-    float: left;
-    /* padding: 10px 0; */
-    min-height:50px;
-    height: 65px
-}
-#top-site-name {
-    font-size: 32px;
-    color: white;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 400;
-    line-height: 2em;
-}
-
-.dropdown-menu {
-    background: #333 !important;
-    min-width: 18rem;
-    border-radius: 0.2rem;
-}
-
-.dropdown-menu a {
-    font-size: 18px !important;
-}
-
-.top-menu {
-    background-color: #333;
-}
-.top-menu li a {
-    color: rgba(255, 255, 255, .9) !important;
-}
-.top-menu li a:hover {
-    color: rgba(255, 255, 255, .5) !important;
-    background-color: #333 !important;
-    background: transparent !important;
-    text-decoration: none;
-    cursor: pointer;
-}
-.top-menu li a:active {
-    color: white;
-    background: transparent !important;
-    background-color: #333 !important;
-}
-.top-menu li a:visited {
-    background: transparent !important;
-    background-color: #333 !important;
-}
-nav li {
-    margin-top: 0.2em;
-    margin-bottom: 0.2em;
-}
-nav li a{
-    color: rgba(255, 255, 255, .9) !important;
-    padding-top: 15px;
-    padding-bottom: 18px;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 18px;
-    padding-right: 16px;
-    padding-left: 16px;
-    cursor: pointer;
-    text-decoration: none;
-}
-nav li a:hover {
-    color: rgba(255, 255, 255, .5) !important;
-}
 
 
-.dropdown-toggle::after,.dropdown-toggle::before {
-    height: 4px !important;
-    width: 4px !important;
-    border-top: 4px solid;
-    border-right: 4px solid transparent;
-    border-left: 4px solid transparent;
-}
+
+
 .navbar-brand {
     white-space: normal;
-}
-
-/* .container {
-    margin-left: 0px;
-    margin-right: 0px;
-    padding-left: 0px;
-    padding-right: 0px;
     width: 100%;
-} */
-
-.navbar-brand{
-    padding-top: 0px !important;
-    padding-bottom: 0px !important;
+    margin: 0;
 }
+
+
+
 
 @media (max-width: 1199px) {
 		#top-site-name{
@@ -179,9 +75,7 @@ nav li a:hover {
         display:none;
     }
 
-    /* .branding {
-    height: 119px;
-      } */
+    
 }
 
 @media (max-width: 767px) {
@@ -193,12 +87,7 @@ nav li a:hover {
   .brandContainer {
     width: auto;
   }
-  .site-name-wrapper {
-    width: calc(100% - 216px);
-    padding-left: 0px;
-    padding-right: 0px;
-    position: relative;
-  }
+
 
   #top-site-name {
     margin-top: 0;
@@ -211,10 +100,7 @@ nav li a:hover {
 }
 /*Custom media query for Small viewport (below 415)*/
 @media (max-width: 415px) {
-  #top-site-name {
-    font-size: 15px !important;
-    line-height: 1.5;
-  }
+    
 }
 
 
@@ -225,3 +111,11 @@ nav li a:hover {
     line-height: 1.2;
   }
 }
+
+
+
+
+
+
+ 
+
