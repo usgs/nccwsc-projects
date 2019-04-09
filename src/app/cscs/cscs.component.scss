@@ -1,6 +1,6 @@
 h2 {
     font-size: 1.5em;
-    font-family: 'Raleway';
+    font-family: 'Source Sans Pro';
 }
 
 .btn { 
@@ -10,21 +10,21 @@ h2 {
   border: none;
   width: 280px;
   cursor: pointer;
-    font-family: 'Roboto Condensed';
-    letter-spacing: .02em;
+    font-family: 'Source Sans Pro';
+   
   
 }
 .btn.btn-success {
   /* width: 20em !important; */
-  background-color: #1E90FF
+  background-color: #71A100
 }
 
 .btn.btn-primary {
-  background-color: #939393
+  background-color: #002640
 }
 
 .btn.btn-info {
-  background-color: #1E90FF
+  background-color: #71A100
 }
 .button-group {
   padding: 10px 0;
