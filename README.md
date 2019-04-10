@@ -17,7 +17,7 @@ Environment settings are stored in src/environments, including service path dire
 
 To build for PRODUCTION:
 
-ng build --prod --base-href /projects/
+npm run build
 
 To build for BETA:
 
