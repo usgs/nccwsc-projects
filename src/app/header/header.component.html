@@ -1,72 +1,13 @@
 
-<div class="usgs-vis-header">
+
   <div class="hf-container brandContainer">
     <div class="row">
-      <a class="navbar-brand " href="https://www.usgs.gov/" title="home">
-        <img class="img-responsive" id='usgs_logo' src="assets/usgs-logo_0.png" class="usgs_logo" />
+      <a class="navbar-brand " href="#" title="home">
+        <h1>Project Explorer</h1>
+          <h2>Climate Adaptation Science Centers</h2>
       </a>
-      <div class="site-name-wrapper-mobile" >
-        <a class="navbar-brand " [href]="baseURL" title="home">
-          <span id="top-site-name">Climate Adaptation Science Centers</span>
-        </a>
-      </div>
+      
     </div>
   </div>
-  <div class="branding">
-    <div class="hf-container">
-      <div class="col-md-10 site-name-wrapper" >
-        <a class="navbar-brand " [href]="baseURL" title="home">
-          <span id="top-site-name">Climate Adaptation Science Centers</span>
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
+  
 
-<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse container">
-  <div class="hf-container">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation" (click)="isNavbarCollapsed=!isNavbarCollapsed">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarsExampleDefault">
-      <span *ngFor="let menu_item of nccwscMenu">
-        <ul class="navbar-nav mr-auto" *ngIf="menu_item.title !='Login'">
-                  <li class="nav-item" *ngIf="!menu_item.children">
-            <a [href]="fixLink(menu_item.url)">
-              {{ menu_item.title }}
-              </a>
-          </li>
-          <li ngbDropdown (autoClose)=false class="nav-item" *ngIf="menu_item.children">
-            <a class="" id="dropdownMenu1" ngbDropdownToggle>{{ menu_item.title }}</a>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                <ul class="navbar-nav mr-auto" *ngFor="let child_item of menu_item.children" >
-                  <span>
-                  <li class="nav-item" *ngIf="!child_item.children">
-                    <a [href]="fixLink(child_item.url)">
-                      {{ child_item.title }}
-                    </a>
-                  </li>
-                  <li ngbDropdown class="nav-item" *ngIf="child_item.children">
-                    <a class="" id="dropdownMenu2" ngbDropdownToggle>{{ child_item.title }}</a>
-                    <div class="dropdown-menu" autoClose="false" aria-labelledby="dropdownMenu2">
-                      <ul class="navbar-nav mr-auto" *ngFor="let grandchild_item of child_item.children" >
-                        <span>
-                          <li class="nav-item" *ngIf="!grandchild_item.children">
-                            <a [href]="fixLink(grandchild_item.url)">
-                              {{ grandchild_item.title }}
-                            </a>
-                          </li>
-                        </span>
-                      </ul>
-                    </div>
-                  </li>
-
-                  </span>
-                </ul>
-            </div>
-          </li>
-        </ul>
-      </span>
-    </div>
-  </div>
-</nav>

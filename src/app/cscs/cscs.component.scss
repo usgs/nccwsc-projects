@@ -1,3 +1,8 @@
+h2 {
+    font-size: 1.5em;
+    font-family: 'Source Sans Pro';
+}
+
 .btn { 
   width: 80% !important;
   /* margin-left: 10%; */
@@ -5,6 +10,8 @@
   border: none;
   width: 280px;
   cursor: pointer;
+    font-family: 'Source Sans Pro';
+   
   
 }
 .btn.btn-success {
@@ -13,7 +20,7 @@
 }
 
 .btn.btn-primary {
-  background-color: #00264C
+  background-color: #002640
 }
 
 .btn.btn-info {
@@ -30,5 +37,6 @@
   .btn {
     height: 60px;
     white-space: normal;
+      font-size: 1.25em;
   }
 }

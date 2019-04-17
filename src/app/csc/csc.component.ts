@@ -17,7 +17,7 @@ export class CscComponent implements OnInit {
   sbId: any;
   cscProjectsList = [];
   filteredCscProjectsList = [];
-  csc_url = environment.baseURL + '/casc-list';
+  csc_url = environment.baseURL;
   topics = ['All Topics'];
   fiscal_years = ['All Fiscal Years'];
   statuses = ['All Statuses'];
@@ -109,15 +109,8 @@ export class CscComponent implements OnInit {
   }
 
   setButtonUrl() {
-    // sets "Explore Other topics" btn urls
-    let buttonUrl = environment.baseURL + "/casc-list";
-    // if (environment.production == false) {
-    //   buttonUrl = "https://my-beta.usgs.gov/nccwsc/csc-list";
-    // }
-    // else {
-    //   buttonUrl = "https://nccwsc.usgs.gov/csc-list";
-    // }
-
+    // sets "Explore Other topics" btn urls (link back to main page).
+    let buttonUrl = environment.baseURL;
     return buttonUrl;
   }
 
@@ -140,12 +133,12 @@ export class CscComponent implements OnInit {
         if (matched_topic == false) {
           continue;
         }
-      }      
+      }
       if (this.current_fy != 'All Fiscal Years') {
         if (this.cscProjectsList[project].fiscal_year !== this.current_fy) {
           continue;
         }
-      }      
+      }
       if (this.current_status != 'All Statuses') {
         if (this.cscProjectsList[project].status !== this.current_status) {
           continue;
