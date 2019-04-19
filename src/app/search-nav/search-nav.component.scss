@@ -21,8 +21,8 @@ input {
 
 div.field {
   width: 100%;
-  margin-bottom: .8em;  
-  color: #000000;  
+  margin-bottom: .8em;
+  color: #000000;
 }
 
 div.filters {
@@ -57,14 +57,14 @@ input#queryTerms {
 
 .buttons {
   .btn {
-    margin-top: .4em !important;  
+    margin-top: .4em !important;
   }
 }
 
 .btn-success {
-  background-color: #1E90FF;
-  border-color: 1E90FF;
-  font-weight: bold;  
+  background-color: rgb(29, 90, 171);
+  border-color: rgb(29, 90, 171);
+  font-weight: bold;
 }
 
 .btn-success:focus {

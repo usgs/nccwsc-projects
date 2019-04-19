@@ -77,7 +77,7 @@ export class TopicsComponent implements OnInit {
   };
 
 
-  topics_url = environment.baseURL + '/explore-by-topic';
+  topics_url = environment.baseURL;
   project_url = environment.baseURL + '/project';
 
   subtopics = ['All Subtopics'];

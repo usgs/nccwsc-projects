@@ -244,7 +244,7 @@ export class CscComponent implements OnInit {
           this.cscProjectsList[project].investigators_formatted = '';
 
           for (var pi of this.cscProjectsList[project].contacts.principal_investigators) {
-            this.cscProjectsList[project].investigators_formatted = this.cscProjectsList[project].investigators_formatted + pi.name + '<i>(' + pi.organization + '</i>)<br>';
+            this.cscProjectsList[project].investigators_formatted = this.cscProjectsList[project].investigators_formatted + pi.name + '&nbsp;<i>(' + pi.organization + '</i>)<br>';
           }
 
           // topics

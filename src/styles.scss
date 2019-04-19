@@ -1,10 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+
 ng-select > div > div.multiple input {
   width: auto !important;
 }
 body {
   font-family: 'Source Sans Pro',sans-serif !important;
-	
+
 }
 .hf-container {
   max-width:1140px;
@@ -15,5 +17,5 @@ body {
 }
 #footer > .footer > .hf-container > .row {
   padding-left:20px;
-  
+
 }
