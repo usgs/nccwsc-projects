@@ -119,16 +119,14 @@ export class CscComponent implements OnInit {
     // tslint:disable-next-line:forin
     for (var project in this.cscProjectsList) {
       var display = true;
-      if (this.current_topic != 'All Topics') {
+      if (this.current_topic != 'All Topics' && this.cscProjectsList[project].topics != null) {
+        var matched_topic = false;
         for (var topic in this.cscProjectsList[project].topics) {
-          var matched_topic = true;
-          if (this.cscProjectsList[project].topics[topic].replace(/,/g, "").trim() !== this.current_topic.replace(/,/g, "").trim()) {
-            matched_topic = false;
-          } else {
+          if (this.cscProjectsList[project].topics[topic].replace(/,/g, "").trim() == this.current_topic.replace(/,/g, "").trim()) {
+            matched_topic = true;
             // Found our topic, let's check year and status.
-            break
+            break;
           }
-
         }
         if (matched_topic == false) {
           continue;

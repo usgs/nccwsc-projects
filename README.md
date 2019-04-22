@@ -3,7 +3,26 @@
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.26.
 
 ## Development server
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+### Initial setup
+
+In the source directory:
+
+```
+nvm install 8.5.0 
+npm install -g @angular/cli@1
+npm install typescript@'>=2.1.0 <2.4.0’
+npm install
+```
+
+### Run
+
+```
+nvm use 8.5.0
+ng build
+ng serve
+```
+Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 

@@ -101,13 +101,12 @@ export class TopicsComponent implements OnInit {
   filterProjectsList(event:any = null) {
     this.filteredProjectsList = [];
     for (var project in this.projectsList) {
-      if (this.current_subtopic != 'All Subtopics') {
+      if (this.current_subtopic != 'All Subtopics' && this.projectsList[project].subtopics != null) {
+        var matched_subtopic = false;
         for (var subtopic in this.projectsList[project].subtopics) {
-          var matched_subtopic = true;
-          if (this.projectsList[project].subtopics[subtopic] !== this.current_subtopic) {
-             matched_subtopic = false
-          } else {
-            break
+          if (this.projectsList[project].subtopics[subtopic] == this.current_subtopic) {
+            matched_subtopic = true;   
+            break;
           }
         }
         if (!matched_subtopic) {
