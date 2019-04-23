@@ -13,26 +13,25 @@ export class LocalJsonService {
 
   loadCscProjects(csc_id) {
     var cscUrl = this.serviceURL + '/projects/' + csc_id;
-    console.log(cscUrl)
+    console.log(cscUrl);
     return this.http.get(cscUrl).map((res:Response) => res.json());  
   }
 
   loadTopics() {
     var cscUrl = this.serviceURL + '/topics/';
-    console.log(cscUrl)
+    console.log(cscUrl);
     return this.http.get(cscUrl).map((res:Response) => res.json());  
   }
 
   loadTopic(topic_name) {
     var cscUrl = this.serviceURL + '/search?query=&topics=' + topic_name + '&subtopics=&organizations=';
-    console.log(cscUrl)
     console.log(cscUrl);
     return this.http.get(cscUrl).map((res:Response) => res.json());  
   }
 
   loadProject(csc_id, project_id) {
     var cscUrl = this.serviceURL + '/projects/' + csc_id + '/' + project_id;
-    console.log(cscUrl)
+    console.log(cscUrl);
     return this.http.get(cscUrl).map((res:Response) => res.json());  
   }
 
