@@ -17,11 +17,11 @@
       <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
     </select>
   </div>
-  <div class="col-xs-12 col-md-2 filter-bar">
+  <!--div class="col-xs-12 col-md-2 filter-bar">
     <select  (change)="filterProjectsList($event.target.value)" [(ngModel)]="current_type" class="filter">
       <option *ngFor="let type of types" [value]="type">{{ type }}</option>
     </select>
-  </div>
+  </div-->
   <div class="col-xs-12 col-md-2 filter-bar">
     <select  (change)="filterProjectsList($event.target.value)" [(ngModel)]="current_csc" class="filter">
       <option *ngFor="let csc of cscs" [value]="csc">{{ csc }}</option>
@@ -100,11 +100,11 @@
 			</div>
 
 			<!--Types-->
-			<div class="card-text">
+			<!--div class="card-text">
 				<b>Types:</b>
 				<span *ngIf="project.types"> <span>{{ project.types }}</span> </span>
 				<span *ngIf="!project.types"> <span>N/A</span> </span>
-			</div>
+			</div-->
 
 			<!--Status-->
 			<div class="card-text">

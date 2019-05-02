@@ -54,10 +54,10 @@ export class TopicsComponent implements OnInit {
         width: '10%',
         type: 'html',
       },
-      types: {
-        title: 'Types',
-        width: '7%',
-      },
+      //types: {
+      //  title: 'Types',
+      //  width: '7%',
+      //},
       status: {
         title: 'Status',
         width: '7%',
@@ -84,9 +84,9 @@ export class TopicsComponent implements OnInit {
   fiscal_years = ['All Fiscal Years'];
   statuses = ['All Statuses'];
   cscs=['All CASCs'];
-  types=['All Types'];
+  types=['Project'];
   current_subtopic = 'All Subtopics';
-  current_type = 'All Types';
+  current_type = 'Project';
   current_fy = 'All Fiscal Years';
   current_status = 'All Statuses';
   current_csc = 'All CASCs';
@@ -153,7 +153,7 @@ export class TopicsComponent implements OnInit {
     this.current_subtopic = 'All Subtopics';
     this.current_fy = 'All Fiscal Years';
     this.current_status = 'All Statuses';
-    this.current_type = 'All Types';
+    this.current_type = 'Project';
     this.current_csc = 'All CASCs';
   }
 
@@ -273,11 +273,12 @@ export class TopicsComponent implements OnInit {
             this.cscs.push(this.projectsList[project].csc['name'])
           }
           if (this.projectsList[project].types) {
-          for (var this_type of this.projectsList[project].types) {
-            if (this.types.indexOf(this_type) < 0) {
-              this.types.push(this_type)
-            }
-          } }
+            for (var this_type of this.projectsList[project].types) {
+              if (this.types.indexOf(this_type) < 0) {
+                this.types.push(this_type)
+              }
+            } 
+          }
 
           this.fiscal_years.sort();
           this.subtopics.sort();
@@ -308,11 +309,11 @@ export class TopicsComponent implements OnInit {
             if (!this.projectsList[project].status) {
               this.projectsList[project].status = "N/A";
             }
-            //t ype
-            if (!this.projectsList[project].types) {
-              this.projectsList[project].types = "N/A";
-
-            }
+            // type
+            //if (!this.projectsList[project].types) {
+            //  this.projectsList[project].types = "N/A";
+            //}
+            
             // contains
             this.projectsList[project].contains = '<div align="center">';
 
