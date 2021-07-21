@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { DOCUMENT } from '@angular/platform-browser'
+import { DOCUMENT } from "@angular/common";
 
 @Component({
   selector: 'app-footer',
@@ -15,7 +15,6 @@ export class FooterComponent implements OnInit {
   }
   ngOnInit() {
     this.currentVersion = environment.version
-    console.log('Footer initialized')
   }
 
 }

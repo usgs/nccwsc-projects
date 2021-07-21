@@ -1,14 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { routing, appRoutingProviders } from './app.routing';
 import { NgbModule, NgbActiveModal, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
-import { LeafletModule } from "@asymmetrik/angular2-leaflet";
-import { SelectModule } from 'ng-select';
+import { LeafletModule } from "@asymmetrik/ngx-leaflet";
+import { NgSelectModule } from '@ng-select/ng-select';
+import { GoogleAnalyticsService } from './google-analytics.service';
 
 import { HeaderComponent } from './header/header.component'
 import { FooterComponent } from './footer/footer.component'
@@ -47,17 +48,17 @@ import { TitleLinkComponent } from './title-link/title-link.component'
     LeafletModule,
     BrowserModule,
     FormsModule,
-    HttpModule,
+    HttpClientModule,
     routing,
-    SelectModule,
+    NgSelectModule,
     Ng2SmartTableModule,
-    NgbDropdownModule.forRoot(),
-    NgbModule.forRoot(),
+    NgbDropdownModule,
+    NgbModule,
   ],
   entryComponents: [
     TitleLinkComponent
   ],
-  providers: [LocalJsonService, SciencebaseService, SearchService, {provide: LocationStrategy, useClass: HashLocationStrategy}],
+  providers: [GoogleAnalyticsService, LocalJsonService, SciencebaseService, SearchService, {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

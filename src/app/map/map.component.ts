@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { LeafletMapModel } from './map.model';
 import * as L from 'leaflet';
 import * as X2JS from "x2js";
@@ -38,7 +38,6 @@ export class MapComponent {
     this.LAYER_OCM = {
       id: 'opencyclemap',
       name: 'Open Cycle Map',
-      enabled: true,
       layer: L.tileLayer('https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
         maxZoom: 15,
         attribution: 'Open Cycle Map'
@@ -47,7 +46,6 @@ export class MapComponent {
     this.LAYER_OSM = {
       id: 'openstreetmap',
       name: 'Open Street Map',
-      enabled: false,
       layer: L.tileLayer('https://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
         maxZoom: 15,
         attribution: 'Open Street Map'
@@ -59,17 +57,6 @@ export class MapComponent {
     this.projectshape_wms_url = this.mapUrl.replace(/service=wms&request=getcapabilities&version=1.3.0/, '');
     if (this.xmsCapabilities['WMS_Capabilities'].Capability.Layer.Layer && (this.xmsCapabilities['WMS_Capabilities'].Capability.Layer.Layer.length > 0)) {
       for (var layer of this.xmsCapabilities['WMS_Capabilities'].Capability.Layer.Layer) {
-        this.layersArray.push({
-          id: layer.Name, 
-          name: layer.Name, 
-          enabled: true, 
-          layer: L.tileLayer.wms(this.projectshape_wms_url, {
-            layers: layer.Name, 
-            format: 'image/png', 
-            transparent: true, 
-            enabled: true
-          })
-        })
         this.layersFromWMS[layer.Name] = {
           id: layer.Name, 
           name: layer.Name, 
@@ -77,8 +64,7 @@ export class MapComponent {
           layer: L.tileLayer.wms(this.projectshape_wms_url, {
             layers: layer.Name, 
             format: 'image/png', 
-            transparent: true, 
-            enabled: true
+            transparent: true
           })
         }
       }
@@ -97,10 +83,9 @@ export class MapComponent {
 
   getWMSCapabilities(mapUrl) {
     var x2js = new X2JS()
-    return this.http.get(mapUrl).toPromise()
+    return this.http.get(mapUrl, { responseType: 'text' }).toPromise()
       .then(response => {
-        var xmlData = response.text()
-        this.xmsCapabilities = x2js.xml2js(xmlData);
+        this.xmsCapabilities = x2js.xml2js(response);
         if (this.xmsCapabilities) {
           if (this.xmsCapabilities && this.xmsCapabilities['WMS_Capabilities'] && this.xmsCapabilities['WMS_Capabilities'].Capability && this.xmsCapabilities['WMS_Capabilities'].Capability.Layer) {
             var thisLayer = this.xmsCapabilities['WMS_Capabilities'].Capability.Layer;
@@ -118,13 +103,8 @@ export class MapComponent {
             this.fitBounds = this.parseWMSGeographicBoundingBox(thisLayer.EX_GeographicBoundingBox);
           }            
         }
-      } else {
-
-        console.log("We have no json data. :/");
-
       }
 
-      console.log("Why should this be last?")
       this.defineOverlays()
       this.render = true
 
@@ -133,7 +113,7 @@ export class MapComponent {
   }
 
   defineModel() {
-    var overlayArray = []   
+    var overlayArray = []
     for (var key in this.layersFromWMS) {
       if (this.layersFromWMS.hasOwnProperty(key)) {
         overlayArray.push(this.layersFromWMS[key]);
@@ -155,7 +135,7 @@ export class MapComponent {
     }
   }
 
-  constructor(private http: Http) {
+  constructor(private http: HttpClient) {
   }
 
   ngOnInit() {
@@ -181,10 +161,6 @@ export class MapComponent {
     newLayers.unshift(baseLayer.layer)
     this.layers = newLayers
     var overlays = {}
-    for (var thisLayer of this.layersFromWMS) {
-      overlays[thisLayer.name] = thisLayer.layer
-    }
-
     for (var key in this.layersFromWMS) {
       if (this.layersFromWMS.hasOwnProperty(key)) {
         overlays[key] = this.layersFromWMS[key].layer

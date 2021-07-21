@@ -9,6 +9,7 @@ export class CscsComponent implements OnInit {
 
   csc_ids = [
     {'id': 'alaska', 'name' : 'Alaska'},
+    {'id': 'midwest', 'name': 'Midwest'},
     {'id': 'northwest', 'name' : 'Northwest'},
     {'id': 'north-central', 'name' : 'North Central'},
     {'id': 'northeast', 'name' : 'Northeast'},

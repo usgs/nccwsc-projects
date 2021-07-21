@@ -6,9 +6,9 @@
         <input type="text" id="queryTerms" [(ngModel)]="searchQuery" value="searchQuery" placeholder="Search terms ..." name="queryTerms">
       </div>
       <div class="field" *ngIf="topicsLoaded">
-        <ng-select 
-          [options]="topics"
-          (selected)="onTopicsChange($event.value)"
+        <ng-select
+          [items]="topics"
+          (change)="onTopicsChange($event.value)"
           [(ngModel)]="selectedTopic"
           [ngModelOptions]="{standalone: true}"
           placeholder="Topic">
@@ -17,8 +17,8 @@
       <div class="field">
         <ng-select
           [multiple]="true"
-          [options]="subtopics"
-          (selected)="onSubtopicsChange($event.value)"
+          [items]="subtopics"
+          (change)="onSubtopicsChange($event.value)"
           [(ngModel)] = "selectedSubtopics"
           [ngModelOptions]="{standalone: true}"
           placeholder="Subtopics">
@@ -27,8 +27,8 @@
       <div class="field" *ngIf="orgsLoaded">
         <ng-select
           [multiple]="true"
-          [options]="orgs"
-          (selected)="onOrgsChange($event.value)"
+          [items]="orgs"
+          (change)="onOrgsChange($event.value)"
           [(ngModel)]="selectedOrgs"
           [ngModelOptions]="{standalone: true}"
           placeholder="CASCs  ">
@@ -36,7 +36,7 @@
       </div>
       <div class="float-right buttons">
       	<button (click)="onSubmit()" class="btn btn-sm btn-success">Search</button>
-        <button (click)="resetQuery()" *ngIf="showReset"class="btn btn-sm btn-warning">Reset Query</button>
+        <button (click)="resetQuery()" *ngIf="showReset" class="btn btn-sm btn-warning">Reset Query</button>
       </div>
     </form>
   </div>
@@ -44,51 +44,51 @@
   <div class="filters" *ngIf="totalResults > 0">
     <h4>Filters</h4>
     <div class="field">
-      <ng-select #orgs  
+      <ng-select #orgs
         [multiple]="true"
-        [options]="resultOrgs" 
-        (selected)="onOrgSourceChange($event.label)" 
+        [items]="resultOrgs"
+        (change)="onOrgSourceChange($event.label)"
         [(ngModel)]="filteredOrg"
-        [label]="Organizations"         
-        (deselected)="onOrgSourceChange($event.label)" 
+        [label]="Organizations"
+        (deselected)="onOrgSourceChange($event.label)"
         placeholder="All Organizations">
       </ng-select>
     </div>
     <div class="field">
-      <ng-select #types 
+      <ng-select #types
         [multiple]="true"
-        [options]="resultTypes" 
-        (selected)="onTypeSourceChange($event.label)"
-        [(ngModel)]="filteredType" 
+        [items]="resultTypes"
+        (change)="onTypeSourceChange($event.label)"
+        [(ngModel)]="filteredType"
         [label]="Types"
         (deselected)="onTypeSourceChange($event.label)"
         placeholder="Project">
       </ng-select>
     </div>
     <div class="field">
-      <ng-select #fy 
+      <ng-select #fy
         [multiple]="true"
-        [options]="resultFY"
-        (selected)="onFYSourceChange($event.label)" 
-        [(ngModel)]="filteredFY" 
+        [items]="resultFY"
+        (change)="onFYSourceChange($event.label)"
+        [(ngModel)]="filteredFY"
         [label]="FiscalYears"
         (deselected)="onFYSourceChange($event.label)"
         placeholder="All Fiscal Years">
       </ng-select>
     </div>
     <div class="field">
-      <ng-select #statuses 
+      <ng-select #statuses
         [multiple]="true"
-        [options]="resultStatus"
-        (selected)="onStatusSourceChange($event.label)"
+        [items]="resultStatus"
+        (change)="onStatusSourceChange($event.label)"
         [(ngModel)]="filteredStatus"
-        [label]="Statuses"        
+        [label]="Statuses"
         (deselected)="onStatusSourceChange($event.label)"
         placeholder="All Statuses">
       </ng-select>
     </div>
     <div class="field">
-      <button (click)="statuses.clear(); fy.clear(); types.clear(); orgs.clear()" class="btn btn-sm btn-warning">Reset Filters</button>
+      <button (click)="resetFilters()" *ngIf="showResetFilters" class="btn btn-sm btn-warning">Reset Filters</button>
     </div>
   </div>
   <div class="info">
