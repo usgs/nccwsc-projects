@@ -236,16 +236,24 @@ export class CscComponent implements OnInit {
 
 
           // principal investigators
-          this.cscProjectsList[project].investigators_formatted = '';
+          if (this.cscProjectsList[project].contacts.principal_investigators != null) {
+            this.cscProjectsList[project].investigators_formatted = '';
 
-          for (var pi of this.cscProjectsList[project].contacts.principal_investigators) {
-            this.cscProjectsList[project].investigators_formatted = this.cscProjectsList[project].investigators_formatted + pi.name + '&nbsp;<i>(' + pi.organization + '</i>)<br>';
+            for (var pi of this.cscProjectsList[project].contacts.principal_investigators) {
+              this.cscProjectsList[project].investigators_formatted = this.cscProjectsList[project].investigators_formatted + pi.name + '&nbsp;<i>(' + pi.organization + '</i>)<br>';
+            }
+          } else {
+            this.cscProjectsList[project].investigators_formatted = "N/A";
           }
 
           // topics
-          this.cscProjectsList[project].topics_formatted = '';
-          for (var t of this.cscProjectsList[project].topics) {
-            this.cscProjectsList[project].topics_formatted = this.cscProjectsList[project].topics_formatted + t + '<br>';
+          if (this.cscProjectsList[project].topics != null) {
+            this.cscProjectsList[project].topics_formatted = '';
+            for (var t of this.cscProjectsList[project].topics) {
+              this.cscProjectsList[project].topics_formatted = this.cscProjectsList[project].topics_formatted + t + '<br>';
+            }
+          } else {
+            this.cscProjectsList[project].topics_formatted = "N/A";
           }
 
           // status
