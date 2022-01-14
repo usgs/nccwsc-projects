@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { DomSanitizer, SafeResourceUrl, SafeUrl} from '@angular/platform-browser';
 import { environment } from '../../environments/environment';
+import { UrlService } from '../url.service';
 
 @Component({
   selector: 'app-project',
@@ -59,7 +60,7 @@ export class ProjectComponent implements OnInit {
     'State of the Science': 'science-tools;subtopic=State%20of%20the%20Science'
   }
 
-  constructor(private route: ActivatedRoute, private localJson: LocalJsonService, private router: Router, private sanitizer: DomSanitizer, private modalService: NgbModal) { }
+  constructor(private route: ActivatedRoute, private localJson: LocalJsonService, private router: Router, private sanitizer: DomSanitizer, private modalService: NgbModal, private urlService: UrlService) { }
 
   openImage(imageModal, image) {
     this.modal_image = image;
@@ -95,6 +96,7 @@ export class ProjectComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.urlService.setCurrentTitle("Project");
     this.sub = this.route.params.subscribe(params => {
       this.projectId = params['id'];
       this.cscId = params['csc'];

@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { UrlService } from "../url.service";
+
+declare function imageMapResize(): void;
 
 @Component({
   selector: 'app-cscs',
   templateUrl: './cscs.component.html',
   styleUrls: ['./cscs.component.scss']
 })
+
 export class CscsComponent implements OnInit {
 
   csc_ids = [
@@ -21,17 +25,22 @@ export class CscsComponent implements OnInit {
   ]
 
   topic_ids = [
-    {'id': 'landscapes', 'name': 'Landscapes'},
     {'id': 'drought-fire-extremes', 'name': 'Drought, Fire and Extreme Weather'},
-    {'id': 'wildlife-plants', 'name': 'Wildlife and Plants'},
-    {'id': 'water-coasts-ice', 'name': 'Water, Coasts and Ice'},
+    {'id': 'landscapes', 'name': 'Landscapes'},
     {'id': 'indigenous-peoples', 'name': 'Indigenous Peoples'},
     {'id': 'science-tools', 'name': 'Science Tools for Managers'},
+    {'id': 'water-coasts-ice', 'name': 'Water, Coasts and Ice'},
+    {'id': 'wildlife-plants', 'name': 'Wildlife and Plants'},
   ]
 
-  constructor() { }
+  constructor(private urlService: UrlService) { }
 
   ngOnInit() {
+    this.urlService.setPreviousTitle(null);
+  }
+
+  imageResized() {
+    imageMapResize(); // Javascript function in imageMapResizer.min.js 
   }
 
 }

@@ -1,28 +1,33 @@
-<div class="container">
-  <div class="button-group row">
-    <div class="col-md-12">
-      <h2>Search Our Science</h2>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3 search-group">
+      <h3>Search by topic</h3>
+      <div class="topics-wrapper">
+        <div class="topics" *ngFor="let topic of topic_ids">
+          <a [routerLink]="['/topics/', topic.id]">{{ topic.name }}</a>
+        </div>
+      </div>
     </div>
-    <div class="col-md-4">
-      <button class="btn btn-success nav-link" [routerLink]="['/search']">Advanced Search</button>
+    <div class="col-md-9 search-group">
+      <h3>Search by region</h3>
+      <img class="casc-map" src="assets/images/casc_regional_map.png" usemap="#casc-image" (load)="imageResized();" alt="Map showing the different CASC regions" />
+      <map name="casc-image">
+        <area target="" alt="Alaska" title="Alaska" href="#/casc/alaska" coords="-1,0,582,453" shape="rect">
+        <area target="" alt="Pacific Islands" title="Pacific Islands" href="#/casc/pacific-islands" coords="-1,468,607,934" shape="rect">
+        <area target="" alt="Northwest" title="Northwest" href="#/casc/northwest" coords="587,4,589,262,939,341,954,241,910,225,893,190,884,166,893,153,871,94,871,52,738,20" shape="poly">
+        <area target="" alt="Southwest" title="Southwest" href="#/casc/southwest" coords="609,269,593,326,613,468,633,564,672,593,707,645,705,667,766,676,919,748,934,741,980,385,939,378,934,345" shape="poly">
+        <area target="" alt="North Central" title="North Central" href="#/casc/north-central" coords="878,55,880,105,891,138,895,160,893,184,915,225,958,238,943,365,991,378,972,518,1352,538,1345,446,1326,398,1306,324,1304,223,1291,94" shape="poly">
+        <area target="" alt="South Central" title="South Central" href="#/casc/south-central" coords="969,522,943,730,967,737,974,719,1013,726,1055,772,1063,802,1103,837,1125,811,1151,813,1190,879,1208,929,1273,947,1299,855,1374,815,1511,837,1490,761,1439,757,1446,691,1363,691,1350,549" shape="poly">
+        <area target="" alt="Midwest" title="Midwest" href="#/casc/midwest" coords="1293,57,1310,212,1312,324,1345,415,1358,444,1363,536,1468,534,1472,549,1498,540,1516,503,1540,475,1590,459,1612,422,1680,437,1708,387,1704,300,1640,315,1658,271,1640,221,1614,181,1599,147,1468,101,1369,59" shape="poly">
+        <area target="" alt="Southeast" title="Southeast" href="#/casc/southeast" coords="1352,549,1367,667,1374,684,1452,687,1444,748,1496,752,1507,781,1562,781,1614,772,1627,789,1669,774,1702,805,1699,844,1771,936,1806,923,1813,827,2036,818,2036,652,1785,656,1876,549,1865,496,1671,525,1494,555" shape="poly">
+        <area target="" alt="Northeast" title="Northeast" href="#/casc/northeast" coords="1946,46,1914,46,1900,127,1815,173,1791,238,1739,249,1739,282,1712,308,1710,391,1680,444,1621,431,1588,466,1529,490,1507,536,1653,520,1872,483,1855,450,1892,391,2016,385,2012,321,1931,308,1981,262,1959,214,2005,140" shape="poly">
+      </map>
     </div>
   </div>
-
-  <div class="button-group row center-last-button">
-    <div class="col-md-12">
-      <h2>Explore Projects by Region</h2>
-    </div>
-    <div class="col-md-4" *ngFor="let csc of csc_ids">
-      <button class="btn btn-primary nav-link" [routerLink]="['/casc/', csc.id]">{{ csc.name}}</button>
-    </div>
-  </div>
-
-  <div class="button-group row">
-    <div class="col-md-12">
-      <h2>Explore Projects by Topic</h2>
-    </div>
-    <div class="col-md-4" *ngFor="let topic of topic_ids">
-      <button class="btn btn-info nav-link" [routerLink]="['/topics/', topic.id]">{{ topic.name }}</button>
+  <div class="row">
+    <div class="col-12 search-group">
+      <h3>Search the entire project database</h3>
+      <app-search></app-search>
     </div>
   </div>
 </div>

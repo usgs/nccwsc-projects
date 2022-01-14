@@ -1,20 +1,27 @@
-/* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
-
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=News+Cycle:wght@400;700&display=swap');
 @import "~@ng-select/ng-select/themes/default.theme.css";
 
+html,
 body {
-  font-family: 'Source Sans Pro',sans-serif !important;
+  font-family: "Lora", serif;
+  font-weight: 400;
+  font-size: 18px;
 
-}
-.hf-container {
-  max-width:1140px;
-  margin: auto;
-  padding:0;
-  z-index: 10;
-  //position: relative;
-}
-#footer > .footer > .hf-container > .row {
-  padding-left:20px;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "News Cycle", sans-serif !important;
+    font-weight: 700;
+  }
 
+  a {
+    color: #0d66c4 !important;
+  }
+
+  b, strong {
+    font-weight: 600;
+  }
 }
